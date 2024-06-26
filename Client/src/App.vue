@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 </script>
 
 <template>
   <div class="container mx-auto flex">
-    <Navbar />
+    <nav>
+      <Navbar class="sticky top-4" />
+    </nav>
 
     <main class="flex flex-col flex-1">
       <RouterView />
-      <ConfirmButton></ConfirmButton>
-      <CancelButton></CancelButton>
+      <Toast position="bottom-right" />
     </main>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  height: 100vh;
+}
+</style>
