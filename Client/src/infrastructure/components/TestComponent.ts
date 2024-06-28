@@ -1,5 +1,5 @@
 import { computed, onUnmounted, reactive } from "vue";
-import { AuthenticationService } from "@/app/services";
+import { AuthenticationService } from "@/core/services";
 import { useToast } from "primevue/usetoast";
 import type { ToastServiceMethods } from "primevue/toastservice";
 
@@ -39,7 +39,7 @@ export default class TestComponent {
 
   async testFetchAsync() {
     return this.authenticationService
-      .loginAsync("hello", "world")
+      .loginAsync({ email: "hello", password: "world" })
       .catch((err) => {
         this.toast.add({
           severity: "error",
@@ -47,6 +47,7 @@ export default class TestComponent {
           detail: err.message,
           life: 3000,
         });
+        return undefined;
       });
   }
 }

@@ -1,4 +1,4 @@
-export interface AuthenticationResponse {
+export interface LoginResponse {
   token: string;
   userProfile: {
     email: string;

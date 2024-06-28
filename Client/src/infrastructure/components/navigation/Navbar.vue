@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { RouteEnum } from "@/app/enums";
+import { RouteEnum } from "@/core/enums";
 
 const items = ref([
   {

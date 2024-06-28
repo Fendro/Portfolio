@@ -1,7 +1,12 @@
 <template>
   <div class="card flex justify-content-center">
-    <UserProfileButton @focusin="toggle" @focusout="toggle" />
-    <Menu :model="items" v-if="isToggled">
+    <UserProfileButton
+      @click.prevent="toggleMenu(!isMenuToggled)"
+      @focusin="toggleMenu(true)"
+      @focusout="toggleMenu(false)"
+      @keyup="toggleOnEscape"
+    />
+    <Menu :model="items" v-if="isMenuToggled">
       <template #item="{ item, props }">
         <router-link
           v-if="item.route"
@@ -14,16 +19,6 @@
             <span class="ml-2">{{ item.label }}</span>
           </a>
         </router-link>
-        <a
-          v-else
-          v-ripple
-          :href="item.url"
-          :target="item.target"
-          v-bind="props.action"
-        >
-          <span :class="item.icon" />
-          <span class="ml-2">{{ item.label }}</span>
-        </a>
       </template>
     </Menu>
   </div>
@@ -31,11 +26,9 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import UserProfileButton from "@/infrastructure/components/buttons/UserProfileButton.vue";
 
-const router = useRouter();
-const isToggled = ref(false);
+const isMenuToggled = ref(false);
 const items = ref([
   {
     label: "Login",
@@ -44,8 +37,12 @@ const items = ref([
   },
 ]);
 
-function toggle() {
-  isToggled.value = !isToggled.value;
+function toggleMenu(value) {
+  isMenuToggled.value = value;
+}
+
+function toggleOnEscape(event) {
+  if (event.key === "Escape") toggleMenu(false);
 }
 </script>
 

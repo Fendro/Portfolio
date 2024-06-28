@@ -1,10 +1,8 @@
-// Vue
 import { createApp, provide } from "vue";
 import { createPinia } from "pinia";
 import App from "@/App.vue";
-import router from "@/infrastructure/router";
+import router from "@/core/router";
 
-// PrimeVue
 import "@/assets/app.css";
 import Aura from "@/assets/themes/aura";
 import PrimeVue from "primevue/config";
@@ -21,51 +19,40 @@ import ToggleButton from "primevue/togglebutton";
 import ToastService from "primevue/toastservice";
 import Ripple from "primevue/ripple";
 
-// Own
-import {
-  useUserProfileStore,
-  useUserProfileStoreKey,
-} from "@/app/stores/user/userProfileStore";
-import { useUserPreferenceStore } from "@/app/stores/user/userPreferencesStore";
+import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
+import { useUserPreferenceStore } from "@/core/stores/user/userPreferencesStore";
 import CancelButton from "@/infrastructure/components/buttons/CancelButton.vue";
 import ConfirmButton from "@/infrastructure/components/buttons/ConfirmButton.vue";
 import ModalButton from "@/infrastructure/components/buttons/ModalButton.vue";
 
-// App building
 const app = createApp(App);
 const pinia = createPinia();
 
-app.use(router);
-app.use(pinia);
-app.use(PrimeVue, {
-  pt: Aura,
-  ripple: true,
-  unstyled: true,
-});
-app.use(ToastService);
+app
+  .use(router)
+  .use(pinia)
+  .use(PrimeVue, {
+    pt: Aura,
+    ripple: true,
+    unstyled: true,
+  })
+  .use(ToastService);
 
-const userProfileStore = useUserProfileStore();
-const userPreferenceStore = useUserPreferenceStore();
-app.provide("UserProfileStore", userProfileStore);
-app.provide("userPreferenceStore", userPreferenceStore);
-
-// PrimeVue
-app.component("AutoComplete", AutoComplete);
-app.component("Avatar", Avatar);
-app.component("Badge", Badge);
-app.component("Button", Button);
-app.component("Carousel", Carousel);
-app.component("Dropdown", Dropdown);
-app.component("InputText", InputText);
-app.component("Menu", Menu);
-app.component("Toast", Toast);
-app.component("ToggleButton", ToggleButton);
-app.directive("ripple", Ripple);
-
-// Own
-app.component("CancelButton", CancelButton);
-app.component("ConfirmButton", ConfirmButton);
-app.component("ModalButton", ModalButton);
-
-// Mounting
-app.mount("#app");
+app
+  .component("AutoComplete", AutoComplete)
+  .component("Avatar", Avatar)
+  .component("Badge", Badge)
+  .component("Button", Button)
+  .component("CancelButton", CancelButton)
+  .component("ConfirmButton", ConfirmButton)
+  .component("Carousel", Carousel)
+  .component("Dropdown", Dropdown)
+  .component("InputText", InputText)
+  .component("Menu", Menu)
+  .component("ModalButton", ModalButton)
+  .component("Toast", Toast)
+  .component("ToggleButton", ToggleButton)
+  .directive("ripple", Ripple)
+  .provide("UserProfileStore", useUserProfileStore())
+  .provide("userPreferenceStore", useUserPreferenceStore())
+  .mount("#app");

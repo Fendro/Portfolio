@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Ref } from "vue";
-import { LanguageEnum, ThemeEnum } from "@/app/enums";
+import { LanguageEnum, ThemeEnum } from "@/core/enums";
 
 export interface UserPreferences {
   language: LanguageEnum;
