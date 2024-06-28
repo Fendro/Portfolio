@@ -3,15 +3,15 @@ import { AuthenticationService } from "@/app/services";
 import { useToast } from "primevue/usetoast";
 import type { ToastServiceMethods } from "primevue/toastservice";
 
-export interface TestComponentProps {
+export interface UserMenuProps {
   message: string;
 }
 
-export interface TestComponentEmits {
+export interface UserMenuEmits {
   (e: "click"): void;
 }
 
-export default class TestComponent {
+export default class UserMenu {
   private authenticationService: AuthenticationService;
   private toast: ToastServiceMethods;
 
@@ -21,23 +21,14 @@ export default class TestComponent {
   readonly computed = computed(() => this.reactive.randomNumber * 5);
 
   constructor(
-    protected readonly props: TestComponentProps,
-    protected readonly emits: TestComponentEmits,
+    protected readonly props: UserMenuProps,
+    protected readonly emits: UserMenuEmits,
   ) {
     this.authenticationService = new AuthenticationService();
     this.toast = useToast();
-
-    const interval = setInterval(async () => {
-      this.reactive.randomNumber = Math.floor(Math.random() * 10);
-    }, 2000);
-
-    onUnmounted(() => {
-      clearInterval(interval);
-      console.log("cleared");
-    });
   }
 
-  async testFetchAsync() {
+  private async testFetchAsync() {
     return this.authenticationService
       .loginAsync("hello", "world")
       .catch((err) => {

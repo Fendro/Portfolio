@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { Ref } from "vue";
+import type { InjectionKey, Ref } from "vue";
+import type { useUserPreferenceStore } from "@/app/stores/user/userPreferencesStore";
 
 export interface UserProfile {
   email: string;
@@ -9,7 +10,12 @@ export interface UserProfile {
   username: string;
 }
 
-export const useUserProfileStore = defineStore("userProfileStore", () => {
+export const useUserProfileStoreKey = Symbol() as InjectionKey<
+  typeof useUserPreferenceStore
+>;
+
+export const useUserProfileStore = defineStore("userProfile", () => {
+  const isAuthenticated: Ref<boolean> = ref(false);
   const email: Ref<string | undefined> = ref(undefined);
   const firstname: Ref<string | undefined> = ref(undefined);
   const lastname: Ref<string | undefined> = ref(undefined);
@@ -22,6 +28,14 @@ export const useUserProfileStore = defineStore("userProfileStore", () => {
       lastname: lastname.value,
       username: username.value,
     };
+  }
+
+  function login() {
+    isAuthenticated.value = true;
+  }
+
+  function logout() {
+    isAuthenticated.value = false;
   }
 
   function update(payload: UserProfile) {

@@ -3,6 +3,8 @@
     <TestComponent message="First component" />
     <TestComponent message="Second component" />
     <TestComponent message="Third component" />
+    <TestComponent message="Fourth component" />
+    <TestComponent message="Fifth component" />
   </section>
 </template>
 

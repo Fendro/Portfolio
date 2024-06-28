@@ -2,21 +2,16 @@
   <div class="greetings">
     <h1 class="green">{{ "Hello World!" }}</h1>
     <h3>This is my test component</h3>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
-    <div>Prop message is: {{ setup.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
+    <div>Prop message is: {{ props.message }}</div>
     <div>Random reactive number is: {{ setup.reactive.randomNumber }}</div>
     <div>Computed value is: {{ setup.computed }}</div>
+    <ConfirmButton @click="setup.testFetchAsync()" />
   </div>
 </template>
 
