@@ -28,6 +28,8 @@
     "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.19",
     "cypress": "^13.12.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-perfectionist": "^2.11.0",
     "npm-run-all2": "^6.2.0",
     "postcss": "^8.4.38",
     "start-server-and-test": "^2.0.4",
