@@ -6,6 +6,8 @@ import { rateLimit } from "express-rate-limit";
 import winston from "winston";
 import { Dialect, Sequelize } from "sequelize";
 import mysql from "mysql2/promise";
+import { Server } from "socket.io";
+import http from "http";
 
 dotenv.config();
 
@@ -47,8 +49,10 @@ dotenv.config();
 
 (async () => {})();
 
-const app: Express = express();
-const port = process.env.APP_PORT || 3000;
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+const port = process.env.APP_PORT;
 const logger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
@@ -102,4 +106,8 @@ app.post("/Authentication/Register", (req: Request, res: Response) => {
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
+});
+
+io.on("connection", (socket) => {
+  console.log("socket connection established", socket.id);
 });
