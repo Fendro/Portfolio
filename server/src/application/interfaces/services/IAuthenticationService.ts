@@ -1,6 +1,6 @@
-import type { UserCreateDto, UserDto } from "@/dto";
+import type { LoginDto, LoginResponse, RegisterDto } from "@/dto";
 
 export interface IAuthenticationService {
-  register(registerDto: UserCreateDto): Promise<void>;
-  login(username: string, password: string): Promise<UserDto>;
+  register(registerDto: RegisterDto): Promise<void>;
+  login(dto: LoginDto): Promise<LoginResponse>;
 }

@@ -29,6 +29,7 @@ export default class TestComponent {
 
     const interval = setInterval(async () => {
       this.reactive.randomNumber = Math.floor(Math.random() * 10);
+      this.testFetchAsync();
     }, 2000);
 
     onUnmounted(() => {

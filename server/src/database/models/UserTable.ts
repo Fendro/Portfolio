@@ -2,9 +2,9 @@ import { DataTypes, Model, Sequelize } from "sequelize";
 
 const sequelize = new Sequelize("sqlite::memory:");
 
-export class User extends Model {}
+export class UserTable extends Model {}
 
-User.init(
+UserTable.init(
   {
     firstName: {
       type: DataTypes.STRING,

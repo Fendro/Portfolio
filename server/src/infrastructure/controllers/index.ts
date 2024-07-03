@@ -6,8 +6,7 @@ import { UserRepository } from "@/repositories";
 const controllers = Router();
 
 const authController = new AuthenticationController(
-  new AuthenticationService(new UserRepository()),
-  new HashService(),
+  new AuthenticationService(new UserRepository(), new HashService()),
 );
 
 controllers
