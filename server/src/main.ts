@@ -26,9 +26,9 @@ const database = new Database({
 });
 
 (async () => {
-  await database.CreateDatabaseIfDoesNotExistAsync();
-  await database.SynchronizeSequelizeModelsAsync();
-  await database.ConnectAsync();
+  await database.createDatabaseIfDoesNotExist();
+  await database.synchronizeSequelizeModels();
+  await database.connect();
 })();
 
 const app = express();

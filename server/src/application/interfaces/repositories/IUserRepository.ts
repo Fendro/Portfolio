@@ -1,4 +1,4 @@
-import type { UserCreateDto } from "@/application/dto/UserCreateDto";
+import type { UserCreateDto } from "@/dto";
 import type { User } from "@/entities";
 
 export interface IUserRepository {

@@ -1,7 +1,7 @@
 import type { IHashService } from "@/interfaces";
 
 export class HashService implements IHashService {
-  HashPassword(password: string) {
+  hashPassword(password: string) {
     return password;
   }
 }

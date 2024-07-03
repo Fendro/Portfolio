@@ -1,8 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import type {
-  IAuthenticationService,
-  IHashService,
-} from "@/application/interfaces";
+import type { IAuthenticationService, IHashService } from "@/interfaces";
 
 export default class AuthenticationController {
   constructor(
@@ -12,9 +9,9 @@ export default class AuthenticationController {
 
   Login = async (req: Request, res: Response, next: NextFunction) => {
     console.log(
-      this.authenticationService.Login(
+      this.authenticationService.login(
         req.body?.email,
-        this.hashService.HashPassword(req.body?.password),
+        this.hashService.hashPassword(req.body?.password),
       ),
     );
     res.status(200).json({
@@ -30,7 +27,7 @@ export default class AuthenticationController {
   };
 
   Register = async (req: Request, res: Response, next: NextFunction) => {
-    await this.authenticationService.Register(req.body);
+    await this.authenticationService.register(req.body);
     res.status(200).json("Express + TypeScript Server");
     next();
   };

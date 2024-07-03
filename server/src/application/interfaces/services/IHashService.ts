@@ -1,3 +1,3 @@
 export interface IHashService {
-  HashPassword(password: string): string;
+  hashPassword(password: string): string;
 }

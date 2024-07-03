@@ -5,16 +5,19 @@ import { User } from "@/entities";
 export class UserService implements IUserService {
   constructor(private userRepository: IUserRepository) {}
 
-  Get(): User {
+  get(): User {
     throw new Error("Method not implemented.");
   }
-  Create(dto: UserCreateDto): void {
+
+  create(dto: UserCreateDto): void {
     throw new Error("Method not implemented.");
   }
-  Update(): void {
+
+  update(): void {
     throw new Error("Method not implemented.");
   }
-  Delete(): void {
+
+  delete(): void {
     throw new Error("Method not implemented.");
   }
 }

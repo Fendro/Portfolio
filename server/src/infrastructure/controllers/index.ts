@@ -11,7 +11,7 @@ const authController = new AuthenticationController(
 );
 
 controllers
-  .post("/Authentication/Register", authController.Register)
-  .post("/Authentication/Login", authController.Login);
+  .post("/authentication/register", authController.Register)
+  .post("/authentication/login", authController.Login);
 
 export default controllers;

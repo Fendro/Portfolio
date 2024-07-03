@@ -11,9 +11,9 @@ export interface DatabaseConfiguration {
 }
 
 export default class Database {
-  public constructor(private databaseConfiguration: DatabaseConfiguration) {}
+  constructor(private databaseConfiguration: DatabaseConfiguration) {}
 
-  public async CreateDatabaseIfDoesNotExistAsync() {
+  async createDatabaseIfDoesNotExist() {
     const connection = await mysql.createConnection({
       host: this.databaseConfiguration.host,
       password: this.databaseConfiguration.password,
@@ -28,9 +28,9 @@ export default class Database {
     connection.destroy();
   }
 
-  public async SynchronizeSequelizeModelsAsync() {}
+  async synchronizeSequelizeModels() {}
 
-  public async ConnectAsync() {
+  async connect() {
     return new Sequelize(
       process.env.DB_NAME as string,
       process.env.DB_USERNAME as string,
