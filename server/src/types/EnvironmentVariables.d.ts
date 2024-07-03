@@ -14,5 +14,8 @@ export type EnvironmentVariables = {
 
   LOGS_PATH: string;
 
+  RATE_LIMITER_REQUEST_COUNT: string | number;
+  RATE_LIMITER_TIME_WINDOW_MS: string | number;
+
   SESSION_SECRET: string;
 };

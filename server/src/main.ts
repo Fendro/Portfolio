@@ -5,10 +5,14 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 
+import type { EnvironmentVariables } from "@/types";
 import controllers from "@/controllers";
 import Database from "@/database/Database";
-import { EnvironmentVariables } from "@/types";
-import { rateLimiterMiddleware, sessionMiddleware } from "@/middlewares";
+import {
+  loggerMiddleware,
+  rateLimiterMiddleware,
+  sessionMiddleware,
+} from "@/middlewares";
 
 dotenv.config();
 
@@ -36,7 +40,19 @@ if (environmentVariables.NODE_ENV === "development") {
 
 app
   .use(sessionMiddleware(environmentVariables.SESSION_SECRET))
-  .use(rateLimiterMiddleware)
+  .use(
+    loggerMiddleware({
+      appName: environmentVariables.APP_NAME,
+      environment: environmentVariables.NODE_ENV,
+      logsPath: environmentVariables.LOGS_PATH,
+    }),
+  )
+  .use(
+    rateLimiterMiddleware({
+      requestCount: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
+      timeWindowMs: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
+    }),
+  )
   .use(controllers);
 
 app.listen(environmentVariables.APP_PORT, () => {

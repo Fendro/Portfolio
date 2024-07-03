@@ -2,7 +2,7 @@ import { DataTypes, Model, Sequelize } from "sequelize";
 
 const sequelize = new Sequelize("sqlite::memory:");
 
-export default class User extends Model {}
+export class User extends Model {}
 
 User.init(
   {
