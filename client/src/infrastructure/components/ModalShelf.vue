@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-wrap-reverse gap-0.5">
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
-    <ModalButton class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
+    <ButtonModal class="rounded-t-lg" />
   </div>
 </template>
 

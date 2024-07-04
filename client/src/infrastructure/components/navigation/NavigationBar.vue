@@ -17,8 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { RouteEnum } from "@/core/enums";
+import { ref } from "vue";
 
 const items = ref([
   {

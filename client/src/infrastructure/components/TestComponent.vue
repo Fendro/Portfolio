@@ -11,14 +11,15 @@
     <div>Prop message is: {{ props.message }}</div>
     <div>Random reactive number is: {{ setup.reactive.randomNumber }}</div>
     <div>Computed value is: {{ setup.computed }}</div>
-    <ConfirmButton @click="setup.testFetchAsync()" />
+    <ButtonConfirm @click="setup.loginAsync()" label="Login" />
+    <ButtonCancel @click="setup.logout()" label="Logout" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type {
-  TestComponentProps,
   TestComponentEmits,
+  TestComponentProps,
 } from "@/infrastructure/components/TestComponent";
 import TestComponent from "@/infrastructure/components/TestComponent";
 

@@ -58,7 +58,28 @@ export class FetchService {
     payload?: TPayload,
   ) {
     return await fetch(url, { ...options, body: JSON.stringify(payload) })
-      .then((res) => res.json() as Promise<TResponse>)
-      .catch((err) => Promise.reject(err));
+      .then(this.ensureSuccessStatusCode)
+      .then(this.ensureJsonContentType)
+      .then(this.deserializeToJson<TResponse>)
+      .catch((err) => {
+        throw new Error(err.message);
+      });
+  }
+
+  private static ensureSuccessStatusCode(response: Response) {
+    if (response.status >= 200 && response.status < 300) return response;
+
+    throw new Error("Request error.");
+  }
+
+  private static ensureJsonContentType(response: Response) {
+    if (response.headers.get("content-type")?.includes("application/json"))
+      return response;
+
+    throw new Error("Request error.");
+  }
+
+  private static deserializeToJson<T>(response: Response) {
+    return response.json() as T;
   }
 }

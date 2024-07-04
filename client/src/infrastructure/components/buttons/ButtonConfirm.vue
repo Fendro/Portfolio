@@ -1,5 +1,5 @@
 <template>
-  <Button label="ModalName" severity="info"> </Button>
+  <Button label="Confirm" severity="success" />
 </template>
 
 <script setup lang="ts">

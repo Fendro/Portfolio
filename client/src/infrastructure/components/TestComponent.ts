@@ -1,7 +1,6 @@
-import { computed, onUnmounted, reactive } from "vue";
 import { AuthenticationService } from "@/core/services";
-import { useToast } from "primevue/usetoast";
-import type { ToastServiceMethods } from "primevue/toastservice";
+import { type IToastService, ToastService } from "@/core/services/ToastService";
+import { computed, onUnmounted, reactive } from "vue";
 
 export interface TestComponentProps {
   message: string;
@@ -13,7 +12,7 @@ export interface TestComponentEmits {
 
 export default class TestComponent {
   private authenticationService: AuthenticationService;
-  private toast: ToastServiceMethods;
+  private toastService: IToastService;
 
   readonly reactive = reactive({
     randomNumber: 0,
@@ -25,11 +24,10 @@ export default class TestComponent {
     protected readonly emits: TestComponentEmits,
   ) {
     this.authenticationService = new AuthenticationService();
-    this.toast = useToast();
+    this.toastService = new ToastService();
 
     const interval = setInterval(async () => {
       this.reactive.randomNumber = Math.floor(Math.random() * 10);
-      this.testFetchAsync();
     }, 2000);
 
     onUnmounted(() => {
@@ -38,17 +36,17 @@ export default class TestComponent {
     });
   }
 
-  async testFetchAsync() {
+  async loginAsync() {
     return this.authenticationService
       .loginAsync({ email: "hello", password: "world" })
+      .then(() => this.toastService.success("Login successful."))
       .catch((err) => {
-        this.toast.add({
-          severity: "error",
-          summary: "Error",
-          detail: err.message,
-          life: 3000,
-        });
-        return undefined;
+        this.toastService.error(err.message);
       });
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.toastService.info("Logged out.");
   }
 }

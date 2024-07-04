@@ -17,7 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserProfileStore } from "@/core/stores/user/userProfileStore.js";
+import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
+import Avatar from "primevue/avatar";
 
 const { isAuthenticated } = useUserProfileStore();
 </script>

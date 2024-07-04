@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
-import type { Ref } from "vue";
 import type { LoginResponse } from "@/api/dto";
+import { defineStore } from "pinia";
+import type { Ref } from "vue";
+import { ref } from "vue";
 
 export interface UserProfile {
   email: string;

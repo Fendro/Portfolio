@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/infrastructure/views/HomeView.vue";
 import { RouteEnum } from "@/core/enums";
 import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
+import HomeView from "@/infrastructure/views/HomeView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

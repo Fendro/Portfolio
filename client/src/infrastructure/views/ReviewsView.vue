@@ -1,9 +1,12 @@
 <template>
   <section>
-    <h1>This is the reviews page</h1>
+    <Button label="Leave a review" />
+    <Textarea />
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Textarea from "primevue/textarea";
+</script>
 
 <style scoped></style>

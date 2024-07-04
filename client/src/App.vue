@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import ModalShelf from "@/infrastructure/components/ModalShelf.vue";
-import Navbar from "@/infrastructure/components/navigation/Navbar.vue";
-import UserMenu from "@/infrastructure/components/navigation/UserMenu.vue";
+import Toast from 'primevue/toast';
+import { RouterView } from 'vue-router';
+
+import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
+import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
+import NavigationUserMenu from '@/infrastructure/components/navigation/NavigationUserMenu.vue';
 </script>
 
 <template>
-  <div class="h-screen overflow-y-scroll flex">
+  <div class="flex h-screen gap-4 overflow-y-scroll">
     <nav class="sticky top-0 h-screen w-52">
-      <Navbar class="absolute top-4 left-1/2 -translate-x-1/2 z-50" />
+      <NavigationBar class="absolute left-1/2 top-4 z-50 -translate-x-1/2" />
     </nav>
-    <main class="flex-1 flex flex-col pt-4 gap-1">
+    <main class="flex flex-col gap-1 pt-4">
       <RouterView />
       <ModalShelf class="sticky bottom-0 mt-auto" />
     </main>
     <nav class="sticky top-0 h-screen w-52">
-      <UserMenu class="absolute top-4 right-1/2 translate-x-1/2 z-50" />
+      <NavigationUserMenu
+        class="absolute right-1/2 top-4 z-50 translate-x-1/2"
+      />
     </nav>
   </div>
   <Toast position="bottom-right" />

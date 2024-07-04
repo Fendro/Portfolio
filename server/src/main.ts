@@ -1,18 +1,18 @@
-import * as process from "node:process";
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import http from "http";
-import { Server } from "socket.io";
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import http from 'http';
+import * as process from 'node:process';
+import { Server } from 'socket.io';
 
-import type { EnvironmentVariables } from "@/types";
-import controllers from "@/controllers";
-import Database from "@/database/Database";
+import controllers from '@/controllers';
+import Database from '@/database/Database';
 import {
   loggerMiddleware,
   rateLimiterMiddleware,
   sessionMiddleware,
-} from "@/middlewares";
+} from '@/middlewares';
+import type { EnvironmentVariables } from '@/types';
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ const database = new Database({
 const app = express();
 const io = new Server(http.createServer(app));
 
-if (environmentVariables.NODE_ENV === "development") {
+if (environmentVariables.NODE_ENV === 'development') {
   app.use(cors());
 }
 
@@ -61,6 +61,6 @@ app.listen(environmentVariables.APP_PORT, () => {
   );
 });
 
-io.on("connection", (socket) => {
-  console.info("[server]: Socket connection established", socket.id);
+io.on('connection', (socket) => {
+  console.info('[server]: Socket connection established', socket.id);
 });
