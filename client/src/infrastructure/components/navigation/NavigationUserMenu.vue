@@ -1,11 +1,8 @@
 <template>
-  <div class="card flex justify-content-center">
-    <ButtonUserProfile
-      @click.prevent="toggleMenu(!isMenuToggled)"
-      @focusin="toggleMenu(true)"
-      @focusout="toggleMenu(false)"
-      @keyup="toggleOnEscape"
-    />
+  <div class="card justify-content-center flex">
+    <div @click="toggleMenu(!isMenuToggled)" @keyup="toggleOnEscape">
+      <ButtonUserProfile />
+    </div>
     <Menu
       :model="isAuthenticated() ? userMenuItems : guestMenuItems"
       v-if="isMenuToggled"
@@ -33,11 +30,13 @@
 </template>
 
 <script setup>
-import { RouteEnum } from "@/core/enums";
-import { AuthenticationService } from "@/core/services";
-import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
-import ButtonUserProfile from "@/infrastructure/components/buttons/ButtonUserProfile.vue";
-import { ref } from "vue";
+import { ref } from 'vue';
+
+import { RouteEnum } from '@/core/enums';
+import { AuthenticationService } from '@/core/services';
+import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+import ButtonUserProfile from '@/infrastructure/components/buttons/ButtonUserProfile.vue';
+import router from '@/infrastructure/router';
 
 const isMenuToggled = ref(false);
 const { isAuthenticated } = useUserProfileStore();
@@ -45,21 +44,25 @@ const authenticationService = new AuthenticationService();
 
 const guestMenuItems = ref([
   {
-    label: "Login",
-    icon: "pi pi-arrow-right",
+    label: 'Login',
+    icon: 'pi pi-arrow-right',
     route: RouteEnum.Login,
+    command: () => authenticationService.loginAsync(),
   },
 ]);
 const userMenuItems = ref([
   {
-    label: "Account",
-    icon: "pi pi-arrow-right",
+    label: 'Account',
+    icon: 'pi pi-arrow-right',
     route: RouteEnum.Account,
   },
   {
-    label: "Logout",
-    icon: "pi pi-arrow-right",
-    command: () => authenticationService.logout(),
+    label: 'Logout',
+    icon: 'pi pi-arrow-right',
+    command: () => {
+      authenticationService.logout();
+      router.push(RouteEnum.Home);
+    },
   },
 ]);
 
@@ -68,7 +71,7 @@ function toggleMenu(value) {
 }
 
 function toggleOnEscape(event) {
-  if (event.key === "Escape") toggleMenu(false);
+  if (event.key === 'Escape') toggleMenu(false);
 }
 </script>
 

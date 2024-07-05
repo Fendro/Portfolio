@@ -1,5 +1,4 @@
 <template>
-  <!--  <Carousel :value="projects" :num-scroll="1" :num-visible="4" :circular="true">-->
   <Carousel
     :value="projects"
     :responsive-options="responsiveOptions"
@@ -12,7 +11,7 @@
             <img
               :src="slotProps.data.imageSource"
               :alt="slotProps.data.name"
-              class="w-full border-round object-fit"
+              class="border-round object-fit w-full"
             />
             <Tag
               :value="slotProps.data.tag"
@@ -29,59 +28,55 @@
 </template>
 
 <script setup>
-import csImage from "@/assets/images/CSharp.png";
-import jsImage from "@/assets/images/JS.png";
-import phpImage from "@/assets/images/PHP.png";
-import rorImage from "@/assets/images/ROR.png";
-import Carousel from "primevue/carousel";
-import { ref } from "vue";
+import Carousel from 'primevue/carousel';
+import { ref } from 'vue';
+
+import csImage from '@/assets/images/CSharp.png';
+import jsImage from '@/assets/images/JS.png';
+import phpImage from '@/assets/images/PHP.png';
+import rorImage from '@/assets/images/ROR.png';
 
 const projects = ref([
   {
-    name: "SoloSail",
+    name: 'SoloSail',
     imageSource: csImage,
-    tag: "C#",
+    tag: 'C#',
   },
   {
-    name: "Connect 4",
+    name: 'Connect 4',
     imageSource: jsImage,
-    tag: "JavaScript",
+    tag: 'JavaScript',
   },
   {
-    name: "Algo",
+    name: 'Algo',
     imageSource: phpImage,
-    tag: "PHP",
+    tag: 'PHP',
   },
   {
-    name: "MedievalRPG",
+    name: 'MedievalRPG',
     imageSource: rorImage,
-    tag: "Ruby on Rails",
+    tag: 'Ruby on Rails',
   },
 ]);
 
 const responsiveOptions = ref([
   {
-    breakpoint: "1535px",
+    breakpoint: '1535px',
     numVisible: 4,
     numScroll: 1,
   },
   {
-    breakpoint: "1279px",
+    breakpoint: '1279px',
     numVisible: 3,
     numScroll: 1,
   },
   {
-    breakpoint: "1023px",
+    breakpoint: '767px',
     numVisible: 2,
     numScroll: 1,
   },
   {
-    breakpoint: "767px",
-    numVisible: 2,
-    numScroll: 1,
-  },
-  {
-    breakpoint: "639px",
+    breakpoint: '639px',
     numVisible: 1,
     numScroll: 1,
   },

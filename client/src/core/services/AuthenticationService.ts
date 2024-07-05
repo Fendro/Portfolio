@@ -1,7 +1,7 @@
-import { AuthenticationApi } from "@/api";
-import type { LoginPayload, LoginResponse, RegisterPayload } from "@/api/dto";
-import { FetchService } from "@/core/services/FetchService";
-import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
+import { AuthenticationApi } from '@/api';
+import type { LoginPayload, LoginResponse, RegisterPayload } from '@/api/dto';
+import { FetchService } from '@/core/services/FetchService';
+import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
 
 export interface IAuthenticationService {
   loginAsync(payload: LoginPayload): Promise<LoginResponse>;
@@ -14,7 +14,7 @@ export class AuthenticationService implements IAuthenticationService {
 
   async loginAsync(payload: LoginPayload) {
     if (this.userProfileStore.isAuthenticated())
-      throw new Error("Already authenticated.");
+      throw new Error('Already authenticated.');
 
     return FetchService.postAsync<LoginPayload, LoginResponse>(
       AuthenticationApi.loginUri,
@@ -27,7 +27,7 @@ export class AuthenticationService implements IAuthenticationService {
 
   logout() {
     if (!this.userProfileStore.isAuthenticated())
-      throw new Error("Not authenticated");
+      throw new Error('Not authenticated');
 
     this.userProfileStore.$reset();
   }

@@ -1,7 +1,9 @@
-export class FetchService {
+export interface IFetchService {}
+
+export class FetchService implements IFetchService {
   private static readonly headers: HeadersInit = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
   };
 
   static getAsync<TResponse>(
@@ -12,7 +14,7 @@ export class FetchService {
       url + new URLSearchParams(queryParams),
       {
         ...this.headers,
-        method: "GET",
+        method: 'GET',
       },
     );
   }
@@ -20,7 +22,7 @@ export class FetchService {
   static postAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: "POST" },
+      { ...this.headers, method: 'POST' },
       payload,
     );
   }
@@ -28,7 +30,7 @@ export class FetchService {
   static putAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: "PUT" },
+      { ...this.headers, method: 'PUT' },
       payload,
     );
   }
@@ -39,7 +41,7 @@ export class FetchService {
   ) {
     return this.executeRequestAsync<Partial<TPayload>, TResponse>(
       url,
-      { ...this.headers, method: "PATCH" },
+      { ...this.headers, method: 'PATCH' },
       payload,
     );
   }
@@ -47,7 +49,7 @@ export class FetchService {
   static deleteAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: "DELETE" },
+      { ...this.headers, method: 'DELETE' },
       payload,
     );
   }
@@ -69,14 +71,14 @@ export class FetchService {
   private static ensureSuccessStatusCode(response: Response) {
     if (response.status >= 200 && response.status < 300) return response;
 
-    throw new Error("Request error.");
+    throw new Error('Request error.');
   }
 
   private static ensureJsonContentType(response: Response) {
-    if (response.headers.get("content-type")?.includes("application/json"))
+    if (response.headers.get('content-type')?.includes('application/json'))
       return response;
 
-    throw new Error("Request error.");
+    throw new Error('Request error.');
   }
 
   private static deserializeToJson<T>(response: Response) {
