@@ -1,7 +1,8 @@
-import type { LoginResponse } from "@/api/dto";
-import { defineStore } from "pinia";
-import type { Ref } from "vue";
-import { ref } from "vue";
+import { defineStore } from 'pinia';
+import type { Ref } from 'vue';
+import { ref } from 'vue';
+
+import type { LoginResponse } from '@/api/dto';
 
 export interface UserProfile {
   email: string;
@@ -10,7 +11,7 @@ export interface UserProfile {
   username: string;
 }
 
-export const useUserProfileStore = defineStore("userProfile", () => {
+export const useUserProfileStore = defineStore('userProfile', () => {
   const token: Ref<string | undefined> = ref(undefined);
   const email: Ref<string | undefined> = ref(undefined);
   const firstname: Ref<string | undefined> = ref(undefined);
@@ -18,10 +19,6 @@ export const useUserProfileStore = defineStore("userProfile", () => {
   const username: Ref<string | undefined> = ref(undefined);
 
   function authenticationToken() {
-    if (token.value === undefined) {
-      throw new Error("Token is missing");
-    }
-
     return token.value;
   }
 

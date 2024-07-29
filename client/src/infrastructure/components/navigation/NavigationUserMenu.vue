@@ -33,14 +33,14 @@
 import { ref } from 'vue';
 
 import { RouteEnum } from '@/core/enums';
-import { AuthenticationService } from '@/core/services';
+import { AuthenticationService, FetchService } from '@/core/services';
 import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
 import ButtonUserProfile from '@/infrastructure/components/buttons/ButtonUserProfile.vue';
 import router from '@/infrastructure/router';
 
 const isMenuToggled = ref(false);
 const { isAuthenticated } = useUserProfileStore();
-const authenticationService = new AuthenticationService();
+const authenticationService = new AuthenticationService(new FetchService());
 
 const guestMenuItems = ref([
   {

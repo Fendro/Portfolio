@@ -1,8 +1,8 @@
-import type { LoginDto, UserCreateDto } from "@/dto";
-import type { User } from "@/entities";
+import type { LoginDto, UserCreateDto } from '@/dto';
+import type { User } from '@/entities';
 
 export interface IUserRepository {
-  GetById(id: number): Promise<User>;
-  GetByCredentials(credentials: LoginDto): Promise<User>;
-  Create(user: UserCreateDto): Promise<User>;
+  getById(id: number): Promise<User>;
+  getByCredentials(credentials: LoginDto): Promise<User>;
+  create(user: UserCreateDto): Promise<User>;
 }

@@ -1,9 +1,9 @@
-import type { LoginDto, LoginResponse, UserCreateDto } from "@/dto";
+import type { LoginDto, LoginResponse, UserCreateDto } from '@/dto';
 import type {
   IAuthenticationService,
   IHashService,
   IUserRepository,
-} from "@/interfaces";
+} from '@/interfaces';
 
 export class AuthenticationService implements IAuthenticationService {
   constructor(
@@ -12,16 +12,16 @@ export class AuthenticationService implements IAuthenticationService {
   ) {}
 
   async register(userDto: UserCreateDto): Promise<void> {
-    await this.userRepository.Create({
+    await this.userRepository.create({
       ...userDto,
       password: this.hashService.hashPassword(userDto.password),
     });
   }
 
   async login(dto: LoginDto): Promise<LoginResponse> {
-    const user = await this.userRepository.GetByCredentials(dto);
+    const user = await this.userRepository.getByCredentials(dto);
     return {
-      token: "token",
+      token: 'token',
       userProfile: {
         email: user.email,
         username: user.username,

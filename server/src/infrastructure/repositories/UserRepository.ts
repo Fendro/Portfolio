@@ -1,17 +1,25 @@
-import type { IUserRepository } from "@/interfaces";
-import type { LoginDto, UserCreateDto } from "@/dto";
-import { User } from "@/entities";
+import type { LoginDto, UserCreateDto } from '@/dto';
+import { User } from '@/entities';
+import type { IUserRepository } from '@/interfaces';
 
 export class UserRepository implements IUserRepository {
-  GetByCredentials(credentials: LoginDto): Promise<User> {
-    return Promise.resolve(new User("email", "password", "username"));
+  getByCredentials(credentials: LoginDto): Promise<User> {
+    return Promise.resolve(
+      new User(
+        credentials?.identifier ?? 'email',
+        credentials?.password ?? 'password',
+        credentials?.identifier ?? 'username',
+      ),
+    );
   }
 
-  GetById(id: number): Promise<User> {
-    return Promise.resolve(new User("email", "password", "username"));
+  getById(id: number): Promise<User> {
+    return Promise.resolve(
+      new User(`email${id}`, `password${id}`, `username${id}`),
+    );
   }
 
-  Create(user: UserCreateDto): Promise<User> {
+  create(user: UserCreateDto): Promise<User> {
     return Promise.resolve(new User(user.email, user.password, user.username));
   }
 }

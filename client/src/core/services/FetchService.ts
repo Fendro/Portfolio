@@ -1,15 +1,40 @@
-export interface IFetchService {}
+import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+
+export interface IFetchService {
+  deleteAsync<TPayload, TResponse>(
+    url: string,
+    payload: TPayload,
+  ): Promise<TResponse>;
+
+  getAsync<TResponse>(
+    url: string,
+    queryParams?: Record<string, string>,
+  ): Promise<TResponse>;
+
+  patchAsync<TPayload, TResponse>(
+    url: string,
+    payload: Partial<TPayload>,
+  ): Promise<TResponse>;
+
+  postAsync<TPayload, TResponse>(
+    url: string,
+    payload: TPayload,
+  ): Promise<TResponse>;
+
+  putAsync<TPayload, TResponse>(
+    url: string,
+    payload: TPayload,
+  ): Promise<TResponse>;
+}
 
 export class FetchService implements IFetchService {
-  private static readonly headers: HeadersInit = {
+  private headers: HeadersInit = {
     Accept: 'application/json',
+    Authorization: `Token ${useUserProfileStore().authenticationToken()}`,
     'Content-Type': 'application/json',
   };
 
-  static getAsync<TResponse>(
-    url: string,
-    queryParams?: Record<string, string>,
-  ) {
+  getAsync<TResponse>(url: string, queryParams?: Record<string, string>) {
     return this.executeRequestAsync<never, TResponse>(
       url + new URLSearchParams(queryParams),
       {
@@ -19,7 +44,7 @@ export class FetchService implements IFetchService {
     );
   }
 
-  static postAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  postAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       { ...this.headers, method: 'POST' },
@@ -27,7 +52,7 @@ export class FetchService implements IFetchService {
     );
   }
 
-  static putAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  putAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       { ...this.headers, method: 'PUT' },
@@ -35,10 +60,7 @@ export class FetchService implements IFetchService {
     );
   }
 
-  static patchAsync<TPayload, TResponse>(
-    url: string,
-    payload: Partial<TPayload>,
-  ) {
+  patchAsync<TPayload, TResponse>(url: string, payload: Partial<TPayload>) {
     return this.executeRequestAsync<Partial<TPayload>, TResponse>(
       url,
       { ...this.headers, method: 'PATCH' },
@@ -46,7 +68,7 @@ export class FetchService implements IFetchService {
     );
   }
 
-  static deleteAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  deleteAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       { ...this.headers, method: 'DELETE' },
@@ -54,15 +76,15 @@ export class FetchService implements IFetchService {
     );
   }
 
-  private static async executeRequestAsync<TPayload, TResponse>(
+  private async executeRequestAsync<TPayload, TResponse>(
     url: string,
     options: RequestInit,
     payload?: TPayload,
   ) {
     return await fetch(url, { ...options, body: JSON.stringify(payload) })
-      .then(this.ensureSuccessStatusCode)
-      .then(this.ensureJsonContentType)
-      .then(this.deserializeToJson<TResponse>)
+      .then(FetchService.ensureSuccessStatusCode)
+      .then(FetchService.ensureJsonContentType)
+      .then(FetchService.deserializeToJson<TResponse>)
       .catch((err) => {
         throw new Error(err.message);
       });

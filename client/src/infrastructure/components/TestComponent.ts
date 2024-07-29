@@ -1,13 +1,18 @@
-import { AuthenticationService } from "@/core/services";
-import { type IToastService, ToastService } from "@/core/services/ToastService";
-import { computed, onUnmounted, reactive } from "vue";
+import { computed, onUnmounted, reactive } from 'vue';
+
+import {
+  AuthenticationService,
+  FetchService,
+  ToastService,
+} from '@/core/services';
+import type { IToastService } from '@/core/services';
 
 export interface TestComponentProps {
   message: string;
 }
 
 export interface TestComponentEmits {
-  (e: "click"): void;
+  (e: 'click'): void;
 }
 
 export default class TestComponent {
@@ -23,7 +28,7 @@ export default class TestComponent {
     protected readonly props: TestComponentProps,
     protected readonly emits: TestComponentEmits,
   ) {
-    this.authenticationService = new AuthenticationService();
+    this.authenticationService = new AuthenticationService(new FetchService());
     this.toastService = new ToastService();
 
     const interval = setInterval(async () => {
@@ -32,14 +37,16 @@ export default class TestComponent {
 
     onUnmounted(() => {
       clearInterval(interval);
-      console.log("cleared");
+      console.log('cleared');
     });
   }
 
-  async loginAsync() {
-    return this.authenticationService
-      .loginAsync({ email: "hello", password: "world" })
-      .then(() => this.toastService.success("Login successful."))
+  loginAsync() {
+    this.authenticationService
+      .loginAsync({ email: 'hello', password: 'world' })
+      .then(() => {
+        this.toastService.success('Login successful.');
+      })
       .catch((err) => {
         this.toastService.error(err.message);
       });
@@ -47,6 +54,6 @@ export default class TestComponent {
 
   logout() {
     this.authenticationService.logout();
-    this.toastService.info("Logged out.");
+    this.toastService.info('Logged out.');
   }
 }
