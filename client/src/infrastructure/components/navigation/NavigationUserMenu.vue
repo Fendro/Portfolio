@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 import { RouteEnum } from '@/core/enums';
@@ -47,7 +47,11 @@ const guestMenuItems = ref([
     label: 'Login',
     icon: 'pi pi-arrow-right',
     route: RouteEnum.Login,
-    command: () => authenticationService.loginAsync(),
+    command: () =>
+      authenticationService.loginAsync({
+        email: 'placeholder',
+        password: 'placeholder',
+      }),
   },
 ]);
 const userMenuItems = ref([
@@ -66,11 +70,11 @@ const userMenuItems = ref([
   },
 ]);
 
-function toggleMenu(value) {
+function toggleMenu(value: boolean) {
   isMenuToggled.value = value;
 }
 
-function toggleOnEscape(event) {
+function toggleOnEscape(event: KeyboardEvent) {
   if (event.key === 'Escape') toggleMenu(false);
 }
 </script>

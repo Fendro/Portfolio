@@ -1,6 +1,7 @@
 <template>
   <section class="grid">
     <Textarea
+      name="ReviewsView-TextArea"
       v-bind:disabled="!isAuthenticated()"
       v-bind:invalid="setup.reactive.containsProfanity"
       @input="setup.checkForProfanity"
@@ -9,30 +10,28 @@
     />
     <Button label="Leave a review" />
 
-    <template v-for="review in setup.reactive.reviews">
-      <Card>
-        <template #title>{{ review.author.username }}</template>
-        <template #content>
-          <p class="m-0">{{ review.content }}</p>
-        </template>
-      </Card>
-      <Rating v-model="review.rating" readonly :cancel="false" />
+    <template v-if="setup.reactive.isFetching">
+      <Spinner />
     </template>
-
-    <Paginator
-      :rows="10"
-      :totalRecords="setup.reactive.reviews.length"
-    ></Paginator>
+    <template v-else>
+      <template v-for="review in setup.reactive.reviews">
+        <Review :review="review" />
+      </template>
+      <Paginator
+        :rows="10"
+        :totalRecords="setup.reactive.reviews.length"
+      ></Paginator>
+    </template>
   </section>
 </template>
 
 <script setup lang="ts">
-import Card from 'primevue/card';
 import Paginator from 'primevue/paginator';
-import Rating from 'primevue/rating';
 import Textarea from 'primevue/textarea';
 
 import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+import Review from '@/infrastructure/components/cards/Review.vue';
+import Spinner from '@/infrastructure/components/loaders/Spinner.vue';
 import ReviewsView, {
   type ReviewsViewEmits,
   type ReviewsViewProps,

@@ -17,9 +17,11 @@ export default class ReviewsView {
 
   readonly reactive: Reactive<{
     containsProfanity: boolean;
+    isFetching: boolean;
     reviews: Review[];
   }> = reactive({
     containsProfanity: false,
+    isFetching: false,
     reviews: [],
   });
 
@@ -31,7 +33,9 @@ export default class ReviewsView {
     this.toastService = new ToastService();
 
     onBeforeMount(async () => {
+      this.reactive.isFetching = true;
       await this.fetchReviews();
+      this.reactive.isFetching = false;
     });
   }
 
