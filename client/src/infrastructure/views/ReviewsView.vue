@@ -2,7 +2,7 @@
   <section class="grid">
     <Textarea
       name="ReviewsView-TextArea"
-      v-bind:disabled="!isAuthenticated()"
+      v-bind:disabled="!userProfileStore.isAuthenticated"
       v-bind:invalid="setup.reactive.containsProfanity"
       @input="setup.checkForProfanity"
       auto-resize
@@ -37,7 +37,7 @@ import ReviewsView, {
   type ReviewsViewProps,
 } from '@/infrastructure/views/ReviewsView';
 
-const { isAuthenticated } = useUserProfileStore();
+const userProfileStore = useUserProfileStore();
 const props = defineProps<ReviewsViewProps>();
 const emits = defineEmits<ReviewsViewEmits>();
 const setup = new ReviewsView(props, emits);

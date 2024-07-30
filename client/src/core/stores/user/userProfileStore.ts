@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import type { LoginResponse } from '@/api/dto';
 
@@ -12,48 +12,44 @@ export interface UserProfile {
 }
 
 export const useUserProfileStore = defineStore('userProfile', () => {
-  const token: Ref<string | undefined> = ref(undefined);
-  const email: Ref<string | undefined> = ref(undefined);
-  const firstname: Ref<string | undefined> = ref(undefined);
-  const lastname: Ref<string | undefined> = ref(undefined);
-  const username: Ref<string | undefined> = ref(undefined);
+  const _token: Ref<string | undefined> = ref(undefined);
+  const _email: Ref<string | undefined> = ref(undefined);
+  const _firstname: Ref<string | undefined> = ref(undefined);
+  const _lastname: Ref<string | undefined> = ref(undefined);
+  const _username: Ref<string | undefined> = ref(undefined);
 
-  function authenticationToken() {
-    return token.value;
-  }
+  const isAuthenticated = computed(() => _token.value !== undefined);
 
-  function isAuthenticated() {
-    return token.value !== undefined;
-  }
+  const token = computed(() => _token.value);
+
+  const userProfile = computed((): Partial<UserProfile> => {
+    return {
+      email: _email.value,
+      firstname: _firstname.value,
+      lastname: _lastname.value,
+      username: _username.value,
+    };
+  });
 
   function storeLoginResponse(payload: LoginResponse) {
-    token.value = payload.token;
-    email.value = payload.userProfile.email;
-    firstname.value = payload.userProfile.firstname;
-    lastname.value = payload.userProfile.lastname;
-    username.value = payload.userProfile.username;
-  }
-
-  function userProfile(): Partial<UserProfile> {
-    return {
-      email: email.value,
-      firstname: firstname.value,
-      lastname: lastname.value,
-      username: username.value,
-    };
+    _token.value = payload.token;
+    _email.value = payload.userProfile.email;
+    _firstname.value = payload.userProfile.firstname;
+    _lastname.value = payload.userProfile.lastname;
+    _username.value = payload.userProfile.username;
   }
 
   function $reset() {
-    token.value = undefined;
-    email.value = undefined;
-    firstname.value = undefined;
-    lastname.value = undefined;
-    username.value = undefined;
+    _token.value = undefined;
+    _email.value = undefined;
+    _firstname.value = undefined;
+    _lastname.value = undefined;
+    _username.value = undefined;
   }
 
   return {
-    authenticationToken,
     isAuthenticated,
+    token,
     storeLoginResponse,
     userProfile,
     $reset,

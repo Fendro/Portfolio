@@ -1,6 +1,6 @@
 <template>
   <Avatar
-    v-if="isAuthenticated()"
+    v-if="userProfileStore.isAuthenticated"
     image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
     class=""
     shape="circle"
@@ -17,10 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { useUserProfileStore } from "@/core/stores/user/userProfileStore";
-import Avatar from "primevue/avatar";
+import Avatar from 'primevue/avatar';
 
-const { isAuthenticated } = useUserProfileStore();
+import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+
+const userProfileStore = useUserProfileStore();
 </script>
 
 <style scoped></style>

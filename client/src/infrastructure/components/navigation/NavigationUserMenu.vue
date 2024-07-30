@@ -4,7 +4,7 @@
       <ButtonUserProfile />
     </div>
     <Menu
-      :model="isAuthenticated() ? userMenuItems : guestMenuItems"
+      :model="userProfileStore.isAuthenticated ? userMenuItems : guestMenuItems"
       v-if="isMenuToggled"
       class="min-w-min"
     >
@@ -39,7 +39,7 @@ import ButtonUserProfile from '@/infrastructure/components/buttons/ButtonUserPro
 import router from '@/infrastructure/router';
 
 const isMenuToggled = ref(false);
-const { isAuthenticated } = useUserProfileStore();
+const userProfileStore = useUserProfileStore();
 const authenticationService = new AuthenticationService(new FetchService());
 
 const guestMenuItems = ref([

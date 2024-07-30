@@ -5,13 +5,15 @@
     :circular="true"
   >
     <template #item="slotProps">
-      <div class="border-1 surface-border border-round m-2 p-3">
-        <div class="mb-3">
+      <div
+        class="m-2 rounded border border-surface-200 p-4 dark:border-surface-700"
+      >
+        <div class="mb-4">
           <div class="relative mx-auto">
             <img
               :src="slotProps.data.imageSource"
               :alt="slotProps.data.name"
-              class="border-round object-fit w-full"
+              class="object-fit w-full rounded"
             />
             <Tag
               :value="slotProps.data.tag"
@@ -21,7 +23,7 @@
             />
           </div>
         </div>
-        <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+        <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
       </div>
     </template>
   </Carousel>

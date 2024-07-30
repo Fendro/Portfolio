@@ -42,10 +42,12 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const { isAuthenticated } = useUserProfileStore();
+  const userProfileStore = useUserProfileStore();
 
-  if (to.path === RouteEnum.Login && isAuthenticated()) return RouteEnum.Home;
-  if (to.meta.requiresAuth && !isAuthenticated()) return RouteEnum.Login;
+  if (to.path === RouteEnum.Login && userProfileStore.isAuthenticated)
+    return RouteEnum.Home;
+  if (to.meta.requiresAuth && userProfileStore.isAuthenticated)
+    return RouteEnum.Login;
 });
 
 export default router;

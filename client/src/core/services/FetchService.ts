@@ -30,7 +30,7 @@ export interface IFetchService {
 export class FetchService implements IFetchService {
   private headers: HeadersInit = {
     Accept: 'application/json',
-    Authorization: `Token ${useUserProfileStore().authenticationToken()}`,
+    Authorization: `Token ${useUserProfileStore().token}`,
     'Content-Type': 'application/json',
   };
 

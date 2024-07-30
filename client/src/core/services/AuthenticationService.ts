@@ -15,7 +15,7 @@ export class AuthenticationService implements IAuthenticationService {
   constructor(private fetchService: IFetchService) {}
 
   async loginAsync(payload: LoginPayload) {
-    if (this.userProfileStore.isAuthenticated())
+    if (this.userProfileStore.isAuthenticated)
       throw new Error('Already authenticated.');
 
     this.fetchService
@@ -29,7 +29,7 @@ export class AuthenticationService implements IAuthenticationService {
   }
 
   logout() {
-    if (!this.userProfileStore.isAuthenticated())
+    if (!this.userProfileStore.isAuthenticated)
       throw new Error('Not authenticated');
 
     this.userProfileStore.$reset();
