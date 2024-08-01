@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import winston from 'winston';
+import winston, { Logger } from 'winston';
 
 interface LoggerOptions {
   appName: string;
@@ -7,7 +7,7 @@ interface LoggerOptions {
   logsPath: string;
 }
 
-function createLogger(options: LoggerOptions) {
+export const createLogger = (options: LoggerOptions) => {
   const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
@@ -27,12 +27,17 @@ function createLogger(options: LoggerOptions) {
     logger.add(new winston.transports.Console());
 
   return logger;
-}
+};
 
 export const loggerMiddleware =
-  (options: LoggerOptions) =>
-  (req: Request, res: Response, next: NextFunction) => {
-    const logger = createLogger(options);
-    console.info(`${req.url} - ${req.method} request initiated`);
+  (logger: Logger) => (req: Request, res: Response, next: NextFunction) => {
+    const start = Date.now();
+    console.info(`${req.method} ${req.url} - request initiated`);
+    res.on('finish', () => {
+      const end = Date.now();
+      console.info(
+        `${req.method} ${req.url} - request finished in ${end - start} ms`,
+      );
+    });
     next();
   };

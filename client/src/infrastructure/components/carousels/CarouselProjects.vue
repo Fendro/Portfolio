@@ -8,22 +8,23 @@
       <div
         class="m-2 rounded border border-surface-200 p-4 dark:border-surface-700"
       >
-        <div class="mb-4">
-          <div class="relative mx-auto">
-            <img
-              :src="slotProps.data.imageSource"
-              :alt="slotProps.data.name"
-              class="object-fit w-full rounded"
-            />
-            <Tag
-              :value="slotProps.data.tag"
-              :severity="'secondary'"
-              class="absolute"
-              style="left: 5px; top: 5px"
-            />
-          </div>
+        <div class="relative mx-auto">
+          <img
+            :src="slotProps.data.imageSource"
+            :alt="slotProps.data.name"
+            class="object-fit w-full rounded"
+          />
+          <Tag
+            :value="slotProps.data.tag"
+            :severity="'secondary'"
+            class="absolute"
+            style="left: 5px; top: 5px"
+          />
         </div>
-        <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
+        <div class="flex flex-wrap items-end justify-between">
+          <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
+          <Button :label="'Try'" class="w-fit" />
+        </div>
       </div>
     </template>
   </Carousel>

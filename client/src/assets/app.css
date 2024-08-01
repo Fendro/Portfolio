@@ -4,7 +4,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-:root {
+#theme {
   --p-primary-50: #f2faf2;
   --p-primary-100: #e6f6e6;
   --p-primary-200: #c0e9c0;
@@ -32,7 +32,7 @@
   --p-content-border-radius: 6px;
 }
 
-:root {
+#theme {
   --p-primary-color: var(--p-primary-500);
   --p-primary-contrast-color: var(--p-surface-0);
   --p-primary-hover-color: var(--p-primary-600);
@@ -50,7 +50,7 @@
   --p-text-hover-muted-color: var(--p-surface-600);
 }
 
-:root.dark {
+#theme.dark {
   --p-primary-color: var(--p-primary-100);
   --p-primary-contrast-color: var(--p-surface-900);
   --p-primary-hover-color: var(--p-primary-300);

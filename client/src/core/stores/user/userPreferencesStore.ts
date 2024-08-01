@@ -10,8 +10,13 @@ export interface UserPreferences {
 }
 
 export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
+  const _isUserSystemDarkMode = window.matchMedia(
+    '(prefers-color-scheme: dark)',
+  ).matches;
   const _language: Ref<LanguageEnum> = ref(LanguageEnum.French);
-  const _theme: Ref<ThemeEnum> = ref(ThemeEnum.Light);
+  const _theme: Ref<ThemeEnum> = ref(
+    _isUserSystemDarkMode ? ThemeEnum.Dark : ThemeEnum.Light,
+  );
 
   const language = computed(() => _language.value);
   const theme = computed(() => _theme.value);
@@ -28,7 +33,7 @@ export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
 
   function $reset() {
     _language.value = LanguageEnum.French;
-    _theme.value = ThemeEnum.Light;
+    _theme.value = _isUserSystemDarkMode ? ThemeEnum.Dark : ThemeEnum.Light;
   }
 
   return {

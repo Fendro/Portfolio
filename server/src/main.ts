@@ -12,6 +12,7 @@ import {
   rateLimiterMiddleware,
   sessionMiddleware,
 } from '@/middlewares';
+import { createLogger } from '@/middlewares';
 import type { EnvironmentVariables } from '@/types';
 
 dotenv.config();
@@ -41,11 +42,13 @@ if (environmentVariables.NODE_ENV === 'development') {
 app
   .use(sessionMiddleware(environmentVariables.SESSION_SECRET))
   .use(
-    loggerMiddleware({
-      appName: environmentVariables.APP_NAME,
-      environment: environmentVariables.NODE_ENV,
-      logsPath: environmentVariables.LOGS_PATH,
-    }),
+    loggerMiddleware(
+      createLogger({
+        appName: environmentVariables.APP_NAME,
+        environment: environmentVariables.NODE_ENV,
+        logsPath: environmentVariables.LOGS_PATH,
+      }),
+    ),
   )
   .use(
     rateLimiterMiddleware({

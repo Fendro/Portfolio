@@ -5,11 +5,11 @@ import { Review } from '@/core/entities';
 import { FetchService, ReviewService, ToastService } from '@/core/services';
 import type { IReviewService, IToastService } from '@/core/services';
 
-export interface ReviewsViewProps {}
-
 export interface ReviewsViewEmits {
-  (e: 'none'): void;
+  (e: ''): never;
 }
+
+export interface ReviewsViewProps {}
 
 export default class ReviewsView {
   private reviewService: IReviewService;
@@ -26,16 +26,14 @@ export default class ReviewsView {
   });
 
   constructor(
-    protected readonly props: ReviewsViewProps,
     protected readonly emits: ReviewsViewEmits,
+    protected readonly props: ReviewsViewProps,
   ) {
     this.reviewService = new ReviewService(new FetchService());
     this.toastService = new ToastService();
 
     onBeforeMount(async () => {
-      this.reactive.isFetching = true;
       await this.fetchReviews();
-      this.reactive.isFetching = false;
     });
   }
 
@@ -45,6 +43,13 @@ export default class ReviewsView {
   };
 
   private async fetchReviews() {
-    this.reactive.reviews = await this.reviewService.getReviewsAsync();
+    this.reactive.isFetching = true;
+    this.reviewService
+      .getReviewsAsync()
+      .then((reviews) => {
+        this.reactive.reviews = reviews;
+      })
+      .catch((err) => this.toastService.error(err.message))
+      .finally(() => (this.reactive.isFetching = false));
   }
 }

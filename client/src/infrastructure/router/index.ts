@@ -43,11 +43,10 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const userProfileStore = useUserProfileStore();
-
+  if (to.meta.requiresAuth && !userProfileStore.isAuthenticated)
+    return { name: RouteEnum.Login };
   if (to.path === RouteEnum.Login && userProfileStore.isAuthenticated)
-    return RouteEnum.Home;
-  if (to.meta.requiresAuth && userProfileStore.isAuthenticated)
-    return RouteEnum.Login;
+    return { name: RouteEnum.Home };
 });
 
 export default router;

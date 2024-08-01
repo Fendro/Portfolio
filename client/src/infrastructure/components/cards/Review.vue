@@ -1,11 +1,16 @@
 <template>
   <Card>
-    <template #title>{{ review.author.username }}</template>
-    <template #content>
-      <p class="m-0">{{ review.content }}</p>
+    <template #header>
+      <Rating
+        v-model="review.rating"
+        readonly
+        :cancel="false"
+        class="flex justify-end pr-2 pt-2"
+      />
     </template>
+    <template #title>{{ review.author.username }}</template>
+    <template #content>{{ review.content }}</template>
   </Card>
-  <Rating v-model="review.rating" readonly :cancel="false" />
 </template>
 
 <script setup lang="ts">

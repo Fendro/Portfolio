@@ -1,19 +1,18 @@
 <template>
   <div class="card justify-content-center flex">
-    <div @click="toggleMenu(!isMenuToggled)" @keyup="toggleOnEscape">
+    <div @click="toggleMenu">
       <ButtonUserProfile />
     </div>
     <Menu
       :model="userProfileStore.isAuthenticated ? userMenuItems : guestMenuItems"
       v-if="isMenuToggled"
-      class="min-w-min"
+      class="absolute right-1/2 top-12 min-w-min translate-x-1/2 transform"
     >
       <template #item="{ item, props }">
         <router-link
           v-if="item.route"
           v-slot="{ href, navigate }"
           :to="item.route"
-          custom
         >
           <a v-ripple :href="href" v-bind="props.action" @click="navigate">
             <span :class="item.icon" />
@@ -47,11 +46,13 @@ const guestMenuItems = ref([
     label: 'Login',
     icon: 'pi pi-arrow-right',
     route: RouteEnum.Login,
-    command: () =>
+    command: () => {
+      console.log('clicked login');
       authenticationService.loginAsync({
         email: 'placeholder',
         password: 'placeholder',
-      }),
+      });
+    },
   },
 ]);
 const userMenuItems = ref([
@@ -59,6 +60,7 @@ const userMenuItems = ref([
     label: 'Account',
     icon: 'pi pi-arrow-right',
     route: RouteEnum.Account,
+    command: () => console.log('clicked account'),
   },
   {
     label: 'Logout',
@@ -70,12 +72,8 @@ const userMenuItems = ref([
   },
 ]);
 
-function toggleMenu(value: boolean) {
-  isMenuToggled.value = value;
-}
-
-function toggleOnEscape(event: KeyboardEvent) {
-  if (event.key === 'Escape') toggleMenu(false);
+function toggleMenu() {
+  isMenuToggled.value = !isMenuToggled.value;
 }
 </script>
 

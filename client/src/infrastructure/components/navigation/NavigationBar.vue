@@ -17,23 +17,24 @@
 </template>
 
 <script setup lang="ts">
-import { RouteEnum } from "@/core/enums";
-import { ref } from "vue";
+import { ref } from 'vue';
+
+import { RouteEnum } from '@/core/enums';
 
 const items = ref([
   {
-    label: "Home",
-    icon: "pi pi-home",
+    label: 'Home',
+    icon: 'pi pi-home',
     route: RouteEnum.Home,
   },
   {
-    label: "Projects",
-    icon: "pi pi-code",
+    label: 'Projects',
+    icon: 'pi pi-code',
     route: RouteEnum.Projects,
   },
   {
-    label: "Reviews",
-    icon: "pi pi-pen-to-square",
+    label: 'Reviews',
+    icon: 'pi pi-pen-to-square',
     route: RouteEnum.Reviews,
   },
 ]);
