@@ -6,6 +6,7 @@
       <nav class="sticky top-0 min-w-52">
         <NavigationBar
           class="absolute left-1/2 top-4 z-navigation -translate-x-1/2"
+          :items="navigationItems"
         />
       </nav>
       <main
@@ -17,6 +18,8 @@
       <nav class="sticky top-0 min-w-52">
         <NavigationUserMenu
           class="absolute right-1/2 top-4 z-navigation translate-x-1/2"
+          :guest-menu-items="guestMenuItems"
+          :user-menu-items="userMenuItems"
         />
       </nav>
     </div>
@@ -25,21 +28,82 @@
 </template>
 
 <script setup lang="ts">
+import type { MenuItem } from 'primevue/menuitem';
 import Toast from 'primevue/toast';
-import { onUnmounted } from 'vue';
+import { type Ref, onUnmounted, ref } from 'vue';
 import { RouterView } from 'vue-router';
 
+import { RouteEnum } from '@/core/enums';
+import { AuthenticationService, FetchService } from '@/core/services';
 import { useUserPreferenceStore } from '@/core/stores';
 import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
 import NavigationUserMenu from '@/infrastructure/components/navigation/NavigationUserMenu.vue';
+import router from '@/infrastructure/router';
 
 const userPreferences = useUserPreferenceStore();
+const authenticationService = new AuthenticationService(new FetchService());
 
-const toggleInterval = setInterval(userPreferences.toggleTheme, 2000);
-onUnmounted(() => {
-  clearInterval(toggleInterval);
-});
+const navigationItems = ref([
+  {
+    label: 'Home',
+    icon: 'pi pi-home',
+    route: RouteEnum.Home,
+  },
+  {
+    label: 'Projects',
+    icon: 'pi pi-code',
+    route: RouteEnum.Projects,
+  },
+  {
+    label: 'Reviews',
+    icon: 'pi pi-pen-to-square',
+    route: RouteEnum.Reviews,
+  },
+]);
+
+const guestMenuItems: Ref<MenuItem[]> = ref([
+  {
+    label: 'Login',
+    icon: 'pi pi-arrow-right',
+    route: RouteEnum.Login,
+  },
+  {
+    label: 'Toggle theme',
+    icon: 'pi pi-arrow-right',
+    command: () => {
+      userPreferences.toggleTheme();
+    },
+  },
+]);
+
+const userMenuItems: Ref<MenuItem[]> = ref([
+  {
+    label: 'Account',
+    icon: 'pi pi-arrow-right',
+    route: RouteEnum.Account,
+  },
+  {
+    label: 'Logout',
+    icon: 'pi pi-arrow-right',
+    command: () => {
+      authenticationService.logout();
+      router.push(RouteEnum.Home);
+    },
+  },
+  {
+    label: 'Toggle theme',
+    icon: 'pi pi-arrow-right',
+    command: () => {
+      userPreferences.toggleTheme();
+    },
+  },
+]);
+
+// const toggleInterval = setInterval(userPreferences.toggleTheme, 2000);
+// onUnmounted(() => {
+//   clearInterval(toggleInterval);
+// });
 </script>
 
 <style scoped></style>

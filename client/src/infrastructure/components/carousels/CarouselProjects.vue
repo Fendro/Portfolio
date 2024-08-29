@@ -21,9 +21,13 @@
             style="left: 5px; top: 5px"
           />
         </div>
-        <div class="flex flex-wrap items-end justify-between">
+        <div class="flex justify-between">
           <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
-          <Button :label="'Try'" class="w-fit" />
+          <Button
+            :label="'Try'"
+            class="w-fit"
+            @click="slotProps.data.onClick"
+          />
         </div>
       </div>
     </template>
@@ -31,57 +35,21 @@
 </template>
 
 <script setup lang="ts">
-import Carousel from 'primevue/carousel';
-import { ref } from 'vue';
+import Button from 'primevue/button';
+import Carousel, { type CarouselResponsiveOptions } from 'primevue/carousel';
+import Tag from 'primevue/tag';
 
-import csImage from '@/assets/images/CSharp.png';
-import jsImage from '@/assets/images/JS.png';
-import phpImage from '@/assets/images/PHP.png';
-import rorImage from '@/assets/images/ROR.png';
+export interface CarouselProjectsProps {
+  projects: CarouselProjectElement[];
+  responsiveOptions: CarouselResponsiveOptions[] | undefined;
+}
 
-const projects = ref([
-  {
-    name: 'SoloSail',
-    imageSource: csImage,
-    tag: 'C#',
-  },
-  {
-    name: 'Connect 4',
-    imageSource: jsImage,
-    tag: 'JavaScript',
-  },
-  {
-    name: 'Algo',
-    imageSource: phpImage,
-    tag: 'PHP',
-  },
-  {
-    name: 'MedievalRPG',
-    imageSource: rorImage,
-    tag: 'Ruby on Rails',
-  },
-]);
+export interface CarouselProjectElement {
+  imageSource: string;
+  name: string;
+  onClick: Function;
+  tag: string;
+}
 
-const responsiveOptions = ref([
-  {
-    breakpoint: '1535px',
-    numVisible: 4,
-    numScroll: 1,
-  },
-  {
-    breakpoint: '1279px',
-    numVisible: 3,
-    numScroll: 1,
-  },
-  {
-    breakpoint: '767px',
-    numVisible: 2,
-    numScroll: 1,
-  },
-  {
-    breakpoint: '639px',
-    numVisible: 1,
-    numScroll: 1,
-  },
-]);
+defineProps<CarouselProjectsProps>();
 </script>

@@ -29,52 +29,26 @@
 </template>
 
 <script setup lang="ts">
+import Menu from 'primevue/menu';
+import type { MenuItem } from 'primevue/menuitem';
 import { ref } from 'vue';
 
-import { RouteEnum } from '@/core/enums';
-import { AuthenticationService, FetchService } from '@/core/services';
-import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+import { useUserProfileStore } from '@/core/stores';
 import ButtonUserProfile from '@/infrastructure/components/buttons/ButtonUserProfile.vue';
-import router from '@/infrastructure/router';
 
 const isMenuToggled = ref(false);
 const userProfileStore = useUserProfileStore();
-const authenticationService = new AuthenticationService(new FetchService());
-
-const guestMenuItems = ref([
-  {
-    label: 'Login',
-    icon: 'pi pi-arrow-right',
-    route: RouteEnum.Login,
-    command: () => {
-      console.log('clicked login');
-      authenticationService.loginAsync({
-        email: 'placeholder',
-        password: 'placeholder',
-      });
-    },
-  },
-]);
-const userMenuItems = ref([
-  {
-    label: 'Account',
-    icon: 'pi pi-arrow-right',
-    route: RouteEnum.Account,
-    command: () => console.log('clicked account'),
-  },
-  {
-    label: 'Logout',
-    icon: 'pi pi-arrow-right',
-    command: () => {
-      authenticationService.logout();
-      router.push(RouteEnum.Home);
-    },
-  },
-]);
 
 function toggleMenu() {
   isMenuToggled.value = !isMenuToggled.value;
 }
+
+export interface NavigationUserMenuProps {
+  guestMenuItems: MenuItem[];
+  userMenuItems: MenuItem[];
+}
+
+defineProps<NavigationUserMenuProps>();
 </script>
 
 <style scoped></style>

@@ -1,12 +1,37 @@
-export interface RegisterViewEmits {
-  (e: ''): never;
+import { type Reactive, reactive } from 'vue';
+
+import type { RegisterPayload } from '@/api/dto';
+import { RouteEnum } from '@/core/enums';
+import type { IAuthenticationService, IToastService } from '@/core/services';
+import router from '@/infrastructure/router';
+
+export interface ReviewViewState {
+  submitting: boolean;
 }
 
-export interface RegisterViewProps {}
-
 export default class RegisterView {
+  readonly state: Reactive<ReviewViewState> = reactive({
+    submitting: false,
+  });
+
   constructor(
-    protected readonly emits: RegisterViewEmits,
-    protected readonly props: RegisterViewProps,
+    private authenticationService: IAuthenticationService,
+    private toastService: IToastService,
   ) {}
+
+  async register(formData: RegisterPayload) {
+    this.state.submitting = true;
+    this.authenticationService
+      .registerAsync(formData)
+      .then(() => {
+        this.toastService.success('Registered successfully');
+        router.push(RouteEnum.Login);
+      })
+      .catch((error) => this.toastService.error(error.message))
+      .finally(() =>
+        setTimeout(() => {
+          this.state.submitting = false;
+        }, 5000),
+      );
+  }
 }

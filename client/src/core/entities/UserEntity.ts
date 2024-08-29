@@ -1,6 +1,6 @@
-import { BaseEntity } from '@/core/entities/abstract/BaseEntity';
+import { FetchedEntity } from '@/core/entities/abstract/FetchedEntity';
 
-export class User extends BaseEntity<User> {
+export class UserEntity extends FetchedEntity<UserEntity> {
   constructor(
     id: number,
     public email: string,

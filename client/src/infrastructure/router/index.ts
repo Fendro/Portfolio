@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import { RouteEnum } from '@/core/enums';
-import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+import { useUserProfileStore } from '@/core/stores';
 import HomeView from '@/infrastructure/views/HomeView.vue';
 
 const router = createRouter({
@@ -21,6 +21,7 @@ const router = createRouter({
     {
       path: RouteEnum.Login,
       name: RouteEnum.Login,
+      meta: { guestOnly: true },
       component: () => import('@/infrastructure/views/LoginView.vue'),
     },
     {
@@ -31,6 +32,7 @@ const router = createRouter({
     {
       path: RouteEnum.Register,
       name: RouteEnum.Register,
+      meta: { guestOnly: true },
       component: () => import('@/infrastructure/views/RegisterView.vue'),
     },
     {
@@ -43,10 +45,11 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const userProfileStore = useUserProfileStore();
-  if (to.meta.requiresAuth && !userProfileStore.isAuthenticated)
+  if (userProfileStore.isAuthenticated) {
+    if (to.meta.guestOnly) return false;
+  } else if (to.meta.requiresAuth) {
     return { name: RouteEnum.Login };
-  if (to.path === RouteEnum.Login && userProfileStore.isAuthenticated)
-    return { name: RouteEnum.Home };
+  }
 });
 
 export default router;

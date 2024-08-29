@@ -1,4 +1,6 @@
-export enum LanguageEnum {
-  English = "english",
-  French = "french",
-}
+export const LanguageEnum = {
+  English: 'english',
+  French: 'french',
+} as const;
+
+export type LanguageEnum = (typeof LanguageEnum)[keyof typeof LanguageEnum];

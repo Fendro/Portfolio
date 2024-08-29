@@ -1,13 +1,15 @@
-import { BaseApi } from "@/api/BaseApi";
+import { BaseApi } from '@/api/BaseApi';
 
 export class AuthenticationApi extends BaseApi {
-  static readonly path = "authentication";
-
-  public static get loginUri() {
-    return `${this.basePath}/${this.path}/login`;
+  private static get path() {
+    return `${this.basePath}/authentication`;
   }
 
-  public static get registerUri() {
-    return `${this.basePath}/${this.path}/register`;
+  public static get loginUrl() {
+    return `${this.path}/login`;
+  }
+
+  public static get registerUrl() {
+    return `${this.path}/register`;
   }
 }

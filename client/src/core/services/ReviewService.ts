@@ -1,18 +1,18 @@
 import { ReviewApi } from '@/api/ReviewApi';
-import { Review } from '@/core/entities';
+import { ReviewEntity } from '@/core/entities';
 import type { IFetchService } from '@/core/services';
 
 export interface IReviewService {
-  getReviewsAsync(): Promise<Review[]>;
+  getReviewsAsync(): Promise<ReviewEntity[]>;
   postReviewAsync(): Promise<void>;
 }
 
 export class ReviewService implements IReviewService {
   constructor(private fetchService: IFetchService) {}
 
-  async getReviewsAsync(): Promise<Review[]> {
+  async getReviewsAsync(): Promise<ReviewEntity[]> {
     return Promise.resolve(
-      this.fetchService.getAsync<Review[]>(ReviewApi.getReviewsUri),
+      this.fetchService.getAsync<ReviewEntity[]>(ReviewApi.getReviewsUrl),
     );
   }
 

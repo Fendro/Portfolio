@@ -1,6 +1,8 @@
-import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
+import { useUserProfileStore } from '@/core/stores';
 
 export interface IFetchService {
+  deleteAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
+
   deleteAsync<TPayload, TResponse>(
     url: string,
     payload: TPayload,
@@ -11,15 +13,21 @@ export interface IFetchService {
     queryParams?: Record<string, string>,
   ): Promise<TResponse>;
 
+  patchAsync<TPayload>(url: string, payload: Partial<TPayload>): Promise<void>;
+
   patchAsync<TPayload, TResponse>(
     url: string,
     payload: Partial<TPayload>,
   ): Promise<TResponse>;
 
+  postAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
+
   postAsync<TPayload, TResponse>(
     url: string,
     payload: TPayload,
   ): Promise<TResponse>;
+
+  putAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
 
   putAsync<TPayload, TResponse>(
     url: string,

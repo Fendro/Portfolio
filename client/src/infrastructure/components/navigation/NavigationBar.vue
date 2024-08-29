@@ -17,27 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import Menu from 'primevue/menu';
+import type { MenuItem } from 'primevue/menuitem';
 
-import { RouteEnum } from '@/core/enums';
+export interface NavigationBarProps {
+  items: MenuItem[];
+}
 
-const items = ref([
-  {
-    label: 'Home',
-    icon: 'pi pi-home',
-    route: RouteEnum.Home,
-  },
-  {
-    label: 'Projects',
-    icon: 'pi pi-code',
-    route: RouteEnum.Projects,
-  },
-  {
-    label: 'Reviews',
-    icon: 'pi pi-pen-to-square',
-    route: RouteEnum.Reviews,
-  },
-]);
+defineProps<NavigationBarProps>();
 </script>
 
 <style scoped></style>

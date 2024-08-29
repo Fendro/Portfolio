@@ -22,7 +22,7 @@ export class AuthenticationService implements IAuthenticationService {
       .postAsync<
         LoginPayload,
         LoginResponse
-      >(AuthenticationApi.loginUri, payload)
+      >(AuthenticationApi.loginUrl, payload)
       .then((response) => {
         this.userProfileStore.storeLoginResponse(response);
       });
@@ -36,8 +36,8 @@ export class AuthenticationService implements IAuthenticationService {
   }
 
   async registerAsync(payload: RegisterPayload) {
-    await this.fetchService.postAsync<RegisterPayload, void>(
-      AuthenticationApi.registerUri,
+    await this.fetchService.postAsync<RegisterPayload>(
+      AuthenticationApi.registerUrl,
       payload,
     );
   }

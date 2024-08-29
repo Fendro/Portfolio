@@ -1,37 +1,25 @@
-import { onBeforeMount, reactive } from 'vue';
-import type { Reactive } from 'vue';
+import { type Reactive, onBeforeMount, reactive } from 'vue';
 
-import { Review } from '@/core/entities';
-import { FetchService, ReviewService, ToastService } from '@/core/services';
+import { ReviewEntity } from '@/core/entities';
 import type { IReviewService, IToastService } from '@/core/services';
 
-export interface ReviewsViewEmits {
-  (e: ''): never;
+export interface ReviewsViewState {
+  containsProfanity: boolean;
+  isFetching: boolean;
+  reviews: ReviewEntity[];
 }
 
-export interface ReviewsViewProps {}
-
 export default class ReviewsView {
-  private reviewService: IReviewService;
-  private toastService: IToastService;
-
-  readonly reactive: Reactive<{
-    containsProfanity: boolean;
-    isFetching: boolean;
-    reviews: Review[];
-  }> = reactive({
+  readonly state: Reactive<ReviewsViewState> = reactive({
     containsProfanity: false,
     isFetching: false,
     reviews: [],
   });
 
   constructor(
-    protected readonly emits: ReviewsViewEmits,
-    protected readonly props: ReviewsViewProps,
+    private reviewService: IReviewService,
+    private toastService: IToastService,
   ) {
-    this.reviewService = new ReviewService(new FetchService());
-    this.toastService = new ToastService();
-
     onBeforeMount(async () => {
       await this.fetchReviews();
     });
@@ -39,17 +27,17 @@ export default class ReviewsView {
 
   checkForProfanity = (event: Event) => {
     const textarea = event.target as HTMLTextAreaElement;
-    this.reactive.containsProfanity = textarea.value.includes('fuck');
+    this.state.containsProfanity = textarea.value.includes('fuck');
   };
 
   private async fetchReviews() {
-    this.reactive.isFetching = true;
+    this.state.isFetching = true;
     this.reviewService
       .getReviewsAsync()
       .then((reviews) => {
-        this.reactive.reviews = reviews;
+        this.state.reviews = reviews;
       })
       .catch((err) => this.toastService.error(err.message))
-      .finally(() => (this.reactive.isFetching = false));
+      .finally(() => (this.state.isFetching = false));
   }
 }

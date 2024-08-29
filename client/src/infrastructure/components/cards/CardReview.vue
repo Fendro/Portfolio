@@ -17,10 +17,13 @@
 import Card from 'primevue/card';
 import Rating from 'primevue/rating';
 
-import { Review } from '@/core/entities';
+import { ReviewEntity } from '@/core/entities';
 
-defineProps<{ review: Review }>();
-defineEmits();
+export interface CardReviewProps {
+  review: ReviewEntity;
+}
+
+defineProps<CardReviewProps>();
 </script>
 
 <style scoped></style>

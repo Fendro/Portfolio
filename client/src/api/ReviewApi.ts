@@ -1,13 +1,15 @@
 import { BaseApi } from '@/api/BaseApi';
 
 export class ReviewApi extends BaseApi {
-  static readonly path = 'reviews';
-
-  public static get getReviewsUri() {
-    return `${this.basePath}/${this.path}`;
+  private static get path() {
+    return `${this.basePath}/reviews`;
   }
 
-  public static get postReviewUri() {
-    return `${this.basePath}/${this.path}`;
+  public static get getReviewsUrl() {
+    return `${this.path}`;
+  }
+
+  public static get postReviewUrl() {
+    return `${this.path}`;
   }
 }

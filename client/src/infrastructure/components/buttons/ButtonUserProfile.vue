@@ -5,14 +5,11 @@
     rounded
     outlined
     aria-label="User Profile"
-    :class="{ 'bg-primary-500': userProfileStore.isAuthenticated }"
   />
 </template>
 
 <script setup lang="ts">
-import { useUserProfileStore } from '@/core/stores/user/userProfileStore';
-
-const userProfileStore = useUserProfileStore();
+import Button from 'primevue/button';
 </script>
 
 <style scoped></style>

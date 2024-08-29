@@ -1,2 +1,2 @@
-export * from '@/core/entities/Review';
-export * from '@/core/entities/User';
+export * from '@/core/entities/ReviewEntity';
+export * from '@/core/entities/UserEntity';

@@ -1,6 +1,6 @@
 <template>
   <div class="greetings">
-    <h1 class="green">{{ "Hello World!" }}</h1>
+    <h1 class="green">{{ 'Hello World!' }}</h1>
     <h3>This is my test component</h3>
     <div>Prop message is: {{ props.message }}</div>
     <div>Prop message is: {{ props.message }}</div>
@@ -20,8 +20,10 @@
 import type {
   TestComponentEmits,
   TestComponentProps,
-} from "@/infrastructure/components/TestComponent";
-import TestComponent from "@/infrastructure/components/TestComponent";
+} from '@/infrastructure/components/TestComponent';
+import TestComponent from '@/infrastructure/components/TestComponent';
+import ButtonCancel from '@/infrastructure/components/buttons/ButtonCancel.vue';
+import ButtonConfirm from '@/infrastructure/components/buttons/ButtonConfirm.vue';
 
 const props = defineProps<TestComponentProps>();
 const emits = defineEmits<TestComponentEmits>();

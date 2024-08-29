@@ -5,14 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import AccountView, {
-  type AccountViewEmits,
-  type AccountViewProps,
-} from '@/infrastructure/views/AccountView';
+import AccountView from '@/infrastructure/views/AccountView';
 
-const emits = defineEmits<AccountViewEmits>();
-const props = defineProps<AccountViewProps>();
-const setup = new AccountView(emits, props);
+const setup = new AccountView();
 </script>
 
 <style scoped></style>
