@@ -10,13 +10,11 @@ export interface IReviewService {
 export class ReviewService implements IReviewService {
   constructor(private fetchService: IFetchService) {}
 
-  async getReviewsAsync(): Promise<ReviewEntity[]> {
-    return Promise.resolve(
-      this.fetchService.getAsync<ReviewEntity[]>(ReviewApi.getReviewsUrl),
-    );
+  getReviewsAsync(): Promise<ReviewEntity[]> {
+    return this.fetchService.getAsync<ReviewEntity[]>(ReviewApi.getReviewsUrl);
   }
 
-  async postReviewAsync(): Promise<void> {
+  postReviewAsync(): Promise<void> {
     return Promise.resolve();
   }
 }

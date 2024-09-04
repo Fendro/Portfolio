@@ -21,6 +21,13 @@ export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
   const language = computed(() => _language.value);
   const theme = computed(() => _theme.value);
 
+  function toggleLanguage() {
+    _language.value =
+      _language.value == LanguageEnum.French
+        ? LanguageEnum.English
+        : LanguageEnum.French;
+  }
+
   function toggleTheme() {
     _theme.value =
       _theme.value == ThemeEnum.Light ? ThemeEnum.Dark : ThemeEnum.Light;
@@ -37,7 +44,9 @@ export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
   }
 
   return {
+    language,
     theme,
+    toggleLanguage,
     toggleTheme,
     $reset,
   };

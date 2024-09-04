@@ -34,7 +34,7 @@ import type { MenuItem } from 'primevue/menuitem';
 import { ref } from 'vue';
 
 import { useUserProfileStore } from '@/core/stores';
-import ButtonUserProfile from '@/infrastructure/components/buttons/ButtonUserProfile.vue';
+import ButtonUserProfile from '@/infrastructure/components/shared/buttons/ButtonUserProfile.vue';
 
 const isMenuToggled = ref(false);
 const userProfileStore = useUserProfileStore();

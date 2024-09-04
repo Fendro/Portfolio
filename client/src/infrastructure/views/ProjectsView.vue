@@ -1,6 +1,6 @@
 <template>
   <section>
-    <CarouselProjects
+    <ProjectsCarousel
       :projects="setup.state.projects"
       :responsive-options="setup.state.responsiveOptions"
       class="max-w-fit"
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import CarouselProjects from '@/infrastructure/components/carousels/CarouselProjects.vue';
+import ProjectsCarousel from '@/infrastructure/components/projects/ProjectsCarousel.vue';
 import ProjectsView from '@/infrastructure/views/ProjectsView';
 
 const setup = new ProjectsView();

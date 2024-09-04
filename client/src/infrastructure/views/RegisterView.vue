@@ -1,7 +1,7 @@
 <template>
   <section class="flex h-full items-center justify-center">
     <LoaderLayer :is-loading="setup.state.submitting">
-      <CardRegister @submit="(data) => setup.register(data)" />
+      <RegisterCard @submit="(data) => setup.register(data)" />
     </LoaderLayer>
   </section>
 </template>
@@ -12,8 +12,8 @@ import {
   FetchService,
   ToastService,
 } from '@/core/services';
-import CardRegister from '@/infrastructure/components/cards/CardRegister.vue';
-import LoaderLayer from '@/infrastructure/components/loaders/LoaderLayer.vue';
+import RegisterCard from '@/infrastructure/components/register/RegisterCard.vue';
+import LoaderLayer from '@/infrastructure/components/shared/loaders/LoaderLayer.vue';
 import RegisterView from '@/infrastructure/views/RegisterView';
 
 const setup = new RegisterView(

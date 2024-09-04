@@ -22,8 +22,8 @@ import type {
   TestComponentProps,
 } from '@/infrastructure/components/TestComponent';
 import TestComponent from '@/infrastructure/components/TestComponent';
-import ButtonCancel from '@/infrastructure/components/buttons/ButtonCancel.vue';
-import ButtonConfirm from '@/infrastructure/components/buttons/ButtonConfirm.vue';
+import ButtonCancel from '@/infrastructure/components/shared/buttons/ButtonCancel.vue';
+import ButtonConfirm from '@/infrastructure/components/shared/buttons/ButtonConfirm.vue';
 
 const props = defineProps<TestComponentProps>();
 const emits = defineEmits<TestComponentEmits>();

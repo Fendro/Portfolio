@@ -1,7 +1,7 @@
 <template>
   <section class="flex h-full items-center justify-center">
     <LoaderLayer :is-loading="setup.state.submitting">
-      <CardLogin @submit="(data) => setup.login(data)" />
+      <LoginCard @submit="(data) => setup.login(data)" />
     </LoaderLayer>
   </section>
 </template>
@@ -12,8 +12,8 @@ import {
   FetchService,
   ToastService,
 } from '@/core/services';
-import CardLogin from '@/infrastructure/components/cards/CardLogin.vue';
-import LoaderLayer from '@/infrastructure/components/loaders/LoaderLayer.vue';
+import LoginCard from '@/infrastructure/components/login/LoginCard.vue';
+import LoaderLayer from '@/infrastructure/components/shared/loaders/LoaderLayer.vue';
 import LoginView from '@/infrastructure/views/LoginView';
 
 const setup = new LoginView(

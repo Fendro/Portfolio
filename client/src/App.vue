@@ -30,19 +30,16 @@
 <script setup lang="ts">
 import type { MenuItem } from 'primevue/menuitem';
 import Toast from 'primevue/toast';
-import { type Ref, onUnmounted, ref } from 'vue';
+import { type Ref, ref } from 'vue';
 import { RouterView } from 'vue-router';
 
 import { RouteEnum } from '@/core/enums';
-import { AuthenticationService, FetchService } from '@/core/services';
 import { useUserPreferenceStore } from '@/core/stores';
 import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
 import NavigationUserMenu from '@/infrastructure/components/navigation/NavigationUserMenu.vue';
-import router from '@/infrastructure/router';
 
 const userPreferences = useUserPreferenceStore();
-const authenticationService = new AuthenticationService(new FetchService());
 
 const navigationItems = ref([
   {
@@ -64,9 +61,11 @@ const navigationItems = ref([
 
 const guestMenuItems: Ref<MenuItem[]> = ref([
   {
-    label: 'Login',
+    label: 'Toggle language',
     icon: 'pi pi-arrow-right',
-    route: RouteEnum.Login,
+    command: () => {
+      userPreferences.toggleLanguage();
+    },
   },
   {
     label: 'Toggle theme',
@@ -79,16 +78,10 @@ const guestMenuItems: Ref<MenuItem[]> = ref([
 
 const userMenuItems: Ref<MenuItem[]> = ref([
   {
-    label: 'Account',
-    icon: 'pi pi-arrow-right',
-    route: RouteEnum.Account,
-  },
-  {
-    label: 'Logout',
+    label: 'Toggle language',
     icon: 'pi pi-arrow-right',
     command: () => {
-      authenticationService.logout();
-      router.push(RouteEnum.Home);
+      userPreferences.toggleLanguage();
     },
   },
   {
@@ -99,11 +92,6 @@ const userMenuItems: Ref<MenuItem[]> = ref([
     },
   },
 ]);
-
-// const toggleInterval = setInterval(userPreferences.toggleTheme, 2000);
-// onUnmounted(() => {
-//   clearInterval(toggleInterval);
-// });
 </script>
 
 <style scoped></style>

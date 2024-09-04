@@ -1,0 +1,14 @@
+{
+  "welcome": {
+    "english": "Welcome to my Portfolio.",
+    "french": "Bienvenue sur mon Portfolio."
+  },
+  "introduction-title": {
+    "english": "I am Tristan Schmitt.",
+    "french": "Je m'appelle Tristan Schmitt."
+  },
+  "introduction-description": {
+    "english": "Currently in training at the Web@cadémie by Epitech Mulhouse to become a Web developer.\nYou may browse this website to see the various projects I have worked on during my training.",
+    "french": "Actuellement en formation chez la Web@cadémie by Epitech Mulhouse pour devenir Développeur Web.\nVous pourrez voir à travers mon portfolio les différents projets sur lesquels j'ai travaillé au cours de ma formation."
+  }
+}

@@ -37,7 +37,7 @@ export default class Database {
       process.env.DB_PASSWORD,
       {
         host: process.env.DB_HOST,
-        dialect: process.env.DB_DIALECT as Dialect,
+        dialect: process.env.DB_PROVIDER as Dialect,
       },
     );
   }

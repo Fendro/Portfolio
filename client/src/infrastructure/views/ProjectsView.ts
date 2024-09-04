@@ -5,7 +5,7 @@ import csImage from '@/assets/images/CSharp.png';
 import jsImage from '@/assets/images/JS.png';
 import phpImage from '@/assets/images/PHP.png';
 import rorImage from '@/assets/images/ROR.png';
-import type { CarouselProjectElement } from '@/infrastructure/components/carousels/CarouselProjects.vue';
+import type { CarouselProjectElement } from '@/infrastructure/components/projects/CarouselProjects.vue';
 
 export interface ProjectsViewState {
   projects: CarouselProjectElement[];
