@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -34,7 +35,8 @@ const databaseConfiguration = {
 })();
 
 const app = express();
-const io = new Server(http.createServer(app));
+const server = http.createServer(app);
+const io = new Server(server);
 
 if (environmentVariables.NODE_ENV === 'development') {
   app.use(cors());
@@ -43,6 +45,8 @@ if (environmentVariables.NODE_ENV === 'development') {
 }
 
 app
+  .use(bodyParser.urlencoded({ extended: false }))
+  .use(bodyParser.json())
   .use(sessionMiddleware(environmentVariables.SESSION_SECRET))
   .use(
     loggerMiddleware(

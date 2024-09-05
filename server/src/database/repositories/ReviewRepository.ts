@@ -22,6 +22,7 @@ export class ReviewRepository implements IReviewRepository {
   }
 
   async createAsync(review: ReviewCreateDto): Promise<Review> {
+    console.log('repository', review);
     const reviewModel = await ReviewTableModel.create({
       content: review.content,
       rating: review.rating,

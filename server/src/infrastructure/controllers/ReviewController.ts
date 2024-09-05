@@ -26,6 +26,7 @@ export class ReviewController {
   };
 
   create = async (req: Request, res: Response, next: NextFunction) => {
+    console.log('controller', req.body);
     this._reviewService
       .create(req.body)
       .then(() => {

@@ -1,7 +1,7 @@
 <template>
   <div id="theme" :class="userPreferences.theme">
     <div
-      class="flex h-screen w-screen justify-center overflow-hidden bg-primary-100 transition duration-200 dark:bg-primary-900 xl:gap-4 2xl:gap-8"
+      class="flex h-screen w-screen justify-center overflow-hidden bg-primary-50 transition duration-200 dark:bg-primary-950 xl:gap-4 2xl:gap-8"
     >
       <nav class="sticky top-0 min-w-52">
         <NavigationBar
@@ -15,12 +15,9 @@
         <RouterView class="w-full" />
         <ModalShelf class="sticky bottom-0 mt-auto" />
       </main>
-      <nav class="sticky top-0 min-w-52">
-        <NavigationUserMenu
-          class="absolute right-1/2 top-4 z-navigation translate-x-1/2"
-          :guest-menu-items="guestMenuItems"
-          :user-menu-items="userMenuItems"
-        />
+      <nav class="sticky top-0 flex min-w-52 flex-col gap-4">
+        <ThemeSwitcher class="z-navigation mt-4" />
+        <LanguageSwitcher class="z-navigation" />
       </nav>
     </div>
     <Toast position="bottom-right" />
@@ -36,8 +33,9 @@ import { RouterView } from 'vue-router';
 import { RouteEnum } from '@/core/enums';
 import { useUserPreferenceStore } from '@/core/stores';
 import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
+import LanguageSwitcher from '@/infrastructure/components/layout/LanguageSwitcher.vue';
+import ThemeSwitcher from '@/infrastructure/components/layout/ThemeSwitcher.vue';
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
-import NavigationUserMenu from '@/infrastructure/components/navigation/NavigationUserMenu.vue';
 
 const userPreferences = useUserPreferenceStore();
 

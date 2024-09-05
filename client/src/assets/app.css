@@ -5,30 +5,30 @@
 @import 'tailwindcss/utilities';
 
 #theme {
-  --p-primary-50: #f2faf2;
-  --p-primary-100: #e6f6e6;
-  --p-primary-200: #c0e9c0;
-  --p-primary-300: #95da95;
-  --p-primary-400: #69cd69;
-  --p-primary-500: #3dc03d;
-  --p-primary-600: #37ac37;
-  --p-primary-700: #308b30;
-  --p-primary-800: #2a6a2a;
-  --p-primary-900: #235123;
-  --p-primary-950: #1c411c;
+  --p-primary-50: #e9f3f9;
+  --p-primary-100: #cfe5f2;
+  --p-primary-200: #a6d0e5;
+  --p-primary-300: #6db8d8;
+  --p-primary-400: #33a1cc;
+  --p-primary-500: #008ccf;
+  --p-primary-600: #007ab3;
+  --p-primary-700: #006699;
+  --p-primary-800: #005073;
+  --p-primary-900: #003f59;
+  --p-primary-950: #002639;
 
   --p-surface-0: #ffffff;
-  --p-surface-50: #f8f9fa;
-  --p-surface-100: #f1f3f5;
-  --p-surface-200: #e9ecef;
-  --p-surface-300: #dee2e6;
-  --p-surface-400: #ced4da;
-  --p-surface-500: #adb5bd;
-  --p-surface-600: #868e96;
-  --p-surface-700: #495057;
-  --p-surface-800: #343a40;
-  --p-surface-900: #212529;
-  --p-surface-950: #121417;
+  --p-surface-50: #f7f9fc;
+  --p-surface-100: #eef2f6;
+  --p-surface-200: #e5ebf0;
+  --p-surface-300: #d4dde4;
+  --p-surface-400: #c3cfd8;
+  --p-surface-500: #7a8c99;
+  --p-surface-600: #6d7e8a;
+  --p-surface-700: #606f7a;
+  --p-surface-800: #4d5963;
+  --p-surface-900: #3a434b;
+  --p-surface-950: #1c2022;
   --p-content-border-radius: 6px;
 }
 
