@@ -1,5 +1,3 @@
-name: "portfolio"
-
 services:
   client:
     build:
