@@ -7,23 +7,23 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=${NODE_ENV}
-      - VITE_BACKEND_URL=http://${APP_HOST}:${APP_PORT}
+      - VITE_BACKEND_URL=http://${SERVER_HOST}:${SERVER_PORT}
     ports:
       - "4242:80"
     networks:
       - app-network
-    restart: on-failure
+    restart: always
 
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
     environment:
-      - APP_HOST=server
-      - APP_NAME=${APP_NAME}
-      - APP_PORT=${APP_PORT}
+      - SERVER_HOST=${SERVER_HOST}
+      - SERVER_NAME=${SERVER_NAME}
+      - SERVER_PORT=${SERVER_PORT}
       - DB_NAME=${DB_NAME}
-      - DB_HOST=database
+      - DB_HOST=${DB_HOST}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_PROVIDER=${DB_PROVIDER}
       - DB_PORT=${DB_PORT}
@@ -33,13 +33,13 @@ services:
       - RATE_LIMITER_TIME_WINDOW_MS=${RATE_LIMITER_TIME_WINDOW_MS}
       - SESSION_SECRET=${SESSION_SECRET}
     ports:
-      - "${APP_PORT}"
+      - "0:${SERVER_PORT}"
     networks:
       - app-network
     depends_on:
       database:
         condition: service_healthy
-    restart: on-failure
+    restart: always
 
   database:
     image: mysql:8.3.0
@@ -60,7 +60,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    restart: on-failure
+    restart: always
 
 networks:
   app-network:
