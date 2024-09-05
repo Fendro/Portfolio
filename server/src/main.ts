@@ -5,6 +5,7 @@ import http from 'http';
 import * as process from 'node:process';
 import { Dialect } from 'sequelize';
 import { Server } from 'socket.io';
+
 import { Database } from '@/database/Database';
 import {
   createLogger,
@@ -46,7 +47,7 @@ app
   .use(
     loggerMiddleware(
       createLogger({
-        appName: environmentVariables.APP_NAME,
+        appName: environmentVariables.SERVER_NAME,
         environment: environmentVariables.NODE_ENV,
         logsPath: environmentVariables.LOGS_PATH,
       }),
@@ -60,9 +61,9 @@ app
   )
   .use(router);
 
-app.listen(environmentVariables.APP_PORT, () => {
+app.listen(environmentVariables.SERVER_PORT, () => {
   console.info(
-    `[server]: Server is running at http://${environmentVariables.APP_HOST}:${environmentVariables.APP_PORT}`,
+    `[server]: Server is running at http://${environmentVariables.SERVER_HOST}:${environmentVariables.SERVER_PORT}`,
   );
 });
 

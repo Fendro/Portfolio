@@ -5,13 +5,14 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV}
+        VITE_API_URL: http://${SERVER_HOST}:${SERVER_PORT}
     environment:
       - NODE_ENV=${NODE_ENV}
-      - VITE_BACKEND_URL=http://${SERVER_HOST}:${SERVER_PORT}
+      - VITE_API_URL=http://${SERVER_HOST}:${SERVER_PORT}
     ports:
       - "4242:80"
-    networks:
-      - app-network
     restart: always
 
   server:
@@ -19,6 +20,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     environment:
+      - NODE_ENV=${NODE_ENV}
       - SERVER_HOST=${SERVER_HOST}
       - SERVER_NAME=${SERVER_NAME}
       - SERVER_PORT=${SERVER_PORT}
@@ -33,7 +35,7 @@ services:
       - RATE_LIMITER_TIME_WINDOW_MS=${RATE_LIMITER_TIME_WINDOW_MS}
       - SESSION_SECRET=${SESSION_SECRET}
     ports:
-      - "0:${SERVER_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     networks:
       - app-network
     depends_on:

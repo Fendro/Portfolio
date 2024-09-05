@@ -1,9 +1,9 @@
 export type EnvironmentVariables = {
   NODE_ENV: string;
 
-  APP_HOST: string;
-  APP_NAME: string;
-  APP_PORT: string | number;
+  SERVER_HOST: string;
+  SERVER_NAME: string;
+  SERVER_PORT: string | number;
 
   DB_NAME: string;
   DB_HOST: string;

@@ -1,6 +1,6 @@
 import { ReviewTableModel } from '@/database/models/ReviewTableModel';
-import { UserTableModel } from '@/database/models/UserTableModel';
-import { Review, User } from '@/entities';
+import { ReviewCreateDto } from '@/dto';
+import { Review } from '@/entities';
 import { IReviewRepository } from '@/interfaces';
 
 export class ReviewRepository implements IReviewRepository {
@@ -8,13 +8,7 @@ export class ReviewRepository implements IReviewRepository {
     const reviews = await ReviewTableModel.findAll();
 
     return reviews.map(
-      (review) =>
-        new Review(
-          review.id,
-          new User(0, '', '', ''),
-          review.content,
-          review.rating,
-        ),
+      (review) => new Review(review.id, review.content, review.rating),
     );
   }
 
@@ -24,31 +18,15 @@ export class ReviewRepository implements IReviewRepository {
       throw new Error('Review not found.');
     }
 
-    const userModel = await UserTableModel.findByPk(reviewModel.author_id);
-    if (!userModel) {
-      throw new Error('User not found.');
-    }
-
-    return new Review(
-      reviewModel.id,
-      new User(
-        userModel.id,
-        userModel.email,
-        userModel.password,
-        userModel.username,
-      ),
-      reviewModel.content,
-      reviewModel.rating,
-    );
+    return new Review(reviewModel.id, reviewModel.content, reviewModel.rating);
   }
 
-  async createAsync(review: Review): Promise<Review> {
+  async createAsync(review: ReviewCreateDto): Promise<Review> {
     const reviewModel = await ReviewTableModel.create({
-      author_id: review.author.id,
       content: review.content,
       rating: review.rating,
     });
 
-    return new Review(0, new User(0, '', '', ''), '', 0);
+    return new Review(reviewModel.id, reviewModel.content, reviewModel.rating);
   }
 }

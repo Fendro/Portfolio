@@ -9,6 +9,13 @@ RUN npm install
 # Copy the rest of the application code to the container
 COPY . .
 
+# Build the app with environment variables provided by docker-compose
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
+
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
 RUN npm run build
 
 # Runtime Stage

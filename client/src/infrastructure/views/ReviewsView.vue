@@ -1,8 +1,6 @@
 <template>
   <section class="flex flex-col">
     <Textarea
-      v-bind:disabled="!userProfile.isAuthenticated"
-      v-bind:invalid="setup.state.containsProfanity"
       @input="setup.checkForProfanity"
       :name="'ReviewsView-TextArea'"
       :label="'Review text area'"
@@ -12,6 +10,7 @@
     <Button
       :label="ReviewTextContent['leave-a-review'][userPreference.language]"
       class="mr-2 w-fit self-end"
+      @click="setup.postReview"
     />
 
     <template v-if="setup.state.isFetching">

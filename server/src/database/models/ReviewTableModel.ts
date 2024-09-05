@@ -1,11 +1,9 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 
 import context from '@/database/context';
-import { UserTableModel } from '@/database/models/UserTableModel';
 
 interface ReviewAttributes {
   id: number;
-  author_id: number;
   content: string;
   rating: number;
 }
@@ -17,7 +15,6 @@ export class ReviewTableModel
   implements ReviewAttributes
 {
   declare id: number;
-  declare author_id: number;
   declare content: string;
   declare rating: number;
 
@@ -31,14 +28,6 @@ ReviewTableModel.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-    },
-    author_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: UserTableModel,
-        key: 'id',
-      },
     },
     content: {
       type: DataTypes.STRING,
