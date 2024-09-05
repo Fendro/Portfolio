@@ -1,9 +1,9 @@
-import type { UserCreateDto } from "@/dto";
-import type { User } from "@/entities";
+import type { UserCreateDto } from '@/dto';
+import type { User } from '@/entities';
 
 export interface IUserService {
-  get(): User;
-  create(dto: UserCreateDto): void;
-  update(): void;
-  delete(): void;
+  getAsync(): Promise<User>;
+  createAsync(dto: UserCreateDto): Promise<void>;
+  updateAsync(): Promise<void>;
+  deleteAsync(): Promise<void>;
 }

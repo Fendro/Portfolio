@@ -12,14 +12,14 @@ export class AuthenticationService implements IAuthenticationService {
   ) {}
 
   async register(userDto: UserCreateDto): Promise<void> {
-    await this.userRepository.create({
+    await this.userRepository.createAsync({
       ...userDto,
       password: this.hashService.hashPassword(userDto.password),
     });
   }
 
   async login(dto: LoginDto): Promise<LoginResponse> {
-    const user = await this.userRepository.getByCredentials(dto);
+    const user = await this.userRepository.getByCredentialsAsync(dto);
     return {
       token: 'token',
       userProfile: {

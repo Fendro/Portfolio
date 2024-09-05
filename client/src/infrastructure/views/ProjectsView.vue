@@ -1,8 +1,8 @@
 <template>
   <section>
     <ProjectsCarousel
-      :projects="setup.state.projects"
-      :responsive-options="setup.state.responsiveOptions"
+      :projects="projects"
+      :responsive-options="responsiveOptions"
       class="max-w-fit"
     />
     <div>
@@ -23,8 +23,66 @@
 </template>
 
 <script setup lang="ts">
+import csImage from '@/assets/images/CSharp.png';
+import jsImage from '@/assets/images/JS.png';
+import phpImage from '@/assets/images/PHP.png';
+import rorImage from '@/assets/images/ROR.png';
+import ProjectsTextContent from '@/assets/text/projects.json';
+import { useUserPreferenceStore } from '@/core/stores';
 import ProjectsCarousel from '@/infrastructure/components/projects/ProjectsCarousel.vue';
 import ProjectsView from '@/infrastructure/views/ProjectsView';
+
+const userPreferences = useUserPreferenceStore();
+const projects = [
+  {
+    imageSource: csImage,
+    name: ProjectsTextContent.SoloSail.name[userPreferences.language],
+    onClick: () => {
+      console.log('SoloSail');
+    },
+    tag: ProjectsTextContent.SoloSail.technologies[0],
+  },
+  {
+    imageSource: jsImage,
+    name: ProjectsTextContent['E-Commerce'].name[userPreferences.language],
+    onClick: () => {},
+    tag: ProjectsTextContent['E-Commerce'].technologies[0],
+  },
+  {
+    imageSource: phpImage,
+    name: ProjectsTextContent.Connect4.name[userPreferences.language],
+    onClick: () => {},
+    tag: ProjectsTextContent.Connect4.technologies[0],
+  },
+  {
+    imageSource: rorImage,
+    name: ProjectsTextContent.BSQ.name[userPreferences.language],
+    onClick: () => {},
+    tag: ProjectsTextContent.BSQ.technologies[0],
+  },
+];
+const responsiveOptions = [
+  {
+    breakpoint: '1535px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '1279px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '767px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+  {
+    breakpoint: '639px',
+    numVisible: 1,
+    numScroll: 1,
+  },
+];
 
 const setup = new ProjectsView();
 </script>

@@ -1,44 +1,36 @@
-import { Dialect, Sequelize } from "sequelize";
-import mysql from "mysql2/promise";
-import process from "node:process";
+import mysql from 'mysql2/promise';
+import { Dialect } from 'sequelize';
+
+import context from '@/database/context';
 
 export interface DatabaseConfiguration {
   dbName: string;
   host: string;
   password: string;
   port: number;
+  provider: Dialect;
   username: string;
 }
 
 export default class Database {
-  constructor(private databaseConfiguration: DatabaseConfiguration) {}
-
-  async createDatabaseIfDoesNotExist() {
+  static async createDatabaseIfDoesNotExist(
+    databaseConfiguration: DatabaseConfiguration,
+  ) {
     const connection = await mysql.createConnection({
-      host: this.databaseConfiguration.host,
-      password: this.databaseConfiguration.password,
-      port: this.databaseConfiguration.port,
-      user: this.databaseConfiguration.username,
+      host: databaseConfiguration.host,
+      password: databaseConfiguration.password,
+      port: databaseConfiguration.port,
+      user: databaseConfiguration.username,
     });
 
     await connection.query(
-      `CREATE DATABASE IF NOT EXISTS \`${this.databaseConfiguration.dbName}\`;`,
+      `CREATE DATABASE IF NOT EXISTS \`${databaseConfiguration.dbName}\`;`,
     );
 
     connection.destroy();
   }
 
-  async synchronizeSequelizeModels() {}
-
-  async connect() {
-    return new Sequelize(
-      process.env.DB_NAME as string,
-      process.env.DB_USERNAME as string,
-      process.env.DB_PASSWORD,
-      {
-        host: process.env.DB_HOST,
-        dialect: process.env.DB_PROVIDER as Dialect,
-      },
-    );
+  static async synchronizeDatabaseWithModels() {
+    context.sync();
   }
 }

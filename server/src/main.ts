@@ -3,33 +3,34 @@ import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import * as process from 'node:process';
+import { Dialect } from 'sequelize';
 import { Server } from 'socket.io';
 
-import controllers from '@/controllers';
 import Database from '@/database/Database';
 import {
+  createLogger,
   loggerMiddleware,
   rateLimiterMiddleware,
   sessionMiddleware,
 } from '@/middlewares';
-import { createLogger } from '@/middlewares';
 import type { EnvironmentVariables } from '@/types';
+
+import router from './Router';
 
 dotenv.config();
 
 const environmentVariables = process.env as EnvironmentVariables;
-const database = new Database({
+const databaseConfiguration = {
   dbName: environmentVariables.DB_NAME,
   host: environmentVariables.DB_HOST,
   password: environmentVariables.DB_PASSWORD,
   port: environmentVariables.DB_PORT as number,
+  provider: environmentVariables.DB_PROVIDER as Dialect,
   username: environmentVariables.DB_USERNAME,
-});
-
+};
 (async () => {
-  await database.createDatabaseIfDoesNotExist();
-  await database.synchronizeSequelizeModels();
-  await database.connect();
+  await Database.createDatabaseIfDoesNotExist(databaseConfiguration);
+  await Database.synchronizeDatabaseWithModels();
 })();
 
 const app = express();
@@ -56,7 +57,7 @@ app
       timeWindowMs: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
     }),
   )
-  .use(controllers);
+  .use(router);
 
 app.listen(environmentVariables.APP_PORT, () => {
   console.info(

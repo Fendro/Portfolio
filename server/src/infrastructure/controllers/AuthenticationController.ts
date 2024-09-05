@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import type { IAuthenticationService } from '@/interfaces';
 
-export default class AuthenticationController {
+export class AuthenticationController {
   constructor(private authenticationService: IAuthenticationService) {}
 
   login = async (req: Request, res: Response, next: NextFunction) => {

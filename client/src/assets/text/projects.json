@@ -19,7 +19,7 @@
       "english": "",
       "french": ""
     },
-    "technologies": []
+    "technologies": ["JavaScript", "HTML", "CSS"]
   },
   "E-Commerce": {
     "name": {
@@ -30,7 +30,7 @@
       "english": "",
       "french": ""
     },
-    "technologies": []
+    "technologies": ["Node", "Express", "TypeScript"]
   },
   "BSQ": {
     "name": {
@@ -38,9 +38,9 @@
       "french": "BSQ"
     },
     "description": {
-      "english": "",
+      "english": "An algorithmic project.",
       "french": ""
     },
-    "technologies": []
+    "technologies": ["PHP"]
   }
 }

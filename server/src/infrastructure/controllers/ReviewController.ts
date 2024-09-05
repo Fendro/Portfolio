@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import type { IReviewService } from '@/interfaces';
 
-export default class ReviewController {
+export class ReviewController {
   constructor(private _reviewService: IReviewService) {}
 
   get = async (req: Request, res: Response, next: NextFunction) => {

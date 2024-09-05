@@ -1,23 +1,23 @@
-import type { UserCreateDto } from "@/dto";
-import type { IUserRepository, IUserService } from "@/interfaces";
-import { User } from "@/entities";
+import type { UserCreateDto } from '@/dto';
+import { User } from '@/entities';
+import type { IUserRepository, IUserService } from '@/interfaces';
 
 export class UserService implements IUserService {
   constructor(private userRepository: IUserRepository) {}
 
-  get(): User {
-    throw new Error("Method not implemented.");
+  async getAsync(): Promise<User> {
+    return await this.userRepository.getByIdAsync(0);
   }
 
-  create(dto: UserCreateDto): void {
-    throw new Error("Method not implemented.");
+  async createAsync(dto: UserCreateDto): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 
-  update(): void {
-    throw new Error("Method not implemented.");
+  async updateAsync(): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 
-  delete(): void {
-    throw new Error("Method not implemented.");
+  async deleteAsync(): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 }

@@ -36,7 +36,7 @@
       "@/controllers": ["./src/infrastructure/controllers/index.ts"],
       "@/middlewares": ["./src/infrastructure/middlewares/index.ts"],
       "@/interfaces": ["./src/application/interfaces/index.ts"],
-      "@/repositories": ["./src/infrastructure/repositories/index.ts"],
+      "@/repositories": ["./src/database/repositories/index.ts"],
       "@/services": ["./src/application/services/index.ts"],
       "@/types": ["./src/types/index.ts"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,

@@ -2,7 +2,7 @@ import type { LoginDto, UserCreateDto } from '@/dto';
 import type { User } from '@/entities';
 
 export interface IUserRepository {
-  getById(id: number): Promise<User>;
-  getByCredentials(credentials: LoginDto): Promise<User>;
-  create(user: UserCreateDto): Promise<User>;
+  getByIdAsync(id: number): Promise<User>;
+  getByCredentialsAsync(credentials: LoginDto): Promise<User>;
+  createAsync(user: UserCreateDto): Promise<User>;
 }
