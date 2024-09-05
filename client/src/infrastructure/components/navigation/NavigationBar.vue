@@ -1,5 +1,5 @@
 <template>
-  <Menu :model="items">
+  <Menu :model="navigationItems">
     <template #item="{ item, props }">
       <router-link
         v-if="item.route"
@@ -19,12 +19,54 @@
 <script setup lang="ts">
 import Menu from 'primevue/menu';
 import type { MenuItem } from 'primevue/menuitem';
+import { computed, ref, watch } from 'vue';
 
-export interface NavigationBarProps {
-  items: MenuItem[];
-}
+import { LanguageEnum, RouteEnum } from '@/core/enums';
+import { useUserPreferenceStore } from '@/core/stores';
 
-defineProps<NavigationBarProps>();
+const userPreferences = useUserPreferenceStore();
+
+const isEnglish = computed(
+  () => userPreferences.language === LanguageEnum.English,
+);
+
+const navigationItems = ref<MenuItem[]>([
+  {
+    label: isEnglish.value ? 'Home' : 'Maison',
+    icon: 'pi pi-home',
+    route: RouteEnum.Home,
+  },
+  {
+    label: isEnglish.value ? 'Projects' : 'Projets',
+    icon: 'pi pi-code',
+    route: RouteEnum.Projects,
+  },
+  {
+    label: isEnglish.value ? 'Reviews' : 'Commentaires',
+    icon: 'pi pi-pen-to-square',
+    route: RouteEnum.Reviews,
+  },
+]);
+
+watch(isEnglish, (value) => {
+  navigationItems.value = [
+    {
+      label: value ? 'Home' : 'Maison',
+      icon: 'pi pi-home',
+      route: RouteEnum.Home,
+    },
+    {
+      label: value ? 'Projects' : 'Projets',
+      icon: 'pi pi-code',
+      route: RouteEnum.Projects,
+    },
+    {
+      label: value ? 'Reviews' : 'Commentaires',
+      icon: 'pi pi-pen-to-square',
+      route: RouteEnum.Reviews,
+    },
+  ];
+});
 </script>
 
 <style scoped></style>

@@ -1,16 +1,16 @@
 <template>
   <template v-if="userPreferences.language === LanguageEnum.French">
     <img
-      v-bind:src="frFlagImage"
-      alt="French Flag"
+      :src="frFlagImage"
+      alt="Language toggle"
       class="size-12"
       @click="userPreferences.toggleLanguage()"
     />
   </template>
   <template v-else>
     <img
-      v-bind:src="ukFlagImage"
-      alt="UK Flag"
+      :src="ukFlagImage"
+      alt="Language toggle"
       class="size-12"
       @click="userPreferences.toggleLanguage()"
     />

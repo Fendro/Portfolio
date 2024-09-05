@@ -1,7 +1,7 @@
 <template>
   <template v-if="userPreferences.theme === ThemeEnum.Light">
     <img
-      v-bind:src="lightModeImage"
+      :src="lightModeImage"
       alt="Light Mode toggle"
       class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
       @click="userPreferences.toggleTheme()"
@@ -9,7 +9,7 @@
   </template>
   <template v-else>
     <img
-      v-bind:src="darkModeImage"
+      :src="darkModeImage"
       alt="Dark Mode toggle"
       class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
       @click="userPreferences.toggleTheme()"

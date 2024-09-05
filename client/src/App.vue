@@ -6,7 +6,6 @@
       <nav class="sticky top-0 min-w-52">
         <NavigationBar
           class="absolute left-1/2 top-4 z-navigation -translate-x-1/2"
-          :items="navigationItems"
         />
       </nav>
       <main
@@ -25,12 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuItem } from 'primevue/menuitem';
 import Toast from 'primevue/toast';
-import { type Ref, ref } from 'vue';
 import { RouterView } from 'vue-router';
 
-import { RouteEnum } from '@/core/enums';
 import { useUserPreferenceStore } from '@/core/stores';
 import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
 import LanguageSwitcher from '@/infrastructure/components/layout/LanguageSwitcher.vue';
@@ -38,58 +34,6 @@ import ThemeSwitcher from '@/infrastructure/components/layout/ThemeSwitcher.vue'
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
 
 const userPreferences = useUserPreferenceStore();
-
-const navigationItems = ref([
-  {
-    label: 'Home',
-    icon: 'pi pi-home',
-    route: RouteEnum.Home,
-  },
-  {
-    label: 'Projects',
-    icon: 'pi pi-code',
-    route: RouteEnum.Projects,
-  },
-  {
-    label: 'Reviews',
-    icon: 'pi pi-pen-to-square',
-    route: RouteEnum.Reviews,
-  },
-]);
-
-const guestMenuItems: Ref<MenuItem[]> = ref([
-  {
-    label: 'Toggle language',
-    icon: 'pi pi-arrow-right',
-    command: () => {
-      userPreferences.toggleLanguage();
-    },
-  },
-  {
-    label: 'Toggle theme',
-    icon: 'pi pi-arrow-right',
-    command: () => {
-      userPreferences.toggleTheme();
-    },
-  },
-]);
-
-const userMenuItems: Ref<MenuItem[]> = ref([
-  {
-    label: 'Toggle language',
-    icon: 'pi pi-arrow-right',
-    command: () => {
-      userPreferences.toggleLanguage();
-    },
-  },
-  {
-    label: 'Toggle theme',
-    icon: 'pi pi-arrow-right',
-    command: () => {
-      userPreferences.toggleTheme();
-    },
-  },
-]);
 </script>
 
 <style scoped></style>
