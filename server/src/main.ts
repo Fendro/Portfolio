@@ -5,8 +5,7 @@ import http from 'http';
 import * as process from 'node:process';
 import { Dialect } from 'sequelize';
 import { Server } from 'socket.io';
-
-import Database from '@/database/Database';
+import { Database } from '@/database/Database';
 import {
   createLogger,
   loggerMiddleware,
@@ -38,6 +37,8 @@ const io = new Server(http.createServer(app));
 
 if (environmentVariables.NODE_ENV === 'development') {
   app.use(cors());
+} else {
+  app.use(cors()); // TODO
 }
 
 app

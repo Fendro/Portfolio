@@ -12,7 +12,7 @@ export interface DatabaseConfiguration {
   username: string;
 }
 
-export default class Database {
+export class Database {
   static async createDatabaseIfDoesNotExist(
     databaseConfiguration: DatabaseConfiguration,
   ) {
@@ -31,6 +31,6 @@ export default class Database {
   }
 
   static async synchronizeDatabaseWithModels() {
-    context.sync();
+    await context.sync();
   }
 }

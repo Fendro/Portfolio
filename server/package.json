@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/main.ts",
-    "build": "npx tsc --project tsconfig.json"
+    "build": "npx tsc --project tsconfig.json && npx tsc-alias"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -12,7 +12,6 @@
     "express": "^4.19.2",
     "express-rate-limit": "^7.4.0",
     "express-session": "^1.18.0",
-    "module-alias": "^2.2.3",
     "mysql2": "^3.11.0",
     "sequelize": "^6.37.3",
     "socket.io": "^4.7.5",
@@ -28,10 +27,8 @@
     "prettier": "^3.3.3",
     "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.5.4"
-  },
-  "_moduleAliases": {
-    "@": "dist"
   }
 }
