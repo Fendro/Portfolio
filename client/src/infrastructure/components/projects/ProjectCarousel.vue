@@ -81,7 +81,7 @@ export interface MockCarouselProps {
 }
 
 export interface MockCarouselEmits {
-  changeSlide: () => void;
+  (e: 'changeSlide'): void;
 }
 
 defineProps<MockCarouselProps>();
