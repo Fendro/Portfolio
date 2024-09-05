@@ -1,0 +1,54 @@
+name: "portfolio"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4242:80"
+    networks:
+      - app-network
+    restart: on-failure
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=database
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=portfolio
+    ports:
+      - "3000"
+    networks:
+      - app-network
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: on-failure
+
+  database:
+    image: mysql:8.3.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portfolio
+    ports:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "database" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+networks:
+  app-network:
+
+volumes:
+  db_data:
