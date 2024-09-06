@@ -43,8 +43,7 @@ if (environmentVariables.NODE_ENV === 'development') {
 } else {
   app.use(
     cors({
-      origin: ['http://116.202.242.105:4242'],
-      credentials: true,
+      origin: '*',
     }),
   );
 }
