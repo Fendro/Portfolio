@@ -41,7 +41,12 @@ const io = new Server(server);
 if (environmentVariables.NODE_ENV === 'development') {
   app.use(cors());
 } else {
-  app.use(cors({ origin: true })); // TODO
+  app.use(
+    cors({
+      origin: ['http://116.202.242.105:4242'],
+      credentials: true,
+    }),
+  );
 }
 
 app
