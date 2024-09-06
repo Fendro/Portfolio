@@ -42,12 +42,31 @@ if (environmentVariables.NODE_ENV === 'development') {
   app.use(
     cors({
       origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: [
+        'Origin',
+        'X-Requested-With',
+        'Content-Type',
+        'Accept',
+        'Authorization',
+      ],
+      credentials: true,
     }),
   );
 } else {
+  // TODO: Narrow-down
   app.use(
     cors({
       origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: [
+        'Origin',
+        'X-Requested-With',
+        'Content-Type',
+        'Accept',
+        'Authorization',
+      ],
+      credentials: true,
     }),
   );
 }
