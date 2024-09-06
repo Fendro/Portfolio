@@ -6,7 +6,10 @@ Bienvenue sur mon portfolio !
 
 Chers membres du jury,
 
-Je vous remercie de prendre le temps d'évaluer mon portfolio. Vous trouverez ci-dessous des liens vers les sites déployés. J'espère que mon travail saura répondre à vos attentes.
+Je vous remercie de prendre le temps d'évaluer mon portfolio. Vous trouverez ci-dessous des liens vers les sites déployés. J'espère que mon travail saura répondre à vos attentes.\
+
+Je souhaite mentioner que le rendu initial était prévu pour novembre, et que j'ai planifié mon développement en fonction de cela.\
+Cependant j'ai appris ce mercredi 4 septembre que je serai évalué vendredi 6 septembre.
 
 ## Sommaire
 
