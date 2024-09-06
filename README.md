@@ -15,10 +15,10 @@ Je vous remercie de prendre le temps d'évaluer mon portfolio. Vous trouverez ci
 
 ## Liens Utiles
 
-Voici quelques liens vers des ressources externes, si vous souhaitez en savoir plus sur mes compétences, mes projets, ou d'autres travaux pertinents.
+Voici les liens vers les sites web hébergés :
 
-- **Portfolio** : [Mon Portfolio](https://tonportfolio.com)
-- **Projet Libre** : [Mon Portfolio](https://tonportfolio.com)
+- **[Portfolio](https://tonportfolio.com)**
+- **[Projet Libre](https://tonportfolio.com)**
 
 ## Contact
 
