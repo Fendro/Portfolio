@@ -30,7 +30,7 @@ export class ReviewController {
     this._reviewService
       .create(req.body)
       .then(() => {
-        res.status(200);
+        res.status(200).json({});
         next();
       })
       .catch((error) => next(error));
