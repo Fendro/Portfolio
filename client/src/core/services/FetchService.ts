@@ -46,7 +46,7 @@ export class FetchService implements IFetchService {
     return this.executeRequestAsync<never, TResponse>(
       url + new URLSearchParams(queryParams),
       {
-        ...this.headers,
+        headers: { ...this.headers },
         method: 'GET',
       },
     );
@@ -55,7 +55,10 @@ export class FetchService implements IFetchService {
   postAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: 'POST' },
+      {
+        headers: { ...this.headers },
+        method: 'POST',
+      },
       payload,
     );
   }
@@ -63,7 +66,10 @@ export class FetchService implements IFetchService {
   putAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: 'PUT' },
+      {
+        headers: { ...this.headers },
+        method: 'PUT',
+      },
       payload,
     );
   }
@@ -71,7 +77,10 @@ export class FetchService implements IFetchService {
   patchAsync<TPayload, TResponse>(url: string, payload: Partial<TPayload>) {
     return this.executeRequestAsync<Partial<TPayload>, TResponse>(
       url,
-      { ...this.headers, method: 'PATCH' },
+      {
+        headers: { ...this.headers },
+        method: 'PATCH',
+      },
       payload,
     );
   }
@@ -79,7 +88,10 @@ export class FetchService implements IFetchService {
   deleteAsync<TPayload, TResponse>(url: string, payload: TPayload) {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
-      { ...this.headers, method: 'DELETE' },
+      {
+        headers: { ...this.headers },
+        method: 'DELETE',
+      },
       payload,
     );
   }
