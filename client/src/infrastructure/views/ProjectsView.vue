@@ -11,9 +11,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+import AlgorithmImage from '@/assets/images/Algorithm.png';
 import CSSImage from '@/assets/images/CSS.png';
 import CSharpImage from '@/assets/images/CSharp.png';
+import Connect4Image from '@/assets/images/Connect4.png';
 import DockerImage from '@/assets/images/Docker.png';
+import ECommerceImage from '@/assets/images/ECommerce.png';
 import EFCoreImage from '@/assets/images/EFCore.png';
 import ExpressImage from '@/assets/images/Express.png';
 import GrafanaImage from '@/assets/images/Grafana.png';
@@ -24,6 +27,7 @@ import MySQLImage from '@/assets/images/MySQL.png';
 import NETImage from '@/assets/images/NET.png';
 import NodeImage from '@/assets/images/NodeJS.png';
 import PHPImage from '@/assets/images/PHP.png';
+import PortfolioImage from '@/assets/images/Portfolio.png';
 import ReactImage from '@/assets/images/React.png';
 import SequelizeImage from '@/assets/images/Sequelize.png';
 import SoloSailImage from '@/assets/images/SoloSail.svg';
@@ -94,7 +98,7 @@ const slides = ref<CarouselSlide[]>([
     },
   },
   {
-    image: SoloSailImage,
+    image: PortfolioImage,
     alt: 'Portfolio project slide',
     projectSourceUrl: projectTextContent.Portfolio.sourceUrl,
     projectDescription: {
@@ -107,7 +111,7 @@ const slides = ref<CarouselSlide[]>([
     },
   },
   {
-    image: JavaScriptImage,
+    image: Connect4Image,
     alt: 'Connect 4 project slide',
     projectSourceUrl: projectTextContent.Connect4.sourceUrl,
     projectDescription: {
@@ -120,7 +124,7 @@ const slides = ref<CarouselSlide[]>([
     },
   },
   {
-    image: PHPImage,
+    image: ECommerceImage,
     alt: 'E-Commerce project slide',
     projectSourceUrl: projectTextContent['E-Commerce'].sourceUrl,
     projectDescription: {
@@ -133,7 +137,7 @@ const slides = ref<CarouselSlide[]>([
     },
   },
   {
-    image: PHPImage,
+    image: AlgorithmImage,
     alt: 'BSQ',
     projectSourceUrl: projectTextContent.BSQ.sourceUrl,
     projectDescription: {

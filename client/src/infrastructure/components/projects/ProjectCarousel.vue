@@ -15,7 +15,6 @@
           class="object-fit block h-64 w-96"
         />
         <div class="flex">
-          <Tag :value="slide.projectDescription.name" :severity="'secondary'" />
           <a :href="slide.projectSourceUrl" target="_blank">
             <Button
               :label="
@@ -60,7 +59,6 @@
 
 <script lang="ts" setup>
 import Button from 'primevue/button';
-import Tag from 'primevue/tag';
 import { ref } from 'vue';
 
 import { LanguageEnum } from '@/core/enums';
