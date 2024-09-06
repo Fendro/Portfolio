@@ -30,7 +30,7 @@
     },
     "description": {
       "english": "Small solo project during which I reproduced the famous \"Connect4\" game.\nI allowed the players to further configure their game session by specifying how many would play and implemented a simple bot logic to play against.",
-      "french": "Petit projet seul pendant lequel j'ai recréé le jeu populaire \"Puissance 4\".\nJe suis même allé plus loin en permettant aux joueurs de configurer le nombre de personnes jouant ainsi qu'en implémentant une simple logique d'`IA contre laquelle il est possible de joeur."
+      "french": "Petit projet seul pendant lequel j'ai recréé le jeu populaire \"Puissance 4\".\nJe suis même allé plus loin en permettant aux joueurs de configurer le nombre de personnes jouant ainsi qu'en implémentant une simple logique d'`IA contre laquelle il est possible de jouer."
     },
     "sourceUrl": "https://github.com/Fendro/Connect4",
     "technologies": ["JavaScript", "HTML", "CSS"]
