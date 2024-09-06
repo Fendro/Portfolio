@@ -17,8 +17,12 @@ Je vous remercie de prendre le temps d'évaluer mon portfolio. Vous trouverez ci
 
 Voici les liens vers les sites web hébergés :
 
-- **[Portfolio](https://tonportfolio.com)**
-- **[Projet Libre](https://tonportfolio.com)**
+- **[Portfolio](http://116.202.242.105:4242/)**
+- **[Projet Libre](http://116.202.242.105:89/)**
+
+Projet Libre identifiants :
+- user@soloSail.com
+- Azerty123.
 
 ## Contact
 
