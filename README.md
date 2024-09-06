@@ -1,55 +1,35 @@
-## à l'attention du jury
+# Portfolio de Tristan Schmitt
 
-Bienvenu sur le
+Bienvenue sur mon portfolio !
 
-## Recommended IDE Setup
+## Message au Jury
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Chers membres du jury,
 
-## Type Support for `.vue` Imports in TS
+Je vous remercie de prendre le temps d'évaluer mon portfolio. Vous trouverez ci-dessous des liens vers les sites déployés. J'espère que mon travail saura répondre à vos attentes.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Sommaire
 
-## Customize configuration
+1. [Liens Utiles](#liens-utiles)
+2. [Contact](#contact)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Liens Utiles
 
-## Project Setup
+Voici quelques liens vers des ressources externes, si vous souhaitez en savoir plus sur mes compétences, mes projets, ou d'autres travaux pertinents.
 
-```sh
-npm install
-```
+- **Portfolio** : [Mon Portfolio](https://tonportfolio.com)
+- **Projet Libre** : [Mon Portfolio](https://tonportfolio.com)
 
-### Compile and Hot-Reload for Development
+## Contact
 
-```sh
-npm run dev
-```
+Pour toute question ou demande d'information complémentaire, vous pouvez me contacter à l'adresse suivante :
+- **Email** : [tristan.schmitt@epitech.eu](mailto:ton.email@example.com)
+- **Téléphone** : +33 7 72 17 78 97
 
-### Type-Check, Compile and Minify for Production
+Merci encore pour votre temps et votre attention. Je reste à votre disposition pour toute clarification.
 
-```sh
-npm run build
-```
+---
 
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
+_Cordialement,_
 
-```sh
-npm run test:unit:dev # or `npm run test:unit` for headless testing
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
+**Tristan Schmitt**
