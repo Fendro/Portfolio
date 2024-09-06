@@ -39,7 +39,11 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 if (environmentVariables.NODE_ENV === 'development') {
-  app.use(cors());
+  app.use(
+    cors({
+      origin: '*',
+    }),
+  );
 } else {
   app.use(
     cors({
