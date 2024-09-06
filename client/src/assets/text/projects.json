@@ -8,7 +8,7 @@
       "english": "This was a year long project which I worked on, with three other students, throughout my 2nd year of training.\nI have used Figma to make mockups and discuss the layout of the application with my group members.\nThen I mainly worked on the backend side of the application and a bit of logging/monitoring.",
       "french": "Ceci était le projet de fin d'étude, réalisé en groupe avec trois autres étudiants pendant notre deuxième année de formation.\nJ'ai utilisé Figma pour convier mes idées aux membres du projet quant à la disposition de l'interface.\nJ'ai ensuite travaillé sur la partie backend de l'application ainsi que sur les systèmes de logging/surveillance."
     },
-    "sourceUrl": "https://github.com/Fendro/SoloSail",
+    "sourceUrl": "https://gitlab.com/projetlibre1",
     "technologies": ["C#", ".NET", "EF Core", "MySQL", "Grafana", "Docker"]
   },
   "Portfolio": {
