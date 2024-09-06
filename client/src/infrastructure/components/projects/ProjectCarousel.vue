@@ -1,21 +1,21 @@
 <template>
-  <div class="carousel">
+  <div class="relative w-fit overflow-hidden">
     <div
-      class="carousel-inner"
+      class="flex transition-transform duration-500 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
     >
       <div
-        class="carousel-item"
+        class="flex min-w-full flex-col items-center"
         v-for="(slide, index) in carouselSlides"
         :key="index"
       >
-        <img :src="slide.image" :alt="slide.alt" />
-        <div class="flex justify-between">
-          <Tag
-            :value="slide.projectDescription.name"
-            :severity="'secondary'"
-            style="right: 5px; top: 5px"
-          />
+        <img
+          :src="slide.image"
+          :alt="slide.alt"
+          class="block h-64 w-96 object-cover"
+        />
+        <div class="flex">
+          <Tag :value="slide.projectDescription.name" :severity="'secondary'" />
           <a :href="slide.projectSourceUrl" target="_blank">
             <Button
               :label="
@@ -25,19 +25,19 @@
               "
             />
           </a>
-          <ProjectDescription
-            :name="slide.projectDescription.name"
-            :description="slide.projectDescription.description"
-            :technologies="slide.projectDescription.technologies"
-          />
         </div>
+        <ProjectDescription
+          :name="slide.projectDescription.name"
+          :description="slide.projectDescription.description"
+          :technologies="slide.projectDescription.technologies"
+        />
       </div>
     </div>
     <button
       class="carousel-control prev"
       @click="
         () => {
-          nextSlide(carouselSlides.length);
+          prevSlide(carouselSlides.length);
           $emit('changeSlide');
         }
       "
@@ -109,28 +109,6 @@ const prevSlide = (slideCount: number) => {
 </script>
 
 <style scoped>
-.carousel {
-  position: relative;
-  width: 600px;
-  overflow: hidden;
-}
-
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-
-.carousel img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .carousel-control {
   position: absolute;
   top: 50%;

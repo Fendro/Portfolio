@@ -3,6 +3,7 @@
     <MockCarousel
       :carousel-slides="slides"
       @changeSlide="() => console.log('changed')"
+      class="self-center"
     />
   </section>
 </template>
@@ -25,7 +26,7 @@ const userPreferences = useUserPreferenceStore();
 const slides = ref<CarouselSlide[]>([
   {
     image: csImage,
-    alt: 'Slide 1',
+    alt: 'SoloSail project slide',
     projectSourceUrl: 'https://google.com',
     projectDescription: {
       name: projectTextContent.SoloSail.name[userPreferences.language],
@@ -36,7 +37,7 @@ const slides = ref<CarouselSlide[]>([
   },
   {
     image: jsImage,
-    alt: 'Slide 2',
+    alt: 'Connect 4 project slide',
     projectSourceUrl: 'https://yahoo.com',
     projectDescription: {
       name: projectTextContent.Connect4.name[userPreferences.language],
@@ -47,13 +48,24 @@ const slides = ref<CarouselSlide[]>([
   },
   {
     image: phpImage,
-    alt: 'Slide 3',
+    alt: 'E-Commerce project slide',
     projectSourceUrl: 'https://discord.com',
     projectDescription: {
       name: projectTextContent['E-Commerce'].name[userPreferences.language],
       description:
         projectTextContent['E-Commerce'].description[userPreferences.language],
-      technologies: [{ name: 'c#', image: '' }],
+      technologies: [{ name: 'JavaScript', image: '' }],
+    },
+  },
+  {
+    image: phpImage,
+    alt: 'BSQ',
+    projectSourceUrl: 'https://discord.com',
+    projectDescription: {
+      name: projectTextContent['BSQ'].name[userPreferences.language],
+      description:
+        projectTextContent['BSQ'].description[userPreferences.language],
+      technologies: [{ name: 'PHP', image: '' }],
     },
   },
 ]);

@@ -12,10 +12,10 @@
     <div class="mt-16">
       <div class="my-4 font-bold">Télécharger</div>
       <div class="flex flex-col justify-center gap-4">
-        <a :href="CV" target="_blank">
+        <a :href="CV" target="_blank" class="min-w-fit">
           <Button :label="'CV'" />
         </a>
-        <a :href="Rapport" target="_blank">
+        <a :href="Rapport" target="_blank" class="min-w-fit">
           <Button
             :label="
               userPreference.language === LanguageEnum.English
