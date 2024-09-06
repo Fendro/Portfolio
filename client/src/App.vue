@@ -1,11 +1,13 @@
 <template>
   <div id="theme" :class="userPreferences.theme">
     <div
-      class="flex h-screen w-screen justify-center overflow-hidden bg-primary-50 transition duration-200 dark:bg-primary-950 xl:gap-4 2xl:gap-8"
+      class="flex h-screen w-screen flex-col justify-center overflow-hidden bg-primary-50 transition duration-200 dark:bg-primary-950 md:flex-row xl:gap-4 2xl:gap-8"
     >
-      <nav class="sticky top-0 min-w-52">
+      <nav
+        class="sticky bottom-0 flex justify-center bg-primary-50 pb-4 dark:bg-primary-950 md:min-w-52 md:flex-col md:gap-4 md:pb-0"
+      >
         <NavigationBar
-          class="absolute left-1/2 top-4 z-navigation -translate-x-1/2"
+          class="left-1/2 top-4 z-navigation -translate-x-1/2 md:absolute"
         />
       </nav>
       <main
@@ -14,8 +16,10 @@
         <RouterView class="w-full" />
         <ModalShelf class="sticky bottom-0 mt-auto" />
       </main>
-      <nav class="sticky top-0 flex min-w-52 flex-col gap-4">
-        <ThemeSwitcher class="z-navigation mt-4" />
+      <nav
+        class="fixed right-0 top-0 z-10 flex gap-4 p-4 md:static md:min-w-52 md:flex-col md:gap-4"
+      >
+        <ThemeSwitcher class="z-navigation" />
         <LanguageSwitcher class="z-navigation" />
       </nav>
     </div>
