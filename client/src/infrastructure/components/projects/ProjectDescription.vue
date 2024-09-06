@@ -10,8 +10,7 @@
         :key="tech.name"
         class="flex items-center"
       >
-        <img :src="tech.image" alt="" class="mr-2 h-8 w-8" />
-        <span class="text-sm font-medium">{{ tech.name }}</span>
+        <img :src="tech.image" :alt="tech.name" class="mr-2 h-16 w-16" />
       </div>
     </div>
   </div>

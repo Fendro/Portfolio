@@ -10,7 +10,13 @@
       {{ HomeTextContent['introduction-description'][userPreference.language] }}
     </p>
     <div class="mt-16">
-      <div class="my-4 font-bold">Télécharger</div>
+      <div class="my-4 font-bold">
+        {{
+          userPreference.language === LanguageEnum.English
+            ? 'Download'
+            : 'Télécharger'
+        }}
+      </div>
       <div class="flex flex-col justify-center gap-4">
         <a :href="CV" target="_blank" class="min-w-fit">
           <Button :label="'CV'" />

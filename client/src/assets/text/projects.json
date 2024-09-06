@@ -8,7 +8,20 @@
       "english": "This was a year long project which I worked on, with three other students, throughout my 2nd year of training.\nI have used Figma to make mockups and discuss the layout of the application with my group members.\nThen I mainly worked on the backend side of the application and a bit of logging/monitoring.",
       "french": "Ceci était le projet de fin d'étude, réalisé en groupe avec trois autres étudiants pendant notre deuxième année de formation.\nJ'ai utilisé Figma pour convier mes idées aux membres du projet quant à la disposition de l'interface.\nJ'ai ensuite travaillé sur la partie backend de l'application ainsi que sur les systèmes de logging/surveillance."
     },
-    "technologies": ["C#", ".NET", "EF Core", "Grafana", "Docker"]
+    "sourceUrl": "",
+    "technologies": ["C#", ".NET", "EF Core", "MySQL", "Grafana", "Docker"]
+  },
+  "Portfolio": {
+    "name": {
+      "english": "Portfolio",
+      "french": "Portfolio"
+    },
+    "description": {
+      "english": "This was a year long project which I worked on, with three other students, throughout my 2nd year of training.\nI have used Figma to make mockups and discuss the layout of the application with my group members.\nThen I mainly worked on the backend side of the application and a bit of logging/monitoring.",
+      "french": "Ceci était le projet de fin d'étude, réalisé en groupe avec trois autres étudiants pendant notre deuxième année de formation.\nJ'ai utilisé Figma pour convier mes idées aux membres du projet quant à la disposition de l'interface.\nJ'ai ensuite travaillé sur la partie backend de l'application ainsi que sur les systèmes de logging/surveillance."
+    },
+    "sourceUrl": "",
+    "technologies": ["Vue", "Express", "TypeScript", "Sequelize", "MySQL", "Docker"]
   },
   "Connect4": {
     "name": {
@@ -16,9 +29,10 @@
       "french": "Puissance 4"
     },
     "description": {
-      "english": "",
-      "french": ""
+      "english": "Small solo project during which I reproduced the famous \"Connect4\" game.\nI allowed the players to further configure their game session by specifying how many would play and implemented a simple bot logic to play against.",
+      "french": "Petit projet seul pendant lequel j'ai recréé le jeu populaire \"Puissance 4\".\nJe suis même allé plus loin en permettant aux joueurs de configurer le nombre de personnes jouant ainsi qu'en implémentant une simple logique d'`IA contre laquelle il est possible de joeur."
     },
+    "sourceUrl": "",
     "technologies": ["JavaScript", "HTML", "CSS"]
   },
   "E-Commerce": {
@@ -27,10 +41,11 @@
       "french": "E-Commerce"
     },
     "description": {
-      "english": "",
-      "french": ""
+      "english": "A month-long \"E-Commerce\" group project I worked on at the end of my first year.\nIt was my first experience developing with TypeScript and following the Agile method.\nWe were given user-stories to work on over 3-days long sprints.",
+      "french": "Un projet de groupe d'un mois pour produire un site \"E-Commerce\" réalisé à la fin de ma première année.\nCe fut ma première experience de développement avec TypeScript et en suivant la méthodologie Agile.\nNous avons reçu des user-stories à implémenter au court de sprints d'une longueur de 3 jours."
     },
-    "technologies": ["Node", "Express", "TypeScript"]
+    "sourceUrl": "",
+    "technologies": ["Node", "React", "Express", "MongoDB", "TypeScript"]
   },
   "BSQ": {
     "name": {
@@ -38,9 +53,10 @@
       "french": "BSQ"
     },
     "description": {
-      "english": "An algorithmic project.",
-      "french": ""
+      "english": "A small solo project to practice my algorithmic skills on.\nThe goal was to find the biggest square in a parsed text file map.\nI implemented the possibility to see in the console the search process as the algorithm looks through the map.",
+      "french": "Un petit projet seul pour développer mes compétences algorithmiques.\nLe but était de trouver le carré le plus gros au sein d'une carte sous format texte.\nJ'ai aussi ajouté la possibilité de visualiser dans la console le processus de recherche de ce carré."
     },
+    "sourceUrl": "",
     "technologies": ["PHP"]
   }
 }

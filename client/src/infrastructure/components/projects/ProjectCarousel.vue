@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-fit overflow-hidden">
+  <div class="relative w-full overflow-hidden">
     <div
       class="flex transition-transform duration-500 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
@@ -12,7 +12,7 @@
         <img
           :src="slide.image"
           :alt="slide.alt"
-          class="block h-64 w-96 object-cover"
+          class="object-fit block h-64 w-96"
         />
         <div class="flex">
           <Tag :value="slide.projectDescription.name" :severity="'secondary'" />

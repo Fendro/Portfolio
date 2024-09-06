@@ -32,7 +32,7 @@ const isEnglish = computed(
 
 const navigationItems = ref<MenuItem[]>([
   {
-    label: isEnglish.value ? 'Home' : 'Maison',
+    label: isEnglish.value ? 'Home' : "Page d'acceuil",
     icon: 'pi pi-home',
     route: RouteEnum.Home,
   },
