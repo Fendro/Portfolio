@@ -41,7 +41,7 @@ const io = new Server(server);
 if (environmentVariables.NODE_ENV === 'development') {
   app.use(cors());
 } else {
-  app.use(cors()); // TODO
+  app.use(cors({ origin: true })); // TODO
 }
 
 app
