@@ -4,10 +4,10 @@ import { computed, ref } from 'vue';
 
 import { LanguageEnum, ThemeEnum } from '@/core/enums';
 
-export interface UserPreferences {
+export type UserPreference = {
   language: LanguageEnum;
   theme: ThemeEnum;
-}
+};
 
 export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
   const _isUserSystemDarkMode = window.matchMedia(
@@ -33,7 +33,7 @@ export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
       _theme.value == ThemeEnum.Light ? ThemeEnum.Dark : ThemeEnum.Light;
   }
 
-  function update(payload: UserPreferences) {
+  function update(payload: UserPreference) {
     _language.value = payload.language;
     _theme.value = payload.theme;
   }

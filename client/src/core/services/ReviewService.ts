@@ -1,21 +1,33 @@
 import { ReviewApi } from '@/api/ReviewApi';
-import type { ReviewCreateDto } from '@/api/dto/Review/ReviewCreateDto';
-import { ReviewEntity } from '@/core/entities';
+import type { ReviewCreateDto, ReviewDto } from '@/api/dto';
 import type { IFetchService } from '@/core/services';
 
+export interface IReviewStore {
+  setReviews: (reviews: ReviewDto[]) => void;
+  userReview: ReviewCreateDto;
+}
+
 export interface IReviewService {
-  getReviewsAsync: () => Promise<ReviewEntity[]>;
-  postReviewAsync: (review: ReviewCreateDto) => Promise<void>;
+  refreshStoreReviewsAsync: () => Promise<void>;
+  postUserReviewAsync: () => Promise<void>;
 }
 
 export class ReviewService implements IReviewService {
-  constructor(private fetchService: IFetchService) {}
+  constructor(
+    private fetchService: IFetchService,
+    private reviewStore: IReviewStore,
+  ) {}
 
-  getReviewsAsync = (): Promise<ReviewEntity[]> => {
-    return this.fetchService.getAsync<ReviewEntity[]>(ReviewApi.getReviewsUrl);
+  refreshStoreReviewsAsync = (): Promise<void> => {
+    return this.fetchService
+      .getAsync<ReviewDto[]>(ReviewApi.getReviewsUrl)
+      .then((response) => this.reviewStore.setReviews(response));
   };
 
-  postReviewAsync = (review: ReviewCreateDto): Promise<void> => {
-    return this.fetchService.postAsync(ReviewApi.postReviewUrl, review);
+  postUserReviewAsync = (): Promise<void> => {
+    return this.fetchService.postAsync(
+      ReviewApi.postReviewUrl,
+      this.reviewStore.userReview,
+    );
   };
 }

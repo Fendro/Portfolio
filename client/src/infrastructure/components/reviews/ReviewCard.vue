@@ -9,10 +9,10 @@
 import Card from 'primevue/card';
 import Rating from 'primevue/rating';
 
-import { ReviewEntity } from '@/core/entities';
+import type { ReviewDto } from '@/api/dto';
 
 export interface CardReviewProps {
-  review: ReviewEntity;
+  review: ReviewDto;
 }
 
 defineProps<CardReviewProps>();

@@ -1,4 +1,4 @@
-export interface LoginResponse {
+export type LoginResponse = {
   token: string;
   userProfile: {
     email: string;
@@ -6,4 +6,4 @@ export interface LoginResponse {
     lastname: string;
     username: string;
   };
-}
+};

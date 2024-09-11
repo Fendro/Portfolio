@@ -1,38 +1,33 @@
 import { useUserProfileStore } from '@/core/stores';
 
 export interface IFetchService {
-  deleteAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
+  deleteAsync: {
+    <TPayload>(url: string, payload: TPayload): Promise<void>;
+    <TPayload, TResponse>(url: string, payload: TPayload): Promise<TResponse>;
+  };
 
-  deleteAsync<TPayload, TResponse>(
-    url: string,
-    payload: TPayload,
-  ): Promise<TResponse>;
-
-  getAsync<TResponse>(
+  getAsync: <TResponse>(
     url: string,
     queryParams?: Record<string, string>,
-  ): Promise<TResponse>;
+  ) => Promise<TResponse>;
 
-  patchAsync<TPayload>(url: string, payload: Partial<TPayload>): Promise<void>;
+  patchAsync: {
+    <TPayload>(url: string, payload: Partial<TPayload>): Promise<void>;
+    <TPayload, TResponse>(
+      url: string,
+      payload: Partial<TPayload>,
+    ): Promise<TResponse>;
+  };
 
-  patchAsync<TPayload, TResponse>(
-    url: string,
-    payload: Partial<TPayload>,
-  ): Promise<TResponse>;
+  postAsync: {
+    <TPayload>(url: string, payload: TPayload): Promise<void>;
+    <TPayload, TResponse>(url: string, payload: TPayload): Promise<TResponse>;
+  };
 
-  postAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
-
-  postAsync<TPayload, TResponse>(
-    url: string,
-    payload: TPayload,
-  ): Promise<TResponse>;
-
-  putAsync<TPayload>(url: string, payload: TPayload): Promise<void>;
-
-  putAsync<TPayload, TResponse>(
-    url: string,
-    payload: TPayload,
-  ): Promise<TResponse>;
+  putAsync: {
+    <TPayload>(url: string, payload: TPayload): Promise<void>;
+    <TPayload, TResponse>(url: string, payload: TPayload): Promise<TResponse>;
+  };
 }
 
 export class FetchService implements IFetchService {
@@ -42,7 +37,7 @@ export class FetchService implements IFetchService {
     'Content-Type': 'application/json',
   };
 
-  getAsync<TResponse>(url: string, queryParams?: Record<string, string>) {
+  getAsync = <TResponse>(url: string, queryParams?: Record<string, string>) => {
     return this.executeRequestAsync<never, TResponse>(
       url + new URLSearchParams(queryParams),
       {
@@ -50,9 +45,9 @@ export class FetchService implements IFetchService {
         method: 'GET',
       },
     );
-  }
+  };
 
-  postAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  postAsync = <TPayload, TResponse>(url: string, payload: TPayload) => {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       {
@@ -61,9 +56,9 @@ export class FetchService implements IFetchService {
       },
       payload,
     );
-  }
+  };
 
-  putAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  putAsync = <TPayload, TResponse>(url: string, payload: TPayload) => {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       {
@@ -72,9 +67,12 @@ export class FetchService implements IFetchService {
       },
       payload,
     );
-  }
+  };
 
-  patchAsync<TPayload, TResponse>(url: string, payload: Partial<TPayload>) {
+  patchAsync = <TPayload, TResponse>(
+    url: string,
+    payload: Partial<TPayload>,
+  ) => {
     return this.executeRequestAsync<Partial<TPayload>, TResponse>(
       url,
       {
@@ -83,9 +81,9 @@ export class FetchService implements IFetchService {
       },
       payload,
     );
-  }
+  };
 
-  deleteAsync<TPayload, TResponse>(url: string, payload: TPayload) {
+  deleteAsync = <TPayload, TResponse>(url: string, payload: TPayload) => {
     return this.executeRequestAsync<TPayload, TResponse>(
       url,
       {
@@ -94,36 +92,36 @@ export class FetchService implements IFetchService {
       },
       payload,
     );
-  }
+  };
 
-  private async executeRequestAsync<TPayload, TResponse>(
+  private executeRequestAsync = <TPayload, TResponse>(
     url: string,
     options: RequestInit,
     payload?: TPayload,
-  ) {
-    return await fetch(url, { ...options, body: JSON.stringify(payload) })
+  ) => {
+    return fetch(url, { ...options, body: JSON.stringify(payload) })
       .then(FetchService.ensureSuccessStatusCode)
       .then(FetchService.ensureJsonContentType)
-      .then(FetchService.deserializeToJson<TResponse>)
-      .catch((err) => {
-        throw new Error(err.message);
-      });
-  }
+      .then(FetchService.deserializeToJson<TResponse>);
+    // .catch((err) => {
+    //   throw new Error(err.message);
+    // });
+  };
 
-  private static ensureSuccessStatusCode(response: Response) {
+  private static ensureSuccessStatusCode = (response: Response) => {
     if (response.status >= 200 && response.status < 300) return response;
 
     throw new Error('Request error.');
-  }
+  };
 
-  private static ensureJsonContentType(response: Response) {
+  private static ensureJsonContentType = (response: Response) => {
     if (response.headers.get('content-type')?.includes('application/json'))
       return response;
 
     throw new Error('Request error.');
-  }
+  };
 
-  private static deserializeToJson<T>(response: Response) {
+  private static deserializeToJson = <T>(response: Response) => {
     return response.json() as T;
-  }
+  };
 }

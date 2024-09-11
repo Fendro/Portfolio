@@ -1,4 +1,4 @@
-export interface ReviewCreateDto {
+export type ReviewCreateDto = {
   content: string;
   rating: number;
-}
+};

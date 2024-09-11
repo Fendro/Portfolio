@@ -1,4 +1,4 @@
 export type ReviewDto = {
-  content: string;
-  rating: number;
+  readonly content: string;
+  readonly rating: number;
 };
