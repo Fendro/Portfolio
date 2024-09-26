@@ -5,7 +5,7 @@ import type { IAuthenticationService } from '@/interfaces';
 export class AuthenticationController {
   constructor(private authenticationService: IAuthenticationService) {}
 
-  login = async (req: Request, res: Response, next: NextFunction) => {
+  loginAsync = async (req: Request, res: Response, next: NextFunction) => {
     this.authenticationService
       .login(req.body)
       .then((response) => {
@@ -15,11 +15,11 @@ export class AuthenticationController {
       .catch(next);
   };
 
-  register = async (req: Request, res: Response, next: NextFunction) => {
+  registerAsync = async (req: Request, res: Response, next: NextFunction) => {
     this.authenticationService
       .register(req.body)
       .then(() => {
-        res.status(200);
+        res.status(201);
         next();
       })
       .catch(next);

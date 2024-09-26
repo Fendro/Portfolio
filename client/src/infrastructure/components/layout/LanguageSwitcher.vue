@@ -1,29 +1,29 @@
 <template>
-  <template v-if="userPreferences.language === LanguageEnum.French">
+  <template v-if="preference.language === LanguageEnum.French">
     <img
-      :src="frFlagImage"
+      :src="FlagFrImg"
       alt="Language toggle"
       class="size-12"
-      @click="userPreferences.toggleLanguage()"
+      @click="preference.toggleLanguage()"
     />
   </template>
   <template v-else>
     <img
-      :src="ukFlagImage"
+      :src="FlagUkImg"
       alt="Language toggle"
       class="size-12"
-      @click="userPreferences.toggleLanguage()"
+      @click="preference.toggleLanguage()"
     />
   </template>
 </template>
 
 <script setup lang="ts">
-import frFlagImage from '@/assets/images/fr-flag.png';
-import ukFlagImage from '@/assets/images/uk-flag.png';
+import FlagFrImg from '@/assets/images/FlagFrance.png';
+import FlagUkImg from '@/assets/images/FlagUnitedKingdom.png';
 import { LanguageEnum } from '@/core/enums';
 import { useUserPreferenceStore } from '@/core/stores';
 
-const userPreferences = useUserPreferenceStore();
+const preference = useUserPreferenceStore();
 </script>
 
 <style scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <section class="flex h-full items-center justify-center">
     <LoaderLayer :is-loading="setup.state.submitting">
-      <LoginCard @submit="(data) => setup.login(data)" />
+      <LoginCard @submit="setup.login" />
     </LoaderLayer>
   </section>
 </template>

@@ -103,9 +103,6 @@ export class FetchService implements IFetchService {
       .then(FetchService.ensureSuccessStatusCode)
       .then(FetchService.ensureJsonContentType)
       .then(FetchService.deserializeToJson<TResponse>);
-    // .catch((err) => {
-    //   throw new Error(err.message);
-    // });
   };
 
   private static ensureSuccessStatusCode = (response: Response) => {

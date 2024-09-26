@@ -21,7 +21,7 @@ export class ReviewService implements IReviewService {
   refreshStoreReviewsAsync = (): Promise<void> => {
     return this.fetchService
       .getAsync<ReviewDto[]>(ReviewApi.getReviewsUrl)
-      .then((response) => this.reviewStore.setReviews(response));
+      .then(this.reviewStore.setReviews);
   };
 
   postUserReviewAsync = (): Promise<void> => {

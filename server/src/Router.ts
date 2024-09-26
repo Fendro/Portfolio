@@ -8,14 +8,13 @@ const router = Router();
 router
   .post(
     '/authentication/register',
-    diService.authenticationControllerInstance.register,
+    diService.authenticationControllerInstance.registerAsync,
   )
   .post(
     '/authentication/login',
-    diService.authenticationControllerInstance.login,
+    diService.authenticationControllerInstance.loginAsync,
   )
-  .get('/reviews', diService.reviewControllerInstance.get)
-  .get('/reviews/{id}', diService.reviewControllerInstance.getById)
-  .post('/reviews', diService.reviewControllerInstance.create);
+  .get('/reviews', diService.reviewControllerInstance.getAsync)
+  .post('/reviews', diService.reviewControllerInstance.createAsync);
 
 export default router;

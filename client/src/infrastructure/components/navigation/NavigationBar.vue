@@ -24,11 +24,9 @@ import { computed, ref, watch } from 'vue';
 import { LanguageEnum, RouteEnum } from '@/core/enums';
 import { useUserPreferenceStore } from '@/core/stores';
 
-const userPreferences = useUserPreferenceStore();
+const preference = useUserPreferenceStore();
 
-const isEnglish = computed(
-  () => userPreferences.language === LanguageEnum.English,
-);
+const isEnglish = computed(() => preference.language === LanguageEnum.English);
 
 const navigationItems = ref<MenuItem[]>([
   {

@@ -7,9 +7,7 @@ export class ReviewService implements IReviewService {
   async getAsync(): Promise<ReviewDto[]> {
     return await this._reviewRepository.getAsync();
   }
-  async getByIdAsync(id: number): Promise<ReviewDto> {
-    return await this._reviewRepository.getByIdAsync(id);
-  }
+
   async createAsync(dto: ReviewCreateDto): Promise<void> {
     await this._reviewRepository.createAsync(dto);
   }

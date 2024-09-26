@@ -23,9 +23,7 @@ export class AuthenticationService implements IAuthenticationService {
         LoginPayload,
         LoginResponse
       >(AuthenticationApi.loginUrl, payload)
-      .then((response) => {
-        this.userProfileStore.storeLoginResponse(response);
-      });
+      .then(this.userProfileStore.storeLoginResponse);
   };
 
   logout = () => {

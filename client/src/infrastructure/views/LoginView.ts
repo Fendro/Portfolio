@@ -28,10 +28,8 @@ export default class LoginView {
         router.push(RouteEnum.Home);
       })
       .catch((error) => this.toastService.error(error.message))
-      .finally(() =>
-        setTimeout(() => {
-          this.state.submitting = false;
-        }, 5000),
-      );
+      .finally(() => {
+        this.state.submitting = false;
+      });
   }
 }

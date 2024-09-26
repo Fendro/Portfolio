@@ -1,7 +1,7 @@
 <template>
   <section class="flex h-full items-center justify-center">
     <LoaderLayer :is-loading="setup.state.submitting">
-      <RegisterCard @submit="(data) => setup.register(data)" />
+      <RegisterCard @submit="setup.register" />
     </LoaderLayer>
   </section>
 </template>

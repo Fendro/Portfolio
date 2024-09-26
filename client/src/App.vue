@@ -1,5 +1,5 @@
 <template>
-  <div id="theme" :class="userPreferences.theme">
+  <div id="theme" :class="preference.theme">
     <div
       class="flex h-screen w-screen flex-col justify-center overflow-hidden bg-primary-50 transition duration-200 dark:bg-primary-950 md:flex-row xl:gap-4 2xl:gap-8"
     >
@@ -32,12 +32,12 @@ import Toast from 'primevue/toast';
 import { RouterView } from 'vue-router';
 
 import { useUserPreferenceStore } from '@/core/stores';
-import ModalShelf from '@/infrastructure/components/ModalShelf.vue';
 import LanguageSwitcher from '@/infrastructure/components/layout/LanguageSwitcher.vue';
+import ModalShelf from '@/infrastructure/components/layout/ModalShelf.vue';
 import ThemeSwitcher from '@/infrastructure/components/layout/ThemeSwitcher.vue';
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
 
-const userPreferences = useUserPreferenceStore();
+const preference = useUserPreferenceStore();
 </script>
 
 <style scoped></style>

@@ -12,17 +12,7 @@ export class ReviewRepository implements IReviewRepository {
     );
   }
 
-  async getByIdAsync(id: number): Promise<Review> {
-    const reviewModel = await ReviewTableModel.findByPk(id);
-    if (!reviewModel) {
-      throw new Error('Review not found.');
-    }
-
-    return new Review(reviewModel.id, reviewModel.content, reviewModel.rating);
-  }
-
   async createAsync(review: ReviewCreateDto): Promise<Review> {
-    console.log('repository', review);
     const reviewModel = await ReviewTableModel.create({
       content: review.content,
       rating: review.rating,

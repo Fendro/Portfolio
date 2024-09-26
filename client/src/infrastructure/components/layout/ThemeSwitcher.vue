@@ -1,29 +1,29 @@
 <template>
-  <template v-if="userPreferences.theme === ThemeEnum.Light">
+  <template v-if="preference.theme === ThemeEnum.Light">
     <img
-      :src="lightModeImage"
+      :src="BtnLightModeImg"
       alt="Light Mode toggle"
       class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
-      @click="userPreferences.toggleTheme()"
+      @click="preference.toggleTheme()"
     />
   </template>
   <template v-else>
     <img
-      :src="darkModeImage"
+      :src="BtnDarkModeImg"
       alt="Dark Mode toggle"
       class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
-      @click="userPreferences.toggleTheme()"
+      @click="preference.toggleTheme()"
     />
   </template>
 </template>
 
 <script setup lang="ts">
-import darkModeImage from '@/assets/images/dark-mode.png';
-import lightModeImage from '@/assets/images/light-mode.png';
+import BtnDarkModeImg from '@/assets/images/ButtonDarkMode.png';
+import BtnLightModeImg from '@/assets/images/ButtonLightMode.png';
 import { ThemeEnum } from '@/core/enums';
 import { useUserPreferenceStore } from '@/core/stores';
 
-const userPreferences = useUserPreferenceStore();
+const preference = useUserPreferenceStore();
 </script>
 
 <style scoped></style>
