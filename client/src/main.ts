@@ -2,6 +2,7 @@ import { createPinia } from 'pinia';
 import PrimeVue from 'primevue/config';
 import Ripple from 'primevue/ripple';
 import ToastService from 'primevue/toastservice';
+import Tooltip from 'primevue/tooltip';
 import { createApp } from 'vue';
 
 import App from '@/App.vue';
@@ -25,6 +26,7 @@ app
 
 app
   .directive('ripple', Ripple)
+  .directive('tooltip', Tooltip)
   .provide('userProfileStore', useUserProfileStore())
   .provide('userPreferenceStore', useUserPreferenceStore())
   .mount('#app');
