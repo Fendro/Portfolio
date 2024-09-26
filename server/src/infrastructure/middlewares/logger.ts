@@ -31,12 +31,14 @@ export const createLogger = (options: LoggerOptions) => {
 
 export const loggerMiddleware =
   (logger: Logger) => (req: Request, res: Response, next: NextFunction) => {
-    const start = Date.now();
-    console.info(`${req.method} ${req.url} - request initiated`);
+    const start = new Date(Date.now());
+    console.info(
+      `${start.toUTCString()}: ${req.method} ${req.url} - request initiated`,
+    );
     res.on('finish', () => {
-      const end = Date.now();
+      const end = new Date(Date.now());
       console.info(
-        `${req.method} ${req.url} - request finished in ${end - start} ms`,
+        `${end.toUTCString()}: ${req.method} ${req.url} - request finished in ${end.getTime() - start.getTime()} ms`,
       );
     });
     next();
