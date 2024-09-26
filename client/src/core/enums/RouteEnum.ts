@@ -7,4 +7,4 @@ export const RouteEnum = {
   Reviews: '/reviews',
 } as const;
 
-export type RouteEnum = (typeof RouteEnum)[keyof typeof RouteEnum];
+export type RouteEnum = ObjectValues<typeof RouteEnum>;

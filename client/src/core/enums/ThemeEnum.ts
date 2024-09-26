@@ -3,4 +3,4 @@ export const ThemeEnum = {
   Light: 'light',
 } as const;
 
-export type ThemeEnum = (typeof ThemeEnum)[keyof typeof ThemeEnum];
+export type ThemeEnum = ObjectValues<typeof ThemeEnum>;
