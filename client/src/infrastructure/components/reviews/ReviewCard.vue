@@ -3,7 +3,7 @@
     <template #title>
       <div class="flex items-center justify-between">
         Author
-        <Rating />
+        <Rating v-model="review.rating" readOnly />
       </div>
     </template>
     <template #content>{{ review.content }}</template>

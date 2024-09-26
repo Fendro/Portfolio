@@ -6,6 +6,7 @@ export interface ReviewsViewState {
   containsProfanity: boolean;
   isFetching: boolean;
   isPosting: boolean;
+  rowCount: number;
 }
 
 export default class ReviewsView {
@@ -13,6 +14,7 @@ export default class ReviewsView {
     containsProfanity: false,
     isFetching: false,
     isPosting: false,
+    rowCount: 10,
   });
 
   constructor(
@@ -40,4 +42,8 @@ export default class ReviewsView {
       .catch((err) => this.toastService.error(err.message))
       .finally(() => (this.state.isFetching = false));
   };
+
+  get rowCount() {
+    return this.state.rowCount;
+  }
 }
