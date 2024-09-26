@@ -12,7 +12,7 @@ export class AuthenticationController {
         res.status(200).json(response);
         next();
       })
-      .catch((error) => next(error));
+      .catch(next);
   };
 
   register = async (req: Request, res: Response, next: NextFunction) => {
@@ -22,6 +22,6 @@ export class AuthenticationController {
         res.status(200);
         next();
       })
-      .catch((error) => next(error));
+      .catch(next);
   };
 }

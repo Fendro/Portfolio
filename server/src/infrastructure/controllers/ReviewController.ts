@@ -7,32 +7,32 @@ export class ReviewController {
 
   get = async (req: Request, res: Response, next: NextFunction) => {
     this._reviewService
-      .get()
+      .getAsync()
       .then((response) => {
         res.status(200).json(response);
         next();
       })
-      .catch((error) => next(error));
+      .catch(next);
   };
 
   getById = async (req: Request, res: Response, next: NextFunction) => {
     this._reviewService
-      .getById(req.body.id)
+      .getByIdAsync(req.body.id)
       .then((response) => {
         res.status(200).json(response);
         next();
       })
-      .catch((error) => next(error));
+      .catch(next);
   };
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     console.log('controller', req.body);
     this._reviewService
-      .create(req.body)
+      .createAsync(req.body)
       .then(() => {
         res.status(200).json({});
         next();
       })
-      .catch((error) => next(error));
+      .catch(next);
   };
 }
