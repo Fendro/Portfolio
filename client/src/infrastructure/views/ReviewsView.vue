@@ -7,17 +7,18 @@
 
     <template v-if="setup.state.isFetching">
       <template v-for="_ in setup.rowCount">
-        <Skeleton width="100%" height="6rem" rounded="4rem" class="m-2" />
+        <ReviewSkeleton />
       </template>
     </template>
     <template v-else>
-      <template v-for="review in reviewStore.reviews">
+      <template v-for="review in setup.paginatedReviews">
         <ReviewCard :review="review" class="m-2" />
       </template>
       <Paginator
         :rows="setup.rowCount"
         :totalRecords="reviewStore.reviews.length"
         class="m-2"
+        @page="({ page }) => setup.setPage(page)"
       ></Paginator>
     </template>
   </section>
@@ -25,11 +26,11 @@
 
 <script setup lang="ts">
 import Paginator from 'primevue/paginator';
-import Skeleton from 'primevue/skeleton';
 
 import { FetchService, ReviewService, ToastService } from '@/core/services';
 import { useReviewStore } from '@/core/stores';
 import ReviewCard from '@/infrastructure/components/reviews/ReviewCard.vue';
+import ReviewSkeleton from '@/infrastructure/components/reviews/ReviewSkeleton.vue';
 import ReviewTextArea from '@/infrastructure/components/reviews/ReviewTextArea.vue';
 import ReviewsView from '@/infrastructure/views/ReviewsView';
 

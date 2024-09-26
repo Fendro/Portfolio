@@ -6,6 +6,7 @@ export interface ReviewsViewState {
   containsProfanity: boolean;
   isFetching: boolean;
   isPosting: boolean;
+  page: number;
   rowCount: number;
 }
 
@@ -14,6 +15,7 @@ export default class ReviewsView {
     containsProfanity: false,
     isFetching: false,
     isPosting: false,
+    page: 0,
     rowCount: 10,
   });
 
@@ -35,6 +37,10 @@ export default class ReviewsView {
       .finally(() => (this.state.isPosting = false));
   };
 
+  setPage(page: number) {
+    this.state.page = page;
+  }
+
   private fetchReviews = async (): Promise<void> => {
     this.state.isFetching = true;
     this.reviewService
@@ -45,5 +51,14 @@ export default class ReviewsView {
 
   get rowCount() {
     return this.state.rowCount;
+  }
+
+  get paginatedReviews() {
+    const reviews = this.reviewService.getReviews();
+
+    return reviews.slice(
+      this.state.page * this.state.rowCount,
+      Math.min((this.state.page + 1) * this.state.rowCount, reviews.length),
+    );
   }
 }

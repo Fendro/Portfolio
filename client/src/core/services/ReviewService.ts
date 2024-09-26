@@ -3,11 +3,13 @@ import type { ReviewCreateDto, ReviewDto } from '@/api/dto';
 import type { IFetchService } from '@/core/services';
 
 export interface IReviewStore {
+  reviews: ReviewDto[];
   setReviews: (reviews: ReviewDto[]) => void;
   userReview: ReviewCreateDto;
 }
 
 export interface IReviewService {
+  getReviews: () => ReviewDto[];
   refreshStoreReviewsAsync: () => Promise<void>;
   postUserReviewAsync: () => Promise<void>;
 }
@@ -17,6 +19,10 @@ export class ReviewService implements IReviewService {
     private fetchService: IFetchService,
     private reviewStore: IReviewStore,
   ) {}
+
+  getReviews(): ReviewDto[] {
+    return this.reviewStore.reviews;
+  }
 
   refreshStoreReviewsAsync = (): Promise<void> => {
     return this.fetchService

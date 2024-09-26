@@ -2,7 +2,7 @@
   <Card>
     <template #title>
       <div class="flex items-center justify-between">
-        Author
+        Anonymous
         <Rating v-model="review.rating" readOnly />
       </div>
     </template>
