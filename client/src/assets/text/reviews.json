@@ -1,4 +1,8 @@
 {
+  "rating": {
+    "english": "Rating",
+    "french": "Note"
+  },
   "leave-a-review": {
     "english": "Leave a review",
     "french": "Ajouter un avis"

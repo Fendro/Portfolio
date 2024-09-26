@@ -1,6 +1,11 @@
 <template>
   <Card>
-    <template #header> </template>
+    <template #title>
+      <div class="flex items-center justify-between">
+        Author
+        <Rating />
+      </div>
+    </template>
     <template #content>{{ review.content }}</template>
   </Card>
 </template>
