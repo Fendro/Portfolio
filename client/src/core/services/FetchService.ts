@@ -1,4 +1,4 @@
-import { useUserProfileStore } from '@/core/stores';
+import { useProfileStore } from '@/core/stores';
 
 export interface IFetchService {
   deleteAsync: {
@@ -33,7 +33,7 @@ export interface IFetchService {
 export class FetchService implements IFetchService {
   private headers: HeadersInit = {
     Accept: 'application/json',
-    Authorization: `Token ${useUserProfileStore().token}`,
+    Authorization: `Token ${useProfileStore().token}`,
     'Content-Type': 'application/json',
   };
 

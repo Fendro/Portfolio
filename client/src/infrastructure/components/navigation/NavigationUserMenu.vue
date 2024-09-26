@@ -33,11 +33,11 @@ import Menu from 'primevue/menu';
 import type { MenuItem } from 'primevue/menuitem';
 import { ref } from 'vue';
 
-import { useUserProfileStore } from '@/core/stores';
+import { useProfileStore } from '@/core/stores';
 import ButtonUserProfile from '@/infrastructure/components/shared/buttons/ButtonUserProfile.vue';
 
 const isMenuToggled = ref(false);
-const userProfileStore = useUserProfileStore();
+const userProfileStore = useProfileStore();
 
 function toggleMenu() {
   isMenuToggled.value = !isMenuToggled.value;

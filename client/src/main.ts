@@ -8,7 +8,12 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 import '@/assets/app.css';
 import Aura from '@/assets/themes/aura';
-import { useUserPreferenceStore, useUserProfileStore } from '@/core/stores';
+import {
+  useLocalizationStore,
+  usePreferenceStore,
+  useProfileStore,
+  useReviewStore,
+} from '@/core/stores';
 import router from '@/infrastructure/router';
 
 const app = createApp(App);
@@ -27,6 +32,8 @@ app
 app
   .directive('ripple', Ripple)
   .directive('tooltip', Tooltip)
-  .provide('userProfileStore', useUserProfileStore())
-  .provide('userPreferenceStore', useUserPreferenceStore())
+  .provide('localizationStore', useLocalizationStore())
+  .provide('preferenceStore', usePreferenceStore())
+  .provide('profileStore', useProfileStore())
+  .provide('reviewStore', useReviewStore())
   .mount('#app');

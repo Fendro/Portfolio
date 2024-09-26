@@ -19,52 +19,30 @@
 <script setup lang="ts">
 import Menu from 'primevue/menu';
 import type { MenuItem } from 'primevue/menuitem';
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 
-import { LanguageEnum, RouteEnum } from '@/core/enums';
-import { useUserPreferenceStore } from '@/core/stores';
+import { RouteEnum } from '@/core/enums';
+import { useLocalizationStore } from '@/core/stores';
 
-const preference = useUserPreferenceStore();
+const localization = useLocalizationStore();
 
-const isEnglish = computed(() => preference.language === LanguageEnum.English);
-
-const navigationItems = ref<MenuItem[]>([
+const navigationItems = computed<MenuItem[]>(() => [
   {
-    label: isEnglish.value ? 'Home' : "Page d'acceuil",
+    label: localization['ui']['navigation']['home'],
     icon: 'pi pi-home',
     route: RouteEnum.Home,
   },
   {
-    label: isEnglish.value ? 'Projects' : 'Projets',
+    label: localization['ui']['navigation']['projects'],
     icon: 'pi pi-code',
     route: RouteEnum.Projects,
   },
   {
-    label: isEnglish.value ? 'Reviews' : 'Commentaires',
+    label: localization['ui']['navigation']['reviews'],
     icon: 'pi pi-pen-to-square',
     route: RouteEnum.Reviews,
   },
 ]);
-
-watch(isEnglish, (value) => {
-  navigationItems.value = [
-    {
-      label: value ? 'Home' : 'Maison',
-      icon: 'pi pi-home',
-      route: RouteEnum.Home,
-    },
-    {
-      label: value ? 'Projects' : 'Projets',
-      icon: 'pi pi-code',
-      route: RouteEnum.Projects,
-    },
-    {
-      label: value ? 'Reviews' : 'Commentaires',
-      icon: 'pi pi-pen-to-square',
-      route: RouteEnum.Reviews,
-    },
-  ];
-});
 </script>
 
 <style scoped></style>

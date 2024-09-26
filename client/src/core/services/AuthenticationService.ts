@@ -1,7 +1,7 @@
 import { AuthenticationApi } from '@/api';
 import type { LoginPayload, LoginResponse, RegisterPayload } from '@/api/dto';
 import type { IFetchService } from '@/core/services';
-import { useUserProfileStore } from '@/core/stores';
+import { useProfileStore } from '@/core/stores';
 
 export interface IAuthenticationService {
   loginAsync: (payload: LoginPayload) => Promise<void>;
@@ -10,7 +10,7 @@ export interface IAuthenticationService {
 }
 
 export class AuthenticationService implements IAuthenticationService {
-  private userProfileStore = useUserProfileStore();
+  private userProfileStore = useProfileStore();
 
   constructor(private fetchService: IFetchService) {}
 

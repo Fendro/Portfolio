@@ -11,7 +11,7 @@ export interface UserProfile {
   username: string;
 }
 
-export const useUserProfileStore = defineStore('userProfile', () => {
+export const useProfileStore = defineStore('profileStore', () => {
   const _token: Ref<string | undefined> = ref(undefined);
   const _email: Ref<string | undefined> = ref(undefined);
   const _firstname: Ref<string | undefined> = ref(undefined);

@@ -1,0 +1,83 @@
+{
+  "home": {
+    "cv": "CV",
+    "welcome": "Bienvenue sur mon Portfolio.",
+    "introduction-title": "Je m'appelle Tristan Schmitt.",
+    "introduction-description": "Actuellement en formation chez la Web@cadémie by Epitech Mulhouse pour devenir Développeur Web.\nVous pourrez voir à travers mon portfolio les différents projets sur lesquels j'ai travaillé au cours de ma formation.",
+    "training-report": "Rapport d'alternance"
+  },
+  "projects": {
+    "BSQ": {
+      "name": "BSQ",
+      "description": "Un petit projet seul pour développer mes compétences algorithmiques.\nLe but était de trouver le carré le plus gros au sein d'une carte sous format texte.\nJ'ai aussi ajouté la possibilité de visualiser dans la console le processus de recherche de ce carré.",
+      "sourceUrl": "https://github.com/Fendro/BSQ",
+      "technologies": [
+        "PHP"
+      ]
+    },
+    "Connect4": {
+      "name": "Puissance 4",
+      "description": "Petit projet seul pendant lequel j'ai recréé le jeu populaire \"Puissance 4\".\nJe suis même allé plus loin en permettant aux joueurs de configurer le nombre de personnes jouant ainsi qu'en implémentant une simple logique d'`IA contre laquelle il est possible de jouer.",
+      "sourceUrl": "https://github.com/Fendro/Connect4",
+      "technologies": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ]
+    },
+    "E-Commerce": {
+      "name": "E-Commerce",
+      "description": "Un projet de groupe d'un mois pour produire un site \"E-Commerce\" réalisé à la fin de ma première année.\nCe fut ma première experience de développement avec TypeScript et en suivant la méthodologie Agile.\nNous avons reçu des user-stories à implémenter au court de sprints d'une longueur de 3 jours.",
+      "sourceUrl": "https://github.com/Fendro/ECommerce",
+      "technologies": [
+        "Node",
+        "React",
+        "Express",
+        "MongoDB",
+        "TypeScript"
+      ]
+    },
+    "Portfolio": {
+      "name": "Portfolio",
+      "description": "Un autre projet d'une durée d'un an, celui-ci réalisé seul.\nCe projet m'a permis de pallier à mes lacunes de développement front en apprenant à gérer la réactivité et les états à l'aide du framework Vue.\nJ'avais jusque là le luxe de me focaliser sur la partie backend de mes projets.",
+      "sourceUrl": "https://github.com/Fendro/Portfolio",
+      "technologies": [
+        "Vue",
+        "Express",
+        "TypeScript",
+        "Sequelize",
+        "MySQL",
+        "Docker"
+      ]
+    },
+    "SoloSail": {
+      "name": "SoloSail",
+      "description": "Ceci était le projet de fin d'étude, réalisé en groupe avec trois autres étudiants pendant notre deuxième année de formation.\nJ'ai utilisé Figma pour convier mes idées aux membres du projet quant à la disposition de l'interface.\nJ'ai ensuite travaillé sur la partie backend de l'application ainsi que sur les systèmes de logging/surveillance.",
+      "sourceUrl": "https://gitlab.com/projetlibre1",
+      "technologies": [
+        "C#",
+        ".NET",
+        "EF Core",
+        "MySQL",
+        "Grafana",
+        "Docker"
+      ]
+    }
+  },
+  "ui": {
+    "button": {
+      "download": "Télécharger",
+      "leave-a-review": "Ajouter un avis",
+      "submit": "Envoyer",
+      "view-source": "Voir le code source"
+    },
+    "label": {
+      "rating": "Note"
+    },
+    "navigation": {
+      "home": "Acceuil",
+      "projects": "Projets",
+      "reviews": "Commentaires"
+    }
+  }
+}

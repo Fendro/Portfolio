@@ -31,13 +31,13 @@
 import Toast from 'primevue/toast';
 import { RouterView } from 'vue-router';
 
-import { useUserPreferenceStore } from '@/core/stores';
+import { usePreferenceStore } from '@/core/stores';
 import LanguageSwitcher from '@/infrastructure/components/layout/LanguageSwitcher.vue';
 import ModalShelf from '@/infrastructure/components/layout/ModalShelf.vue';
 import ThemeSwitcher from '@/infrastructure/components/layout/ThemeSwitcher.vue';
 import NavigationBar from '@/infrastructure/components/navigation/NavigationBar.vue';
 
-const preference = useUserPreferenceStore();
+const preference = usePreferenceStore();
 </script>
 
 <style scoped></style>

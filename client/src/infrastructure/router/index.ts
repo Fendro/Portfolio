@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import { RouteEnum } from '@/core/enums';
-import { useUserProfileStore } from '@/core/stores';
+import { useProfileStore } from '@/core/stores';
 import HomeView from '@/infrastructure/views/HomeView.vue';
 
 const router = createRouter({
@@ -44,7 +44,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const userProfileStore = useUserProfileStore();
+  const userProfileStore = useProfileStore();
   if (userProfileStore.isAuthenticated) {
     if (to.meta.guestOnly) return false;
   } else if (to.meta.requiresAuth) {

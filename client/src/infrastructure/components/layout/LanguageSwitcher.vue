@@ -21,9 +21,9 @@
 import FlagFrImg from '@/assets/images/FlagFrance.png';
 import FlagUkImg from '@/assets/images/FlagUnitedKingdom.png';
 import { LanguageEnum } from '@/core/enums';
-import { useUserPreferenceStore } from '@/core/stores';
+import { usePreferenceStore } from '@/core/stores';
 
-const preference = useUserPreferenceStore();
+const preference = usePreferenceStore();
 </script>
 
 <style scoped></style>

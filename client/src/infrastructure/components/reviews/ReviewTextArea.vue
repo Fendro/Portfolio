@@ -8,12 +8,12 @@
   />
   <div class="m-2 flex items-center gap-2 self-start">
     <p class="text-lg text-primary-900 dark:text-primary-100">
-      {{ ReviewTextContent['rating'][preference.language] }} :
+      {{ localization['ui']['label']['rating'] }} :
     </p>
     <Rating v-model="userReview.rating" />
   </div>
   <Button
-    :label="ReviewTextContent['leave-a-review'][preference.language]"
+    :label="localization['ui']['button']['leave-a-review']"
     class="mr-2 w-fit self-end"
     @click="$emit('submit')"
   />
@@ -25,8 +25,7 @@ import Rating from 'primevue/rating';
 import Textarea from 'primevue/textarea';
 
 import type { ReviewCreateDto } from '@/api/dto';
-import ReviewTextContent from '@/assets/text/reviews.json';
-import { useUserPreferenceStore } from '@/core/stores';
+import { useLocalizationStore, usePreferenceStore } from '@/core/stores';
 
 interface ReviewTextAreaEmits {
   (e: 'submit'): void;
@@ -38,7 +37,8 @@ interface ReviewTextAreaProps {
 defineEmits<ReviewTextAreaEmits>();
 defineProps<ReviewTextAreaProps>();
 
-const preference = useUserPreferenceStore();
+const localization = useLocalizationStore();
+const preference = usePreferenceStore();
 </script>
 
 <style scoped></style>

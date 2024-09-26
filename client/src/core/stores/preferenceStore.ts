@@ -9,7 +9,7 @@ export type UserPreference = {
   theme: ThemeEnum;
 };
 
-export const useUserPreferenceStore = defineStore('userPreferenceStore', () => {
+export const usePreferenceStore = defineStore('preferenceStore', () => {
   const _isUserSystemDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)',
   ).matches;

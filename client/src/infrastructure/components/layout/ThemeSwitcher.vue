@@ -21,9 +21,9 @@
 import BtnDarkModeImg from '@/assets/images/ButtonDarkMode.png';
 import BtnLightModeImg from '@/assets/images/ButtonLightMode.png';
 import { ThemeEnum } from '@/core/enums';
-import { useUserPreferenceStore } from '@/core/stores';
+import { usePreferenceStore } from '@/core/stores';
 
-const preference = useUserPreferenceStore();
+const preference = usePreferenceStore();
 </script>
 
 <style scoped></style>

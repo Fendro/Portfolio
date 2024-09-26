@@ -4,7 +4,7 @@ import { computed, ref } from 'vue';
 
 import type { ReviewCreateDto, ReviewDto } from '@/api/dto';
 
-export const useReviewStore = defineStore('review', () => {
+export const useReviewStore = defineStore('reviewStore', () => {
   const _reviews: Ref<ReviewDto[]> = ref([]);
   const _userReview: Ref<ReviewCreateDto> = ref({ content: '', rating: 0 });
 
