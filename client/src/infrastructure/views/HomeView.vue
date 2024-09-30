@@ -30,7 +30,7 @@ import Button from 'primevue/button';
 
 import CV from '@/assets/files/Curriculum Vitae.pdf';
 import Rapport from "@/assets/files/Rapport d'alternance.pdf";
-import { useLocalizationStore, usePreferenceStore } from '@/core/stores';
+import { useLocalizationStore } from '@/core/stores';
 import HomeView from '@/infrastructure/views/HomeView';
 
 const localized = useLocalizationStore();
