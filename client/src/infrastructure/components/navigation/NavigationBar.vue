@@ -24,21 +24,21 @@ import { computed } from 'vue';
 import { RouteEnum } from '@/core/enums';
 import { useLocalizationStore } from '@/core/stores';
 
-const localization = useLocalizationStore();
+const localized = useLocalizationStore();
 
 const navigationItems = computed<MenuItem[]>(() => [
   {
-    label: localization['ui']['navigation']['home'],
+    label: localized.text['ui']['navigation']['home'],
     icon: 'pi pi-home',
     route: RouteEnum.Home,
   },
   {
-    label: localization['ui']['navigation']['projects'],
+    label: localized.text['ui']['navigation']['projects'],
     icon: 'pi pi-code',
     route: RouteEnum.Projects,
   },
   {
-    label: localization['ui']['navigation']['reviews'],
+    label: localized.text['ui']['navigation']['reviews'],
     icon: 'pi pi-pen-to-square',
     route: RouteEnum.Reviews,
   },

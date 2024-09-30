@@ -1,5 +1,5 @@
 <template>
-  <Skeleton width="100%" height="7rem" rounded="4rem" />
+  <Skeleton width="100%" height="3rem" rounded="4rem" />
 </template>
 
 <script setup lang="ts">

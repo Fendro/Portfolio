@@ -1,11 +1,13 @@
-import { ReviewTableModel } from '@/database/models/ReviewTableModel';
+import { ReviewTable } from '@/database/models';
 import { ReviewCreateDto } from '@/dto';
 import { Review } from '@/entities';
 import { IReviewRepository } from '@/interfaces';
 
 export class ReviewRepository implements IReviewRepository {
   async getAsync(): Promise<Review[]> {
-    const reviews = await ReviewTableModel.findAll();
+    const reviews = await ReviewTable.findAll({
+      order: [['createdAt', 'DESC']],
+    });
 
     return reviews.map(
       (review) => new Review(review.id, review.content, review.rating),
@@ -13,7 +15,7 @@ export class ReviewRepository implements IReviewRepository {
   }
 
   async createAsync(review: ReviewCreateDto): Promise<Review> {
-    const reviewModel = await ReviewTableModel.create({
+    const reviewModel = await ReviewTable.create({
       content: review.content,
       rating: review.rating,
     });

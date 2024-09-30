@@ -11,7 +11,6 @@ import Aura from '@/assets/themes/aura';
 import {
   useLocalizationStore,
   usePreferenceStore,
-  useProfileStore,
   useReviewStore,
 } from '@/core/stores';
 import router from '@/infrastructure/router';
@@ -34,6 +33,5 @@ app
   .directive('tooltip', Tooltip)
   .provide('localizationStore', useLocalizationStore())
   .provide('preferenceStore', usePreferenceStore())
-  .provide('profileStore', useProfileStore())
   .provide('reviewStore', useReviewStore())
   .mount('#app');

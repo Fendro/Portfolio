@@ -8,17 +8,17 @@ import { usePreferenceStore } from '@/core/stores/preferenceStore';
 
 export const useLocalizationStore = defineStore('localizationStore', () => {
   const _preference = usePreferenceStore();
-  const _getLocalizedText = () => {
-    return _preference.language == LanguageEnum.English ? en : fr;
-  };
 
-  const home = computed(() => _getLocalizedText()['home']);
-  const projects = computed(() => _getLocalizedText()['projects']);
-  const ui = computed(() => _getLocalizedText()['ui']);
+  const text = computed(() => {
+    switch (_preference.language) {
+      case LanguageEnum.French:
+        return fr;
+      case LanguageEnum.English:
+        return en;
+      default:
+        throw new Error('Unknown language');
+    }
+  });
 
-  return {
-    home,
-    projects,
-    ui,
-  };
+  return { text };
 });

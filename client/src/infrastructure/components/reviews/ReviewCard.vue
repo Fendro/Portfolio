@@ -14,13 +14,13 @@
 import Card from 'primevue/card';
 import Rating from 'primevue/rating';
 
-import type { ReviewDto } from '@/api/dto';
+import type { ReviewDto } from '@/api';
 
-export interface CardReviewProps {
+export interface ReviewCardProps {
   review: ReviewDto;
 }
 
-defineProps<CardReviewProps>();
+defineProps<ReviewCardProps>();
 </script>
 
 <style scoped></style>

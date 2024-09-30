@@ -4,34 +4,30 @@ import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import * as process from 'node:process';
-import { Dialect } from 'sequelize';
 import { Server } from 'socket.io';
 
-import { Database } from '@/database/Database';
+import { instantiateDatabase } from '@/database/dbContext';
 import {
-  createLogger,
   loggerMiddleware,
   rateLimiterMiddleware,
   sessionMiddleware,
 } from '@/middlewares';
-import type { EnvironmentVariables } from '@/types';
+import { EnvironmentVariables } from '@/types/EnvironmentVariables';
 
-import router from './Router';
+import router from './router';
 
 dotenv.config();
-
 const environmentVariables = process.env as EnvironmentVariables;
-const databaseConfiguration = {
+
+const dbConfig = {
   dbName: environmentVariables.DB_NAME,
   host: environmentVariables.DB_HOST,
   password: environmentVariables.DB_PASSWORD,
   port: environmentVariables.DB_PORT as number,
-  provider: environmentVariables.DB_PROVIDER as Dialect,
   username: environmentVariables.DB_USERNAME,
 };
 (async () => {
-  await Database.createDatabaseIfDoesNotExist(databaseConfiguration);
-  await Database.synchronizeDatabaseWithModels();
+  await instantiateDatabase(dbConfig);
 })();
 
 const app = express();
@@ -39,55 +35,18 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 if (environmentVariables.NODE_ENV === 'development') {
-  app.use(
-    cors({
-      origin: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: [
-        'Origin',
-        'X-Requested-With',
-        'Content-Type',
-        'Accept',
-        'Authorization',
-      ],
-      credentials: true,
-    }),
-  );
-} else {
-  // TODO: Narrow-down
-  app.use(
-    cors({
-      origin: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: [
-        'Origin',
-        'X-Requested-With',
-        'Content-Type',
-        'Accept',
-        'Authorization',
-      ],
-      credentials: true,
-    }),
-  );
+  app.use(cors({ origin: '*' }));
 }
 
 app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   .use(sessionMiddleware(environmentVariables.SESSION_SECRET))
-  .use(
-    loggerMiddleware(
-      createLogger({
-        appName: environmentVariables.SERVER_NAME,
-        environment: environmentVariables.NODE_ENV,
-        logsPath: environmentVariables.LOGS_PATH,
-      }),
-    ),
-  )
+  .use(loggerMiddleware)
   .use(
     rateLimiterMiddleware({
       requestCount: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
-      timeWindowMs: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
+      timeWindowMs: environmentVariables.RATE_LIMITER_TIME_WINDOW_MS as number,
     }),
   )
   .use(router);

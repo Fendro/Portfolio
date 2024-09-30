@@ -4,7 +4,7 @@
     "welcome": "Welcome to my Portfolio.",
     "introduction-title": "My name is Tristan Schmitt.",
     "introduction-description": "Currently in training at the Web@cadémie by Epitech Mulhouse to become a Web developer.\nYou may browse this website to see the various projects I have worked on during my training.",
-    "training-report": "Rapport d'alternance"
+    "training-report": "Training report"
   },
   "projects": {
     "BSQ": {
@@ -63,6 +63,9 @@
         "Docker"
       ]
     }
+  },
+  "reviews": {
+    "no-reviews-message": "There are no reviews yet, you could be the first to leave one!"
   },
   "ui": {
     "button": {

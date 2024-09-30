@@ -1,5 +1,3 @@
-import { useProfileStore } from '@/core/stores';
-
 export interface IFetchService {
   deleteAsync: {
     <TPayload>(url: string, payload: TPayload): Promise<void>;
@@ -33,7 +31,6 @@ export interface IFetchService {
 export class FetchService implements IFetchService {
   private headers: HeadersInit = {
     Accept: 'application/json',
-    Authorization: `Token ${useProfileStore().token}`,
     'Content-Type': 'application/json',
   };
 

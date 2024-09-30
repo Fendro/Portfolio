@@ -4,6 +4,7 @@ import type { IReviewService, IToastService } from '@/core/services';
 
 export interface ReviewsViewState {
   containsProfanity: boolean;
+  hasFetchFailed: boolean;
   isFetching: boolean;
   isPosting: boolean;
   page: number;
@@ -13,6 +14,7 @@ export interface ReviewsViewState {
 export default class ReviewsView {
   readonly state: Reactive<ReviewsViewState> = reactive({
     containsProfanity: false,
+    hasFetchFailed: false,
     isFetching: false,
     isPosting: false,
     page: 0,
@@ -37,21 +39,17 @@ export default class ReviewsView {
       .finally(() => (this.state.isPosting = false));
   };
 
-  setPage(page: number) {
-    this.state.page = page;
-  }
-
   private fetchReviews = async (): Promise<void> => {
     this.state.isFetching = true;
+    this.state.hasFetchFailed = false;
     this.reviewService
       .refreshStoreReviewsAsync()
-      .catch((err) => this.toastService.error(err.message))
+      .catch((err) => {
+        this.state.hasFetchFailed = true;
+        this.toastService.error(err.message);
+      })
       .finally(() => (this.state.isFetching = false));
   };
-
-  get rowCount() {
-    return this.state.rowCount;
-  }
 
   get paginatedReviews() {
     const reviews = this.reviewService.getReviews();

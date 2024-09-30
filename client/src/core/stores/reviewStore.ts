@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
 import { computed, ref } from 'vue';
 
-import type { ReviewCreateDto, ReviewDto } from '@/api/dto';
+import type { ReviewCreateDto, ReviewDto } from '@/api';
 
 export const useReviewStore = defineStore('reviewStore', () => {
   const _reviews: Ref<ReviewDto[]> = ref([]);

@@ -64,6 +64,9 @@
       ]
     }
   },
+  "reviews": {
+    "no-reviews-message": "Personne n'a encore laissé de commentaire, soyez le premier !"
+  },
   "ui": {
     "button": {
       "download": "Télécharger",
