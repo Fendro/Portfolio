@@ -3,7 +3,7 @@
     <template #title>
       <div class="flex items-center justify-between">
         Anonymous
-        <Rating v-model="review.rating" readOnly />
+        <Rating v-model="review.rating" :readonly="true" />
       </div>
     </template>
     <template #content>{{ review.content }}</template>
