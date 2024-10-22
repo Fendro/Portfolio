@@ -26,7 +26,7 @@ export class ReviewTable
   declare readonly updatedAt: Date;
 }
 
-const reviewInit: ModelAttributes<ReviewTable> = {
+const attributes: ModelAttributes<ReviewTable> = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -42,10 +42,10 @@ const reviewInit: ModelAttributes<ReviewTable> = {
   },
 };
 
-const reviewOptions = {
+const options = {
   tableName: 'reviews',
   timestamps: true,
 };
 
 export const initializeReviewTable = (sequelize: Sequelize) =>
-  ReviewTable.init(reviewInit, { ...reviewOptions, sequelize });
+  ReviewTable.init(attributes, { ...options, sequelize });

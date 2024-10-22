@@ -54,5 +54,5 @@ export const instantiateDatabase = async (dbConfig: DbConfig) => {
 
   await Database.createIfDoesNotExist(dbConfig);
   database = new Database(dbConfig);
-  initializationFunctions.forEach((func) => func(database.context));
+  initializationFunctions.forEach((fn) => fn(database.context));
 };

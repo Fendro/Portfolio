@@ -11,7 +11,7 @@
         />
       </nav>
       <main
-        class="flex flex-1 flex-col gap-1 overflow-y-auto pt-4 text-color sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl"
+        class="flex flex-1 flex-col gap-1 overflow-y-auto pt-2 text-color sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl"
       >
         <RouterView class="w-full" />
         <ModalShelf class="sticky bottom-0 mt-auto" />

@@ -5,15 +5,36 @@
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/dto": ["./src/application/dto/index.ts"],
-      "@/entities": ["./src/entities/index.ts"],
-      "@/controllers": ["./src/infrastructure/controllers/index.ts"],
-      "@/middlewares": ["./src/infrastructure/middlewares/index.ts"],
-      "@/interfaces": ["./src/application/interfaces/index.ts"],
-      "@/repositories": ["./src/database/repositories/index.ts"],
-      "@/services": ["./src/application/services/index.ts"],
-      "@/types": ["./src/types/index.ts"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/config": [
+        "./src/infrastructure/config/index.ts"
+      ],
+      "@/dto": [
+        "./src/application/dto/index.ts"
+      ],
+      "@/entities": [
+        "./src/entities/index.ts"
+      ],
+      "@/controllers": [
+        "./src/infrastructure/controllers/index.ts"
+      ],
+      "@/middlewares": [
+        "./src/infrastructure/middlewares/index.ts"
+      ],
+      "@/interfaces": [
+        "./src/application/interfaces/index.ts"
+      ],
+      "@/repositories": [
+        "./src/database/repositories/index.ts"
+      ],
+      "@/services": [
+        "./src/application/services/index.ts"
+      ],
+      "@/types": [
+        "./src/types/index.ts"
+      ]
     },
     "resolveJsonModule": true,
     "outDir": "./dist",

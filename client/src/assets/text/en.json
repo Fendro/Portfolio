@@ -10,6 +10,7 @@
     "BSQ": {
       "description": "A small solo project to practice my algorithmic skills on.\nThe goal was to find the biggest square in a parsed text file map.\nI implemented the possibility to see in the console the search process as the algorithm looks through the map.",
       "name": "BSQ",
+      "image": "ThumbnailAlgorithm.png",
       "sourceUrl": "https://github.com/Fendro/BSQ",
       "technologies": [
         "PHP"

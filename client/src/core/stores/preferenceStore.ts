@@ -33,11 +33,6 @@ export const usePreferenceStore = defineStore('preferenceStore', () => {
       _theme.value == ThemeEnum.Light ? ThemeEnum.Dark : ThemeEnum.Light;
   }
 
-  function update(payload: UserPreference) {
-    _language.value = payload.language;
-    _theme.value = payload.theme;
-  }
-
   function $reset() {
     _language.value = LanguageEnum.French;
     _theme.value = _isUserSystemDarkMode ? ThemeEnum.Dark : ThemeEnum.Light;

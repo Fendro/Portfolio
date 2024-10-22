@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -6,13 +5,14 @@ import http from 'http';
 import * as process from 'node:process';
 import { Server } from 'socket.io';
 
+import { getCorsOptions } from '@/config';
 import { instantiateDatabase } from '@/database/dbContext';
 import {
   loggerMiddleware,
   rateLimiterMiddleware,
   sessionMiddleware,
 } from '@/middlewares';
-import { EnvironmentVariables } from '@/types/EnvironmentVariables';
+import { EnvironmentVariables } from '@/types';
 
 import router from './router';
 
@@ -34,22 +34,18 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-if (environmentVariables.NODE_ENV === 'development') {
-  app.use(cors({ origin: '*' }));
-}
-
-app
-  .use(bodyParser.urlencoded({ extended: false }))
-  .use(bodyParser.json())
-  .use(sessionMiddleware(environmentVariables.SESSION_SECRET))
-  .use(loggerMiddleware)
-  .use(
-    rateLimiterMiddleware({
-      requestCount: environmentVariables.RATE_LIMITER_REQUEST_COUNT as number,
-      timeWindowMs: environmentVariables.RATE_LIMITER_TIME_WINDOW_MS as number,
-    }),
-  )
-  .use(router);
+app.use(
+  cors(getCorsOptions(environmentVariables.NODE_ENV)),
+  express.urlencoded({ extended: false }),
+  express.json(),
+  sessionMiddleware(environmentVariables.SESSION_SECRET),
+  loggerMiddleware,
+  rateLimiterMiddleware({
+    requestCount: Number(environmentVariables.RATE_LIMITER_REQUEST_COUNT),
+    timeWindowMs: Number(environmentVariables.RATE_LIMITER_TIME_WINDOW_MS),
+  }),
+  router,
+);
 
 app.listen(environmentVariables.SERVER_PORT, () => {
   console.info(
