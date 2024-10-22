@@ -1,34 +1,38 @@
 <template>
   <section class="flex flex-col gap-2">
-    <review-text-area
+    <div class="flex flex-col gap-2">
+      <template v-if="setup.state.isFetching">
+        <template v-for="_ in setup.state.rowCount">
+          <ReviewSkeleton class="ml-2 mr-2" />
+        </template>
+        <ReviewPaginatorSkeleton />
+      </template>
+      <template v-else>
+        <template v-if="setup.paginatedReviews.length">
+          <template v-for="review in setup.paginatedReviews">
+            <ReviewCard :review="review" class="ml-2 mr-2" />
+          </template>
+          <Paginator
+            :rows="setup.state.rowCount"
+            :totalRecords="reviewStore.reviews.length"
+            @page="({ page }) => (setup.state.page = page)"
+            class="ml-2 mr-2"
+          />
+        </template>
+        <template v-else>
+          <ReviewPlaceholderCard
+            :author="'Tristan Schmitt'"
+            :message="localized.text['reviews']['no-reviews-message']"
+            class="ml-2 mr-2"
+          />
+        </template>
+      </template>
+    </div>
+
+    <ReviewTextArea
       :user-review="reviewStore.userReview"
       @submit="setup.postReview"
     />
-
-    <template v-if="setup.state.isFetching">
-      <template v-for="_ in setup.state.rowCount">
-        <ReviewSkeleton />
-      </template>
-      <ReviewPaginatorSkeleton />
-    </template>
-    <template v-else>
-      <template v-if="setup.paginatedReviews.length">
-        <template v-for="review in setup.paginatedReviews">
-          <ReviewCard :review="review" />
-        </template>
-        <Paginator
-          :rows="setup.state.rowCount"
-          :totalRecords="reviewStore.reviews.length"
-          @page="({ page }) => (setup.state.page = page)"
-        />
-      </template>
-      <template v-else>
-        <ReviewPlaceholderCard
-          :author="'Tristan Schmitt'"
-          :message="localized.text['reviews']['no-reviews-message']"
-        />
-      </template>
-    </template>
   </section>
 </template>
 
