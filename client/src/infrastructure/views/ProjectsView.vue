@@ -1,6 +1,6 @@
 <template>
   <section>
-    <MockCarousel
+    <ProjectCarousel
       :carousel-slides="slides"
       class="self-center"
       @changeSlide="() => console.log('changed')"
@@ -11,141 +11,131 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import AlgorithmImage from '@/assets/images/Algorithm.png';
-import CSSImage from '@/assets/images/CSS.png';
-import CSharpImage from '@/assets/images/CSharp.png';
-import Connect4Image from '@/assets/images/Connect4.png';
-import DockerImage from '@/assets/images/Docker.png';
-import ECommerceImage from '@/assets/images/ECommerce.png';
-import EFCoreImage from '@/assets/images/EFCore.png';
-import ExpressImage from '@/assets/images/Express.png';
-import GrafanaImage from '@/assets/images/Grafana.png';
-import HTMLImage from '@/assets/images/HTML.png';
-import JavaScriptImage from '@/assets/images/JavaScript.png';
-import MongoDBImage from '@/assets/images/MongoDB.png';
-import MySQLImage from '@/assets/images/MySQL.png';
-import NETImage from '@/assets/images/NET.png';
-import NodeImage from '@/assets/images/NodeJS.png';
-import PHPImage from '@/assets/images/PHP.png';
-import PortfolioImage from '@/assets/images/Portfolio.png';
-import ReactImage from '@/assets/images/React.png';
-import SequelizeImage from '@/assets/images/Sequelize.png';
-import SoloSailImage from '@/assets/images/SoloSail.svg';
-import TypeScriptImage from '@/assets/images/TypeScript.png';
-import VueImage from '@/assets/images/Vue.png';
-import projectTextContent from '@/assets/text/projects.json';
+import LogoCSharp from '@/assets/images/LogoCSharp.png';
+import LogoCss from '@/assets/images/LogoCss.png';
+import LogoDocker from '@/assets/images/LogoDocker.png';
+import LogoDotNet from '@/assets/images/LogoDotNet.png';
+import LogoEfCore from '@/assets/images/LogoEfCore.png';
+import LogoExpress from '@/assets/images/LogoExpress.png';
+import LogoGrafana from '@/assets/images/LogoGrafana.png';
+import LogoHtml from '@/assets/images/LogoHtml.png';
+import LogoJavascript from '@/assets/images/LogoJavascript.png';
+import LogoMongoDb from '@/assets/images/LogoMongoDb.png';
+import LogoMySql from '@/assets/images/LogoMySql.png';
+import LogoNodeJs from '@/assets/images/LogoNodeJs.png';
+import LogoPhp from '@/assets/images/LogoPhp.png';
+import LogoReact from '@/assets/images/LogoReact.png';
+import LogoSequelize from '@/assets/images/LogoSequelize.png';
+import LogoTypescript from '@/assets/images/LogoTypescript.png';
+import LogoVue from '@/assets/images/LogoVue.png';
+import ThumbnailAlgorithm from '@/assets/images/ThumbnailAlgorithm.png';
+import ThumbnailConnect4 from '@/assets/images/ThumbnailConnect4.png';
+import ThumbnailECommerce from '@/assets/images/ThumbnailECommerce.png';
+import ThumbnailPortfolio from '@/assets/images/ThumbnailPortfolio.png';
+import ThumbnailSoloSail from '@/assets/images/ThumbnailSoloSail.svg';
 import { diManager } from '@/diManager.ts';
-import MockCarousel, {
-  type CarouselSlide,
-} from '@/infrastructure/components/projects/ProjectCarousel.vue';
+import ProjectCarousel from '@/infrastructure/components/projects/ProjectCarousel.vue';
 
-const preferences = diManager.preferenceStore;
+const localized = diManager.localizationStore;
+
+const logos = new Map<string, string>([
+  ['C#', LogoCSharp],
+  ['.NET', LogoDotNet],
+  ['EF Core', LogoEfCore],
+  ['MySQL', LogoMySql],
+  ['Grafana', LogoGrafana],
+  ['Docker', LogoDocker],
+  ['Vue', LogoVue],
+  ['Express', LogoExpress],
+  ['TypeScript', LogoTypescript],
+  ['Sequelize', LogoSequelize],
+  ['JavaScript', LogoJavascript],
+  ['HTML', LogoHtml],
+  ['CSS', LogoCss],
+  ['Node', LogoNodeJs],
+  ['React', LogoReact],
+  ['MongoDB', LogoMongoDb],
+  ['PHP', LogoPhp],
+]);
 
 const imgResolver = (technologie: string) => {
-  switch (technologie) {
-    case 'C#':
-      return CSharpImage;
-    case '.NET':
-      return NETImage;
-    case 'EF Core':
-      return EFCoreImage;
-    case 'MySQL':
-      return MySQLImage;
-    case 'Grafana':
-      return GrafanaImage;
-    case 'Docker':
-      return DockerImage;
-    case 'Vue':
-      return VueImage;
-    case 'Express':
-      return ExpressImage;
-    case 'TypeScript':
-      return TypeScriptImage;
-    case 'Sequelize':
-      return SequelizeImage;
-    case 'JavaScript':
-      return JavaScriptImage;
-    case 'HTML':
-      return HTMLImage;
-    case 'CSS':
-      return CSSImage;
-    case 'Node':
-      return NodeImage;
-    case 'React':
-      return ReactImage;
-    case 'MongoDB':
-      return MongoDBImage;
-    case 'PHP':
-      return PHPImage;
-    default:
-      return '';
-  }
+  return logos.get(technologie) || '';
 };
 
-const slides = ref<CarouselSlide[]>([
+const slides = ref([
   {
-    image: SoloSailImage,
+    image: ThumbnailSoloSail,
     alt: 'SoloSail project slide',
-    projectSourceUrl: projectTextContent.SoloSail.sourceUrl,
+    projectSourceUrl: localized.text['projects']['SoloSail']['sourceUrl'],
     projectDescription: {
-      name: projectTextContent.SoloSail.name[preferences.language],
-      description:
-        projectTextContent.SoloSail.description[preferences.language],
-      technologies: projectTextContent.SoloSail.technologies.map(
-        (technology) => ({ name: technology, image: imgResolver(technology) }),
+      name: localized.text['projects']['SoloSail']['name'],
+      description: localized.text['projects']['SoloSail']['description'],
+      technologies: localized.text['projects']['SoloSail'].technologies.map(
+        (technology) => ({
+          name: technology,
+          image: imgResolver(technology),
+        }),
       ),
     },
   },
   {
-    image: PortfolioImage,
+    image: ThumbnailPortfolio,
     alt: 'Portfolio project slide',
-    projectSourceUrl: projectTextContent.Portfolio.sourceUrl,
+    projectSourceUrl: localized.text['projects']['Portfolio']['sourceUrl'],
     projectDescription: {
-      name: projectTextContent.Portfolio.name[preferences.language],
-      description:
-        projectTextContent.Portfolio.description[preferences.language],
-      technologies: projectTextContent.Portfolio.technologies.map(
-        (technology) => ({ name: technology, image: imgResolver(technology) }),
+      name: localized.text['projects']['Portfolio']['name'],
+      description: localized.text['projects']['Portfolio']['description'],
+      technologies: localized.text['projects']['Portfolio'].technologies.map(
+        (technology) => ({
+          name: technology,
+          image: imgResolver(technology),
+        }),
       ),
     },
   },
   {
-    image: Connect4Image,
+    image: ThumbnailConnect4,
     alt: 'Connect 4 project slide',
-    projectSourceUrl: projectTextContent.Connect4.sourceUrl,
+    projectSourceUrl: localized.text['projects']['Connect4']['sourceUrl'],
     projectDescription: {
-      name: projectTextContent.Connect4.name[preferences.language],
-      description:
-        projectTextContent.Connect4.description[preferences.language],
-      technologies: projectTextContent.Connect4.technologies.map(
-        (technology) => ({ name: technology, image: imgResolver(technology) }),
+      name: localized.text['projects']['Connect4']['name'],
+      description: localized.text['projects']['Connect4']['description'],
+      technologies: localized.text['projects']['Connect4'].technologies.map(
+        (technology) => ({
+          name: technology,
+          image: imgResolver(technology),
+        }),
       ),
     },
   },
   {
-    image: ECommerceImage,
+    image: ThumbnailECommerce,
     alt: 'E-Commerce project slide',
-    projectSourceUrl: projectTextContent['E-Commerce'].sourceUrl,
+    projectSourceUrl: localized.text['projects']['E-Commerce']['sourceUrl'],
     projectDescription: {
-      name: projectTextContent['E-Commerce'].name[preferences.language],
-      description:
-        projectTextContent['E-Commerce'].description[preferences.language],
-      technologies: projectTextContent['E-Commerce'].technologies.map(
-        (technology) => ({ name: technology, image: imgResolver(technology) }),
+      name: localized.text['projects']['E-Commerce']['name'],
+      description: localized.text['projects']['E-Commerce']['description'],
+      technologies: localized.text['projects']['E-Commerce'].technologies.map(
+        (technology) => ({
+          name: technology,
+          image: imgResolver(technology),
+        }),
       ),
     },
   },
   {
-    image: AlgorithmImage,
+    image: ThumbnailAlgorithm,
     alt: 'BSQ',
-    projectSourceUrl: projectTextContent.BSQ.sourceUrl,
+    projectSourceUrl: localized.text['projects']['BSQ']['sourceUrl'],
     projectDescription: {
-      name: projectTextContent['BSQ'].name[preferences.language],
-      description: projectTextContent['BSQ'].description[preferences.language],
-      technologies: projectTextContent.BSQ.technologies.map((technology) => ({
-        name: technology,
-        image: imgResolver(technology),
-      })),
+      name: localized.text['projects']['BSQ']['name'],
+      description: localized.text['projects']['BSQ']['description'],
+      technologies: localized.text['projects']['BSQ'].technologies.map(
+        (technology) => ({
+          name: technology,
+          image: imgResolver(technology),
+        }),
+      ),
     },
   },
 ]);
