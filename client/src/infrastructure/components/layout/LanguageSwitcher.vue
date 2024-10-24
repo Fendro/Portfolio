@@ -1,29 +1,25 @@
 <template>
-  <template v-if="preference.language === LanguageEnum.French">
-    <img
-      :src="FlagFrImg"
-      alt="Language toggle"
-      class="size-12"
-      @click="preference.toggleLanguage()"
-    />
-  </template>
-  <template v-else>
-    <img
-      :src="FlagUkImg"
-      alt="Language toggle"
-      class="size-12"
-      @click="preference.toggleLanguage()"
-    />
-  </template>
+  <img
+    :src="image"
+    alt="Language toggle"
+    class="size-12"
+    @click="preference.toggleLanguage()"
+  />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+import { computed } from 'vue';
+
 import FlagFrImg from '@/assets/images/FlagFrance.png';
 import FlagUkImg from '@/assets/images/FlagUnitedKingdom.png';
 import { LanguageEnum } from '@/core/enums';
 import { usePreferenceStore } from '@/core/stores';
 
 const preference = usePreferenceStore();
+
+const image = computed(() =>
+  preference.language === LanguageEnum.English ? FlagUkImg : FlagFrImg,
+);
 </script>
 
 <style scoped></style>

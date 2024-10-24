@@ -1,29 +1,25 @@
 <template>
-  <template v-if="preference.theme === ThemeEnum.Light">
-    <img
-      :src="BtnLightModeImg"
-      alt="Light Mode toggle"
-      class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
-      @click="preference.toggleTheme()"
-    />
-  </template>
-  <template v-else>
-    <img
-      :src="BtnDarkModeImg"
-      alt="Dark Mode toggle"
-      class="size-12 rounded-full border-2 border-surface-900 transition duration-200"
-      @click="preference.toggleTheme()"
-    />
-  </template>
+  <img
+    :src="image"
+    alt="Theme toggle"
+    class="size-12 rounded-full border-2 border-surface-700 dark:bg-surface-200"
+    @click="preference.toggleTheme()"
+  />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+import { computed } from 'vue';
+
 import BtnDarkModeImg from '@/assets/images/ButtonDarkMode.png';
 import BtnLightModeImg from '@/assets/images/ButtonLightMode.png';
 import { ThemeEnum } from '@/core/enums';
 import { usePreferenceStore } from '@/core/stores';
 
 const preference = usePreferenceStore();
+
+const image = computed(() =>
+  preference.theme === ThemeEnum.Light ? BtnLightModeImg : BtnDarkModeImg,
+);
 </script>
 
 <style scoped></style>

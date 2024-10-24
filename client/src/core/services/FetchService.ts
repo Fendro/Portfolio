@@ -34,6 +34,23 @@ export class FetchService implements IFetchService {
     'Content-Type': 'application/json',
   };
 
+  private static ensureSuccessStatusCode = (response: Response) => {
+    if (response.status >= 200 && response.status < 300) return response;
+
+    throw new Error('Request error.');
+  };
+
+  private static ensureJsonContentType = (response: Response) => {
+    if (response.headers.get('content-type')?.includes('application/json'))
+      return response;
+
+    throw new Error('Request error.');
+  };
+
+  private static deserializeToJson = <T>(response: Response) => {
+    return response.json() as T;
+  };
+
   getAsync = <TResponse>(url: string, queryParams?: Record<string, string>) => {
     return this.executeRequestAsync<never, TResponse>(
       url + new URLSearchParams(queryParams),
@@ -100,22 +117,5 @@ export class FetchService implements IFetchService {
       .then(FetchService.ensureSuccessStatusCode)
       .then(FetchService.ensureJsonContentType)
       .then(FetchService.deserializeToJson<TResponse>);
-  };
-
-  private static ensureSuccessStatusCode = (response: Response) => {
-    if (response.status >= 200 && response.status < 300) return response;
-
-    throw new Error('Request error.');
-  };
-
-  private static ensureJsonContentType = (response: Response) => {
-    if (response.headers.get('content-type')?.includes('application/json'))
-      return response;
-
-    throw new Error('Request error.');
-  };
-
-  private static deserializeToJson = <T>(response: Response) => {
-    return response.json() as T;
   };
 }

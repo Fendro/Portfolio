@@ -1,5 +1,5 @@
-import { ReviewApi } from '@/api';
 import type { ReviewCreateDto, ReviewDto } from '@/api';
+import { ReviewApi } from '@/api';
 import type { IFetchService } from '@/core/services';
 
 export interface IReviewStore {
