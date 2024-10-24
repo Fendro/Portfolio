@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import LogoCSharp from '@/assets/images/LogoCSharp.png';
 import LogoCss from '@/assets/images/LogoCss.png';
@@ -62,7 +62,7 @@ const imgResolver = (technologie: string) => {
   return logos.get(technologie) || '';
 };
 
-const slides = ref([
+const slides = computed(() => [
   {
     image: ThumbnailSoloSail,
     alt: 'SoloSail project slide',
