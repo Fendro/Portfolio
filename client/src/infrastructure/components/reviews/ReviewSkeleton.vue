@@ -1,8 +1,8 @@
 <template>
-  <Skeleton width="100%" height="7rem" rounded="4rem" />
+  <Skeleton class="min-h-32 w-full rounded-lg" />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import Skeleton from 'primevue/skeleton';
 </script>
 

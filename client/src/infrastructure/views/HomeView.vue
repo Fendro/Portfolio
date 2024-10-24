@@ -14,10 +14,10 @@
         {{ localized.text['ui']['button']['download'] }}
       </div>
       <div class="flex flex-col justify-center gap-4">
-        <a :href="CV" target="_blank" class="min-w-fit">
+        <a :href="CV" class="min-w-fit" target="_blank">
           <Button :label="localized.text['home']['cv']" />
         </a>
-        <a :href="Rapport" target="_blank" class="min-w-fit">
+        <a :href="Rapport" class="min-w-fit" target="_blank">
           <Button :label="localized.text['home']['training-report']" />
         </a>
       </div>
@@ -25,17 +25,14 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import Button from 'primevue/button';
 
 import CV from '@/assets/files/Curriculum Vitae.pdf';
 import Rapport from "@/assets/files/Rapport d'alternance.pdf";
-import { useLocalizationStore } from '@/core/stores';
-import HomeView from '@/infrastructure/views/HomeView';
+import { diManager } from '@/diManager.ts';
 
-const localized = useLocalizationStore();
-
-const setup = new HomeView();
+const localized = diManager.localizationStore;
 </script>
 
 <style scoped></style>

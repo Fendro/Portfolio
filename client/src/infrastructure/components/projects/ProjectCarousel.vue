@@ -1,24 +1,24 @@
 <template>
   <div class="relative w-full overflow-hidden">
     <div
-      class="flex transition-transform duration-500 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+      class="flex transition-transform duration-500 ease-in-out"
     >
       <div
-        class="flex min-w-full flex-col items-center"
         v-for="(slide, index) in carouselSlides"
         :key="index"
+        class="flex min-w-full flex-col items-center"
       >
         <img
-          :src="slide.image"
           :alt="slide.alt"
+          :src="slide.image"
           class="object-fit block h-64 w-96"
         />
         <div class="flex">
           <a :href="slide.projectSourceUrl" target="_blank">
             <Button
               :label="
-                userPreferences.language === LanguageEnum.English
+                preferences.language === LanguageEnum.English
                   ? 'View source'
                   : 'Voir le code source'
               "
@@ -26,8 +26,8 @@
           </a>
         </div>
         <ProjectDescription
-          :name="slide.projectDescription.name"
           :description="slide.projectDescription.description"
+          :name="slide.projectDescription.name"
           :technologies="slide.projectDescription.technologies"
         />
       </div>
@@ -62,7 +62,7 @@ import Button from 'primevue/button';
 import { ref } from 'vue';
 
 import { LanguageEnum } from '@/core/enums';
-import { useUserPreferenceStore } from '@/core/stores';
+import { diManager } from '@/diManager.ts';
 import ProjectDescription, {
   type ProjectDescriptionProps,
 } from '@/infrastructure/components/projects/ProjectDescription.vue';
@@ -85,7 +85,7 @@ export interface MockCarouselEmits {
 defineProps<MockCarouselProps>();
 defineEmits<MockCarouselEmits>();
 
-const userPreferences = useUserPreferenceStore();
+const preferences = diManager.preferenceStore;
 
 const currentIndex = ref(0);
 
@@ -108,14 +108,14 @@ const prevSlide = (slideCount: number) => {
 
 <style scoped>
 .carousel-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
-  font-size: 2rem;
   cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
 }
 

@@ -7,7 +7,7 @@
     <div
       class="flex h-full min-h-screen w-full flex-col bg-primary-50 dark:bg-primary-950"
     >
-      <NavigationBar class="sticky top-0 z-navigation p-1" />
+      <NavigationBar class="sticky top-0 z-navigation" />
 
       <main class="flex w-full grow flex-col gap-1">
         <RouterView />

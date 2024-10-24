@@ -1,60 +1,44 @@
 <template>
-  <section class="flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <template v-if="setup.state.isFetching">
-        <template v-for="_ in setup.state.rowCount">
-          <ReviewSkeleton class="ml-2 mr-2" />
-        </template>
-        <ReviewPaginatorSkeleton />
+  <section class="flex flex-col gap-2 p-2">
+    <PaginatedList
+      :gap="2"
+      :is-fetching-data="isFetching"
+      :items="reviewStore.reviews"
+      :rows-per-page="10"
+    >
+      <template #contentSkeleton>
+        <ReviewSkeleton />
       </template>
-      <template v-else>
-        <template v-if="setup.paginatedReviews.length">
-          <template v-for="review in setup.paginatedReviews">
-            <ReviewCard :review="review" class="ml-2 mr-2" />
-          </template>
-          <Paginator
-            :rows="setup.state.rowCount"
-            :totalRecords="reviewStore.reviews.length"
-            @page="({ page }) => (setup.state.page = page)"
-            class="ml-2 mr-2"
-          />
-        </template>
-        <template v-else>
-          <ReviewPlaceholderCard
-            :author="'Tristan Schmitt'"
-            :message="localized.text['reviews']['no-reviews-message']"
-            class="ml-2 mr-2"
-          />
-        </template>
+      <template #content="{ item }: { item: ReviewDto }">
+        <ReviewCard :review="item" />
       </template>
-    </div>
+    </PaginatedList>
 
     <ReviewTextArea
       :user-review="reviewStore.userReview"
-      @submit="setup.postReview"
+      @submit="() => postReview(reviewStore.userReview)"
     />
   </section>
 </template>
 
-<script setup lang="ts">
-import Paginator from 'primevue/paginator';
+<script lang="ts" setup>
+import { onBeforeMount, ref } from 'vue';
 
-import { FetchService, ReviewService, ToastService } from '@/core/services';
-import { useLocalizationStore, useReviewStore } from '@/core/stores';
+import { ReviewDto } from '@/api';
+import { listReviews, postReview } from '@/core/usecases';
+import { diManager } from '@/diManager.ts';
 import ReviewCard from '@/infrastructure/components/reviews/ReviewCard.vue';
-import ReviewPaginatorSkeleton from '@/infrastructure/components/reviews/ReviewPaginatorSkeleton.vue';
-import ReviewPlaceholderCard from '@/infrastructure/components/reviews/ReviewPlaceholderCard.vue';
 import ReviewSkeleton from '@/infrastructure/components/reviews/ReviewSkeleton.vue';
 import ReviewTextArea from '@/infrastructure/components/reviews/ReviewTextArea.vue';
-import ReviewsView from '@/infrastructure/views/ReviewsView';
+import PaginatedList from '@/infrastructure/components/shared/PaginatedList.vue';
 
-const localized = useLocalizationStore();
-const reviewStore = useReviewStore();
+const reviewStore = diManager.reviewStore;
+let isFetching = ref(false);
 
-const setup = new ReviewsView(
-  new ReviewService(new FetchService(), reviewStore),
-  new ToastService(),
-);
+onBeforeMount(() => {
+  isFetching.value = true;
+  listReviews().finally(() => (isFetching.value = false));
+});
 </script>
 
 <style scoped></style>

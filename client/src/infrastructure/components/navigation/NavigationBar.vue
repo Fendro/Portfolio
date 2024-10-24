@@ -23,12 +23,12 @@ import type { MenuItem } from 'primevue/menuitem';
 import { computed } from 'vue';
 
 import { RouteEnum } from '@/core/enums';
-import { useLocalizationStore } from '@/core/stores';
+import { diManager } from '@/diManager.ts';
 import LanguageSwitcher from '@/infrastructure/components/layout/LanguageSwitcher.vue';
 import ThemeSwitcher from '@/infrastructure/components/layout/ThemeSwitcher.vue';
 import router from '@/infrastructure/router';
 
-const localized = useLocalizationStore();
+const localized = diManager.localizationStore;
 
 const navigationItems = computed<MenuItem[]>(() => [
   {

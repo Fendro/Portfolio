@@ -2,13 +2,13 @@
   <section>
     <MockCarousel
       :carousel-slides="slides"
-      @changeSlide="() => console.log('changed')"
       class="self-center"
+      @changeSlide="() => console.log('changed')"
     />
   </section>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 import AlgorithmImage from '@/assets/images/Algorithm.png';
@@ -34,13 +34,12 @@ import SoloSailImage from '@/assets/images/SoloSail.svg';
 import TypeScriptImage from '@/assets/images/TypeScript.png';
 import VueImage from '@/assets/images/Vue.png';
 import projectTextContent from '@/assets/text/projects.json';
-import { useUserPreferenceStore } from '@/core/stores';
+import { diManager } from '@/diManager.ts';
 import MockCarousel, {
   type CarouselSlide,
 } from '@/infrastructure/components/projects/ProjectCarousel.vue';
-import ProjectsView from '@/infrastructure/views/ProjectsView';
 
-const userPreferences = useUserPreferenceStore();
+const preferences = diManager.preferenceStore;
 
 const imgResolver = (technologie: string) => {
   switch (technologie) {
@@ -89,9 +88,9 @@ const slides = ref<CarouselSlide[]>([
     alt: 'SoloSail project slide',
     projectSourceUrl: projectTextContent.SoloSail.sourceUrl,
     projectDescription: {
-      name: projectTextContent.SoloSail.name[userPreferences.language],
+      name: projectTextContent.SoloSail.name[preferences.language],
       description:
-        projectTextContent.SoloSail.description[userPreferences.language],
+        projectTextContent.SoloSail.description[preferences.language],
       technologies: projectTextContent.SoloSail.technologies.map(
         (technology) => ({ name: technology, image: imgResolver(technology) }),
       ),
@@ -102,9 +101,9 @@ const slides = ref<CarouselSlide[]>([
     alt: 'Portfolio project slide',
     projectSourceUrl: projectTextContent.Portfolio.sourceUrl,
     projectDescription: {
-      name: projectTextContent.Portfolio.name[userPreferences.language],
+      name: projectTextContent.Portfolio.name[preferences.language],
       description:
-        projectTextContent.Portfolio.description[userPreferences.language],
+        projectTextContent.Portfolio.description[preferences.language],
       technologies: projectTextContent.Portfolio.technologies.map(
         (technology) => ({ name: technology, image: imgResolver(technology) }),
       ),
@@ -115,9 +114,9 @@ const slides = ref<CarouselSlide[]>([
     alt: 'Connect 4 project slide',
     projectSourceUrl: projectTextContent.Connect4.sourceUrl,
     projectDescription: {
-      name: projectTextContent.Connect4.name[userPreferences.language],
+      name: projectTextContent.Connect4.name[preferences.language],
       description:
-        projectTextContent.Connect4.description[userPreferences.language],
+        projectTextContent.Connect4.description[preferences.language],
       technologies: projectTextContent.Connect4.technologies.map(
         (technology) => ({ name: technology, image: imgResolver(technology) }),
       ),
@@ -128,9 +127,9 @@ const slides = ref<CarouselSlide[]>([
     alt: 'E-Commerce project slide',
     projectSourceUrl: projectTextContent['E-Commerce'].sourceUrl,
     projectDescription: {
-      name: projectTextContent['E-Commerce'].name[userPreferences.language],
+      name: projectTextContent['E-Commerce'].name[preferences.language],
       description:
-        projectTextContent['E-Commerce'].description[userPreferences.language],
+        projectTextContent['E-Commerce'].description[preferences.language],
       technologies: projectTextContent['E-Commerce'].technologies.map(
         (technology) => ({ name: technology, image: imgResolver(technology) }),
       ),
@@ -141,9 +140,8 @@ const slides = ref<CarouselSlide[]>([
     alt: 'BSQ',
     projectSourceUrl: projectTextContent.BSQ.sourceUrl,
     projectDescription: {
-      name: projectTextContent['BSQ'].name[userPreferences.language],
-      description:
-        projectTextContent['BSQ'].description[userPreferences.language],
+      name: projectTextContent['BSQ'].name[preferences.language],
+      description: projectTextContent['BSQ'].description[preferences.language],
       technologies: projectTextContent.BSQ.technologies.map((technology) => ({
         name: technology,
         image: imgResolver(technology),
@@ -151,8 +149,6 @@ const slides = ref<CarouselSlide[]>([
     },
   },
 ]);
-
-const setup = new ProjectsView();
 </script>
 
 <style scoped></style>

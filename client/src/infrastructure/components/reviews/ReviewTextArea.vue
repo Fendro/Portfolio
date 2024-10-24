@@ -5,7 +5,7 @@
       :label="'Review text area'"
       :name="'ReviewsView-TextArea'"
       auto-resize
-      class="m-2 max-h-80 min-h-40"
+      class="max-h-80 min-h-40"
     />
     <div class="ml-2 flex items-center gap-2 self-start">
       <p class="text-lg text-primary-900 dark:text-primary-100">
@@ -27,7 +27,7 @@ import Rating from 'primevue/rating';
 import Textarea from 'primevue/textarea';
 
 import type { ReviewCreateDto } from '@/api';
-import { useLocalizationStore } from '@/core/stores';
+import { diManager } from '@/diManager.ts';
 
 interface ReviewTextAreaEmits {
   (e: 'submit'): void;
@@ -40,7 +40,7 @@ interface ReviewTextAreaProps {
 defineEmits<ReviewTextAreaEmits>();
 defineProps<ReviewTextAreaProps>();
 
-const localized = useLocalizationStore();
+const localized = diManager.localizationStore;
 </script>
 
 <style scoped></style>
