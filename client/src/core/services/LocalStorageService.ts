@@ -7,10 +7,10 @@ export interface ILocalStorageService {
 
 export class LocalStorageService implements ILocalStorageService {
   getItem = <T>(key: LocalStorageKeyEnum) => {
-    throw new Error();
+    throw new Error(`Not implemented yet. -${key as T}`);
   };
 
   setItem = <T>(key: LocalStorageKeyEnum, value: T) => {
-    throw new Error();
+    throw new Error(`Not implemented yet. -${key} -${value}`);
   };
 }

@@ -59,7 +59,7 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "database" ]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
     restart: always
 
 networks:
